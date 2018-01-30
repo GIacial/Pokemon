@@ -18,10 +18,44 @@ SOURCES += main.cpp \
     Type/abstracttype.cpp \
     Type/tabletypes.cpp \
     Type/typeacier.cpp \
-    Type/doubletype.cpp
+    Type/doubletype.cpp \
+    Type/typecombat.cpp \
+    Type/typedragon.cpp \
+    Type/typeeau.cpp \
+    Type/typeelectrique.cpp \
+    Type/typefeu.cpp \
+    Type/typefee.cpp \
+    Type/typeglace.cpp \
+    Type/typeinsecte.cpp \
+    Type/typenormal.cpp \
+    Type/typeplante.cpp \
+    Type/typepoison.cpp \
+    Type/typepsy.cpp \
+    Type/typeroche.cpp \
+    Type/typesol.cpp \
+    Type/typespectre.cpp \
+    Type/typetenebres.cpp \
+    Type/typevol.cpp
 
 HEADERS += \
     Type/abstracttype.h \
     Type/tabletypes.h \
     Type/typeacier.h \
-    Type/doubletype.h
+    Type/doubletype.h \
+    Type/typecombat.h \
+    Type/typedragon.h \
+    Type/typeeau.h \
+    Type/typeelectrique.h \
+    Type/typefeu.h \
+    Type/typefee.h \
+    Type/typeglace.h \
+    Type/typeinsecte.h \
+    Type/typenormal.h \
+    Type/typeplante.h \
+    Type/typepoison.h \
+    Type/typepsy.h \
+    Type/typeroche.h \
+    Type/typesol.h \
+    Type/typespectre.h \
+    Type/typetenebres.h \
+    Type/typevol.h

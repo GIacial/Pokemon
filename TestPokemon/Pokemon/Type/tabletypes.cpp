@@ -10,7 +10,7 @@ TableTypes::TableTypes() : QObject()
     this->tableDesTypes = new vector<vector<double> >();
     for(int t = ACIER; t<= VOL ;t++) {
         this->tableDesTypes->push_back(vector<double>());
-        for(int d = ACIER; t<= VOL ;d++) {
+        for(int d = ACIER; d<= VOL ;d++) {
             (*(this->tableDesTypes))[t].push_back(COEF_NORMAL);
         }
     }
