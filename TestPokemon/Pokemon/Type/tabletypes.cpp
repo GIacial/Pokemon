@@ -51,7 +51,6 @@ TableTypes::TableTypes() : QObject()
     (*(this->tableDesTypes))[EAU][FEU]           = COEF_PEUEFFICACE;
     (*(this->tableDesTypes))[EAU][GLACE]         = COEF_PEUEFFICACE;
     (*(this->tableDesTypes))[EAU][PLANTE]        = COEF_SUPEREFFICACE;
-    (*(this->tableDesTypes))[EAU][ACIER]         = COEF_PEUEFFICACE;
     //ELECTRIQUE
     (*(this->tableDesTypes))[ELECTRIQUE][ACIER]      = COEF_PEUEFFICACE;
     (*(this->tableDesTypes))[ELECTRIQUE][ELECTRIQUE] = COEF_PEUEFFICACE;

@@ -41,7 +41,12 @@ HEADERS += \
     Pokemon/Type/typespectre.h \
     Pokemon/Type/typetenebres.h \
     Pokemon/Type/typevol.h \
-    Test/Type/test_typeacier.h
+    Test/Type/test_typeacier.h \
+    Test/Type/test_typecombat.h \
+    Test/Type/alltesttype.h \
+    Test/Type/test_typedragon.h \
+    Test/Type/test_typeeau.h \
+    Test/Type/test_typeelectrique.h
 
 SOURCES += \
     Pokemon/Attaque/abstractattaque.cpp \
@@ -69,4 +74,8 @@ SOURCES += \
     Pokemon/Type/typetenebres.cpp \
     Pokemon/Type/typevol.cpp \
     Test/Type/test_typeacier.cpp \
-    main.cpp
+    main.cpp \
+    Test/Type/test_typecombat.cpp \
+    Test/Type/test_typedragon.cpp \
+    Test/Type/test_typeeau.cpp \
+    Test/Type/test_typeelectrique.cpp
