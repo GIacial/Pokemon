@@ -11,10 +11,6 @@ class TypeDragon : public AbstractType
     //destructeur
     virtual ~TypeDragon() throw ();
 
-    //fonction
-    static const TypeDragon& getTypeDragon();
-
-    private:
     //constructeur
     TypeDragon();                    //constructeur
 };

@@ -13,10 +13,4 @@ TypePoison::TypePoison() : AbstractType("Poison",POISON)
 TypePoison::~TypePoison() throw (){
 
 }
-//--------------------------------------------------------------------------------------
-//----------------------Fonction--------------------------------------------------------
-//--------------------------------------------------------------------------------------
-const TypePoison& TypePoison::getTypePoison(){
-    static TypePoison t ;
-    return t;
-}
+

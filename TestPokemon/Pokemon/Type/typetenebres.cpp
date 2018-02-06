@@ -13,10 +13,3 @@ TypeTenebres::TypeTenebres() : AbstractType("Tenebres",TENEBRES)
 TypeTenebres::~TypeTenebres() throw (){
 
 }
-//--------------------------------------------------------------------------------------
-//----------------------Fonction--------------------------------------------------------
-//--------------------------------------------------------------------------------------
-const TypeTenebres& TypeTenebres::getTypeTenebres(){
-    static TypeTenebres t ;
-    return t;
-}

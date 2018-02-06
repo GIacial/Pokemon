@@ -12,10 +12,6 @@ class TypeTenebres : public AbstractType
     //destructeur
     virtual ~TypeTenebres() throw ();
 
-    //fonction
-    static const TypeTenebres& getTypeTenebres();
-
-    private:
     //constructeur
     TypeTenebres();                    //constructeur
 

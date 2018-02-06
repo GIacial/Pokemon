@@ -12,10 +12,7 @@ class TypeElectrique : public AbstractType
     //destructeur
     virtual ~TypeElectrique() throw ();
 
-    //fonction
-    static const TypeElectrique& getTypeElectrique();
 
-    private:
     //constructeur
     TypeElectrique();                    //constructeur
 

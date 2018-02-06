@@ -13,10 +13,4 @@ TypeInsecte::TypeInsecte() : AbstractType("Insecte",INSECTE)
 TypeInsecte::~TypeInsecte() throw (){
 
 }
-//--------------------------------------------------------------------------------------
-//----------------------Fonction--------------------------------------------------------
-//--------------------------------------------------------------------------------------
-const TypeInsecte& TypeInsecte::getTypeInsecte(){
-    static TypeInsecte t ;
-    return t;
-}
+

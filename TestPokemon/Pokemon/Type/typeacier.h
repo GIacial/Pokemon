@@ -11,10 +11,6 @@ class TypeAcier : public AbstractType
     //destructeur
     virtual ~TypeAcier() throw ();
 
-    //fonction
-    static const TypeAcier& getTypeAcier();
-
-    private:
     //constructeur
     TypeAcier();                    //constructeur
 };

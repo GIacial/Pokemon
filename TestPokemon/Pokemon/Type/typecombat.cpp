@@ -13,10 +13,4 @@ TypeCombat::TypeCombat() : AbstractType("Combat",COMBAT)
 TypeCombat::~TypeCombat() throw (){
 
 }
-//--------------------------------------------------------------------------------------
-//----------------------Fonction--------------------------------------------------------
-//--------------------------------------------------------------------------------------
-const TypeCombat& TypeCombat::getTypeCombat(){
-    static TypeCombat t ;
-    return t;
-}
+

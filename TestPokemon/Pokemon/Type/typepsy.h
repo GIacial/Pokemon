@@ -12,10 +12,6 @@ class TypePsy : public AbstractType
     //destructeur
     virtual ~TypePsy() throw ();
 
-    //fonction
-    static const TypePsy& getTypePsy();
-
-    private:
     //constructeur
     TypePsy();                    //constructeur
 

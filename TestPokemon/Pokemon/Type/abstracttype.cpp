@@ -42,6 +42,10 @@ QString AbstractType::getNom()const{
     return *(this->nom);
 }
 //--------------------------------------------------------------------------------------
+bool AbstractType::isOneofMyType(const AbstractType &att) const{
+    return this->getType() == att.getType();
+}
+//--------------------------------------------------------------------------------------
 //---------------------Fonction protected-----------------------------------------------
 //--------------------------------------------------------------------------------------
 TypeCreature AbstractType::getType() const{

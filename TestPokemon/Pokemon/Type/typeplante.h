@@ -12,10 +12,6 @@ class TypePlante : public AbstractType
     //destructeur
     virtual ~TypePlante() throw ();
 
-    //fonction
-    static const TypePlante& getTypePlante();
-
-    private:
     //constructeur
     TypePlante();                    //constructeur
 

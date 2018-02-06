@@ -12,10 +12,6 @@ class TypePoison : public AbstractType
     //destructeur
     virtual ~TypePoison() throw ();
 
-    //fonction
-    static const TypePoison& getTypePoison();
-
-    private:
     //constructeur
     TypePoison();                    //constructeur
 

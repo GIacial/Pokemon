@@ -20,8 +20,9 @@ public:
     //fonction
     virtual bool isWeakness(const AbstractType& type)const;                                         //permet de savoir si le type est une faiblesse
     virtual bool isResistance(const AbstractType& type)const;                                       //permet de savoir si le type est résisté
-    virtual double getAttCoef(const AbstractType& att)const;      //permet de savoir le coef de degat de att sur def
-    QString getNom()const;
+    virtual double getAttCoef(const AbstractType& att)const;                                        //permet de savoir le coef de degat de att sur def
+    QString getNom()const;                                                                          //donne le nom du type
+    virtual bool isOneofMyType(const AbstractType& att)const;                                       //verifie si le type att est l'un des type de this
 
     //friend
     friend class DoubleType;

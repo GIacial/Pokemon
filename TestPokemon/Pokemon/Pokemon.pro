@@ -35,7 +35,10 @@ SOURCES += main.cpp \
     Type/typesol.cpp \
     Type/typespectre.cpp \
     Type/typetenebres.cpp \
-    Type/typevol.cpp
+    Type/typevol.cpp \
+    Pokemon/abstractpokemon.cpp \
+    Attaque/abstractattaque.cpp \
+    Statut/abstractstatut.cpp
 
 HEADERS += \
     Type/abstracttype.h \
@@ -58,4 +61,7 @@ HEADERS += \
     Type/typesol.h \
     Type/typespectre.h \
     Type/typetenebres.h \
-    Type/typevol.h
+    Type/typevol.h \
+    Pokemon/abstractpokemon.h \
+    Attaque/abstractattaque.h \
+    Statut/abstractstatut.h

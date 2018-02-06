@@ -16,7 +16,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 HEADERS += \
+    Pokemon/Attaque/abstractattaque.h \
+    Pokemon/Pokemon/abstractpokemon.h \
+    Pokemon/Statut/abstractstatut.h \
     Pokemon/Type/abstracttype.h \
+    Pokemon/Type/alltype.h \
     Pokemon/Type/doubletype.h \
     Pokemon/Type/tabletypes.h \
     Pokemon/Type/typeacier.h \
@@ -37,10 +41,12 @@ HEADERS += \
     Pokemon/Type/typespectre.h \
     Pokemon/Type/typetenebres.h \
     Pokemon/Type/typevol.h \
-    Test/Type/test_typeacier.h \
-    Pokemon/Type/alltype.h
+    Test/Type/test_typeacier.h
 
 SOURCES += \
+    Pokemon/Attaque/abstractattaque.cpp \
+    Pokemon/Pokemon/abstractpokemon.cpp \
+    Pokemon/Statut/abstractstatut.cpp \
     Pokemon/Type/abstracttype.cpp \
     Pokemon/Type/doubletype.cpp \
     Pokemon/Type/tabletypes.cpp \

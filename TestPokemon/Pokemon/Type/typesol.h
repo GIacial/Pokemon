@@ -11,10 +11,6 @@ class TypeSol : public AbstractType
     //destructeur
     virtual ~TypeSol() throw ();
 
-    //fonction
-    static const TypeSol& getTypeSol();
-
-    private:
     //constructeur
     TypeSol();                    //constructeur
 

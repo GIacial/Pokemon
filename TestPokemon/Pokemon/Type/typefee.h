@@ -12,10 +12,6 @@ class TypeFee : public AbstractType
     //destructeur
     virtual ~TypeFee() throw ();
 
-    //fonction
-    static const TypeFee& getTypeFee();
-
-    private:
     //constructeur
     TypeFee();                    //constructeur
 

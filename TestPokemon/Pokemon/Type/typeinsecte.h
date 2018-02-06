@@ -12,10 +12,6 @@ class TypeInsecte : public AbstractType
     //destructeur
     virtual ~TypeInsecte() throw ();
 
-    //fonction
-    static const TypeInsecte& getTypeInsecte();
-
-    private:
     //constructeur
     TypeInsecte();                    //constructeur
 

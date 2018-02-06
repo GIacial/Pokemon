@@ -12,10 +12,6 @@ class TypeSpectre : public AbstractType
     //destructeur
     virtual ~TypeSpectre() throw ();
 
-    //fonction
-    static const TypeSpectre& getTypeSpectre();
-
-    private:
     //constructeur
     TypeSpectre();                    //constructeur
 

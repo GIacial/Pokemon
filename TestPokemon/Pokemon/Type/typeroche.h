@@ -12,10 +12,6 @@ class TypeRoche : public AbstractType
     //destructeur
     virtual ~TypeRoche() throw ();
 
-    //fonction
-    static const TypeRoche& getTypeRoche();
-
-    private:
     //constructeur
     TypeRoche();                    //constructeur
 

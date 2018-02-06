@@ -12,10 +12,6 @@ class TypeGlace : public AbstractType
     //destructeur
     virtual ~TypeGlace() throw ();
 
-    //fonction
-    static const TypeGlace& getTypeGlace();
-
-    private:
     //constructeur
     TypeGlace();                    //constructeur
 

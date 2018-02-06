@@ -13,10 +13,4 @@ TypeSpectre::TypeSpectre() : AbstractType("Spectre",SPECTRE)
 TypeSpectre::~TypeSpectre() throw (){
 
 }
-//--------------------------------------------------------------------------------------
-//----------------------Fonction--------------------------------------------------------
-//--------------------------------------------------------------------------------------
-const TypeSpectre& TypeSpectre::getTypeSpectre(){
-    static TypeSpectre t ;
-    return t;
-}
+

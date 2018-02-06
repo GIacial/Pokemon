@@ -13,10 +13,4 @@ TypeDragon::TypeDragon() : AbstractType("Dragon",DRAGON)
 TypeDragon::~TypeDragon() throw (){
 
 }
-//--------------------------------------------------------------------------------------
-//----------------------Fonction--------------------------------------------------------
-//--------------------------------------------------------------------------------------
-const TypeDragon& TypeDragon::getTypeDragon(){
-    static TypeDragon t ;
-    return t;
-}
+

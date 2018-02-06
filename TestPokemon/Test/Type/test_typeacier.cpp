@@ -1,51 +1,102 @@
 #include "test_typeacier.h"
-#include "Pokemon/Type/alltype.h"
 #include <iostream>
 
 using namespace std;
 //-------------------------------------------------------------------------
-void Test_TypeAcier::isWeakness(){
-    const AbstractType& acier = TypeAcier::getTypeAcier();
+Test_TypeAcier::Test_TypeAcier() : QObject(){
 
-    QVERIFY(!acier.isWeakness(TypeAcier::getTypeAcier()));
-    QVERIFY(acier.isWeakness(TypeCombat::getTypeCombat()));
-    QVERIFY(!acier.isWeakness(TypeDragon::getTypeDragon()));
-    QVERIFY(!acier.isWeakness(TypeEau::getTypeEau()));
-    QVERIFY(!acier.isWeakness(TypeElectrique::getTypeElectrique()));
-    QVERIFY(acier.isWeakness(TypeFeu::getTypeFeu()));
-    QVERIFY(!acier.isWeakness(TypeFee::getTypeFee()));
-    QVERIFY(!acier.isWeakness(TypeGlace::getTypeGlace()));
-    QVERIFY(!acier.isWeakness(TypeInsecte::getTypeInsecte()));
-    QVERIFY(!acier.isWeakness(TypeNormal::getTypeNormal()));
-    QVERIFY(!acier.isWeakness(TypePlante::getTypePlante()));
-    QVERIFY(!acier.isWeakness(TypePoison::getTypePoison()));
-    QVERIFY(!acier.isWeakness(TypePsy::getTypePsy()));
-    QVERIFY(!acier.isWeakness(TypeRoche::getTypeRoche()));
-    QVERIFY(acier.isWeakness(TypeSol::getTypeSol()));
-    QVERIFY(!acier.isWeakness(TypeSpectre::getTypeSpectre()));
-    QVERIFY(!acier.isWeakness(TypeTenebres::getTypeTenebres()));
-    QVERIFY(!acier.isWeakness(TypeVol::getTypeVol()));
+    this->type = new vector<AbstractType*>();
+    this->coef = new vector<double>();
+
+    this->type->push_back( new TypeAcier());
+    this->coef->push_back(TableTypes::COEF_PEUEFFICACE);
+    this->type->push_back( new TypeCombat());
+    this->coef->push_back(TableTypes::COEF_SUPEREFFICACE);
+    this->type->push_back( new TypeDragon());
+    this->coef->push_back(TableTypes::COEF_PEUEFFICACE);
+    this->type->push_back( new TypeEau());
+    this->coef->push_back(TableTypes::COEF_NORMAL);
+    this->type->push_back( new TypeElectrique());
+    this->coef->push_back(TableTypes::COEF_NORMAL);
+    this->type->push_back( new TypeFee());
+    this->coef->push_back(TableTypes::COEF_PEUEFFICACE);
+    this->type->push_back( new TypeFeu());
+    this->coef->push_back(TableTypes::COEF_SUPEREFFICACE);
+    this->type->push_back( new TypeGlace());
+    this->coef->push_back(TableTypes::COEF_PEUEFFICACE);
+    this->type->push_back( new TypeInsecte());
+    this->coef->push_back(TableTypes::COEF_PEUEFFICACE);
+    this->type->push_back( new TypeNormal());
+    this->coef->push_back(TableTypes::COEF_PEUEFFICACE);
+    this->type->push_back( new TypePlante());
+    this->coef->push_back(TableTypes::COEF_PEUEFFICACE);
+    this->type->push_back( new TypePoison());
+    this->coef->push_back(TableTypes::COEF_INEFFICACE);
+    this->type->push_back( new TypePsy());
+    this->coef->push_back(TableTypes::COEF_PEUEFFICACE);
+    this->type->push_back( new TypeRoche());
+    this->coef->push_back(TableTypes::COEF_PEUEFFICACE);
+    this->type->push_back( new TypeSol());
+    this->coef->push_back(TableTypes::COEF_SUPEREFFICACE);
+    this->type->push_back( new TypeSpectre());
+    this->coef->push_back(TableTypes::COEF_NORMAL);
+    this->type->push_back( new TypeTenebres());
+    this->coef->push_back(TableTypes::COEF_NORMAL);
+    this->type->push_back( new TypeVol());
+    this->coef->push_back(TableTypes::COEF_PEUEFFICACE);
+
+    this->typeTest = new TypeAcier();
+
+}
+//-------------------------------------------------------------------------
+Test_TypeAcier::~Test_TypeAcier() throw(){
+    delete typeTest;
+    for( int i = this->type->size()-1 ; i >= 0  ; i--){
+        delete type->at(i);
+        type->pop_back();
+    }
+    delete coef;
+    delete type;
+}
+//-------------------------------------------------------------------------
+void Test_TypeAcier::isWeakness(){
+    for(unsigned int i = 0 ; i < this->coef->size() ; i++){
+        if(this->coef->at(i) > TableTypes::COEF_NORMAL){
+            QVERIFY(this->typeTest->isWeakness(*(this->type->at(i))));
+        }
+        else{
+
+            QVERIFY(!this->typeTest->isWeakness(*(this->type->at(i))));
+        }
+    }
 }
 //-------------------------------------------------------------------------
 void Test_TypeAcier::isResistance(){
-    const AbstractType& acier = TypeAcier::getTypeAcier();
+    for(unsigned int i = 0 ; i < this->coef->size() ; i++){
+        if(this->coef->at(i) < TableTypes::COEF_NORMAL){
+            QVERIFY(this->typeTest->isResistance(*(this->type->at(i))));
+        }
+        else{
 
-    QVERIFY(acier.isResistance(TypeAcier::getTypeAcier()));
-    QVERIFY(!acier.isResistance(TypeCombat::getTypeCombat()));
-    QVERIFY(acier.isResistance(TypeDragon::getTypeDragon()));
-    QVERIFY(!acier.isResistance(TypeEau::getTypeEau()));
-    QVERIFY(!acier.isResistance(TypeElectrique::getTypeElectrique()));
-    QVERIFY(!acier.isResistance(TypeFeu::getTypeFeu()));
-    QVERIFY(acier.isResistance(TypeFee::getTypeFee()));
-    QVERIFY(acier.isResistance(TypeGlace::getTypeGlace()));
-    QVERIFY(acier.isResistance(TypeInsecte::getTypeInsecte()));
-    QVERIFY(acier.isResistance(TypeNormal::getTypeNormal()));
-    QVERIFY(acier.isResistance(TypePlante::getTypePlante()));
-    QVERIFY(acier.isResistance(TypePoison::getTypePoison()));
-    QVERIFY(acier.isResistance(TypePsy::getTypePsy()));
-    QVERIFY(acier.isResistance(TypeRoche::getTypeRoche()));
-    QVERIFY(!acier.isResistance(TypeSol::getTypeSol()));
-    QVERIFY(!acier.isResistance(TypeSpectre::getTypeSpectre()));
-    QVERIFY(!acier.isResistance(TypeTenebres::getTypeTenebres()));
-    QVERIFY(acier.isResistance(TypeVol::getTypeVol()));
+            QVERIFY(!this->typeTest->isResistance(*(this->type->at(i))));
+        }
+    }
 }
+//-------------------------------------------------------------------------
+void Test_TypeAcier::getAttCoef(){
+    for(unsigned int i = 0 ; i < this->coef->size() ; i++){
+        QVERIFY(this->coef->at(i) == this->typeTest->getAttCoef(*(this->type->at(i))));
+    }
+}
+//--------------------------------------------------------------------------
+void Test_TypeAcier::isOneOfMyType(){
+    for(unsigned int i = 1 ; i < this->type->size() ; i++){
+        if(this->typeTest->getNom() == this->type->at(i)->getNom()){
+            QVERIFY(this->typeTest->isOneofMyType(*(this->type->at(i))));
+        }
+        else{
+            QVERIFY(!this->typeTest->isOneofMyType(*(this->type->at(i))));
+        }
+    }
+}
+//--------------------------------------------------------------------------

@@ -12,10 +12,6 @@ class TypeFeu : public AbstractType
     //destructeur
     virtual ~TypeFeu() throw ();
 
-    //fonction
-    static const TypeFeu& getTypeFeu();
-
-    private:
     //constructeur
     TypeFeu();                    //constructeur
 

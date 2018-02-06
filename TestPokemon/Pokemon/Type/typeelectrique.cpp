@@ -13,10 +13,4 @@ TypeElectrique::TypeElectrique() : AbstractType("Electrique",ELECTRIQUE)
 TypeElectrique::~TypeElectrique() throw (){
 
 }
-//--------------------------------------------------------------------------------------
-//----------------------Fonction--------------------------------------------------------
-//--------------------------------------------------------------------------------------
-const TypeElectrique& TypeElectrique::getTypeElectrique(){
-    static TypeElectrique t ;
-    return t;
-}
+

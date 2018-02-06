@@ -33,3 +33,7 @@ bool DoubleType::isWeakness(const AbstractType &type) const{
 double DoubleType::getAttCoef(const AbstractType &att) const{
     return (AbstractType::getAttCoef(att) *TableTypes::getAttMultiplier(*secondType,att.getType()));
 }
+//--------------------------------------------------------------------------------------
+bool DoubleType::isOneofMyType(const AbstractType &att) const{
+    return this->getType() == att.getType() || *(this->secondType) == att.getType();
+}

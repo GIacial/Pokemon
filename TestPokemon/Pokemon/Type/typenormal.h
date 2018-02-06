@@ -12,10 +12,6 @@ class TypeNormal : public AbstractType
     //destructeur
     virtual ~TypeNormal() throw ();
 
-    //fonction
-    static const TypeNormal& getTypeNormal();
-
-    private:
     //constructeur
     TypeNormal();                    //constructeur
 

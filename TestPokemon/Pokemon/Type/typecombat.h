@@ -11,10 +11,6 @@ class TypeCombat : public AbstractType
     //destructeur
     virtual ~TypeCombat() throw ();
 
-    //fonction
-    static const TypeCombat& getTypeCombat();
-
-    private:
     //constructeur
     TypeCombat();                    //constructeur
 

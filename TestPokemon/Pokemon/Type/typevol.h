@@ -12,10 +12,6 @@ class TypeVol : public AbstractType
     //destructeur
     virtual ~TypeVol() throw ();
 
-    //fonction
-    static const TypeVol& getTypeVol();
-
-    private:
     //constructeur
     TypeVol();                    //constructeur
 

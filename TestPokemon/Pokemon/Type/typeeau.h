@@ -12,10 +12,7 @@ class TypeEau : public AbstractType
     //destructeur
     virtual ~TypeEau() throw ();
 
-    //fonction
-    static const TypeEau& getTypeEau();
 
-    private:
     //constructeur
     TypeEau();                    //constructeur
 
