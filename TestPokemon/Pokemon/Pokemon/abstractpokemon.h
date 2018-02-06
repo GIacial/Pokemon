@@ -11,6 +11,7 @@ class AbstractPokemon : public QObject
     Q_OBJECT
 public:
     static constexpr int const&  MAX_LEVEL = 100;
+    static constexpr int const&  NB_MAX_ATTAQUE = 100;
     //destructeur
     virtual ~AbstractPokemon() throw () = 0;
 
