@@ -4,11 +4,12 @@
 //-------------------------------------------------------------------------
 //--------------------------Constructeur-----------------------------------
 //-------------------------------------------------------------------------
-AbstractAttaque::AbstractAttaque(AbstractPokemon &user, unsigned int precision, unsigned int puissance, AbstractType *type) : QObject() , utilisateur(user)
+AbstractAttaque::AbstractAttaque(AbstractPokemon &user, unsigned int precision, unsigned int puissance, AbstractType *type,const QString nom) : QObject() , utilisateur(user)
 {
     this->type = type;
     this->precision = new unsigned int(precision);
     this->puissance = new unsigned int (puissance);
+    this->nom = new QString(nom);
 }
 //-------------------------------------------------------------------------
 //------------------------Destructeur--------------------------------------
