@@ -15,7 +15,8 @@ public:
     static constexpr int const&  MAX_LEVEL = 100;
     static constexpr int const&  NB_MAX_ATTAQUE = 100;
     static constexpr int const&  MIN_PV = 10;
-    static constexpr int const&  MULTBASE = 4;
+    static constexpr int const&  MULTBASE = 2;
+    static constexpr int const&  MINSTAT = 5;
     //destructeur
     virtual ~AbstractPokemon() throw () = 0;
 

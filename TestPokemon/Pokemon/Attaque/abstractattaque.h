@@ -12,7 +12,9 @@ class AbstractAttaque : public KernelObject
     Q_OBJECT
 public://constante
      static constexpr double const&  COEF_STAB = 2.0;
-     static constexpr int const&  BASE_PUISSANCE = 100;
+     static constexpr double const&  BASE_PUIS_PAR_LVL = 0.4;
+     static constexpr double const&  COEF_DEF = 50;
+     //destructeur
      virtual ~AbstractAttaque() throw() = 0;
 
     //fonction

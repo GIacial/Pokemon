@@ -10,8 +10,8 @@ class StatAlterator : public KernelObject
     Q_OBJECT
 public:
 
-    static constexpr int const&  MAX_UPGRADE = 5;
-    static constexpr int const&  MAX_DECREASE = -5;
+    static constexpr int const&  MAX_UPGRADE = 6;
+    static constexpr int const&  MAX_DECREASE = -6;
     //constructeur
     explicit StatAlterator(const AbstractPokemon& user);
     //destructeur

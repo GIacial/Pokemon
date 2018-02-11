@@ -20,18 +20,27 @@ SpecialAttaque::~SpecialAttaque() throw(){
 //--------------------------------------------------------------
 //--------------------------------------------------------------
 int SpecialAttaque::getAttaque(AbstractPokemon &cible) const{
-    int res = 0;
-    res += this->getUser().getAttS();
+    int res = AbstractAttaque::BASE_PUIS_PAR_LVL*this->getUser().getLevel()+2;
+    res *= this->getUser().getAttS()*this->getPuissance();
+    res /= (AbstractAttaque::COEF_DEF*cible.getDefS());
+    res += 2;
     if(this->isSameTypeUser()){
         res *= AbstractAttaque::COEF_STAB;
     }
-
-    res *= cible.getAttCoef(this->getType());
-    res -= cible.getDefS();
-    if(res <=0){
-        res = 1;
+    double coef =cible.getAttCoef(this->getType());
+    res *= coef;
+    if(coef == 0){
+        emit sendMsg("C'est inefficace");
     }
-    res *= ((double)this->getPuissance()/AbstractAttaque::BASE_PUISSANCE);
-
+    else{
+        if(coef <1){
+            emit sendMsg("Ce n'est pas trés efficace");
+        }
+        else{
+            if(coef > 1){
+                emit sendMsg("C'est super efficace !!");
+            }
+        }
+    }
     return res;
 }

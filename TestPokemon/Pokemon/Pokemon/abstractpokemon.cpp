@@ -23,7 +23,7 @@ AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int base
     this->alterations = new StatAlterator(*this);
     QObject::connect(alterations,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
 
-    this->pvAct = new int(((double)level/MAX_LEVEL)*MULTBASE*basePv +MIN_PV);
+    this->pvAct = new int(this->getMaxPv());
 }
 //-------------------------------------------------------------------------
 //------------------------Destructeur--------------------------------------
@@ -84,27 +84,27 @@ int AbstractPokemon::getBaseVitesse()const{
 }
 //-------------------------------------------------------------------------
 int AbstractPokemon::getMaxPv()const{
-    return ((double)this->getLevel()/MAX_LEVEL)*this->getBasePv()+MIN_PV;
+    return ((double)this->getLevel()/MAX_LEVEL)*this->getBasePv()+MIN_PV+this->getLevel();
 }
 //-------------------------------------------------------------------------
 int AbstractPokemon::getAttP()const{
-    return this->alterations->getCoefAltAttP()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseAttP()+1;
+    return this->alterations->getCoefAltAttP()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseAttP()+MINSTAT;
 }
 //-------------------------------------------------------------------------
 int AbstractPokemon::getAttS()const{
-    return this->alterations->getCoefAltAttS()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseAttS()+1;
+    return this->alterations->getCoefAltAttS()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseAttS()+MINSTAT;
 }
 //-------------------------------------------------------------------------
 int AbstractPokemon::getDefP()const{
-    return this->alterations->getCoefAltDefP()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseDefP()+1;
+    return this->alterations->getCoefAltDefP()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseDefP()+MINSTAT;
 }
 //-------------------------------------------------------------------------
 int AbstractPokemon::getDefS()const{
-    return this->alterations->getCoefAltDefS()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseDefS()+1;
+    return this->alterations->getCoefAltDefS()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseDefS()+MINSTAT;
 }
 //-------------------------------------------------------------------------
 int AbstractPokemon::getVitesse()const{
-    return this->alterations->getCoefAltVit()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseVitesse()+1;
+    return this->alterations->getCoefAltVit()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseVitesse()+MINSTAT;
 }
 //-------------------------------------------------------------------------
 QString AbstractPokemon::getNom()const{

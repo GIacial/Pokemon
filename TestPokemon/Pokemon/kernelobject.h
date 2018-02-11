@@ -11,7 +11,7 @@ public:
     virtual ~KernelObject() throw();
 
 signals:
-    void sendMsg(QString msg);              //envoie un msg à afficher
+    void sendMsg(QString msg)const;              //envoie un msg à afficher
 
 public slots:
     void afficheMsg(QString msg);

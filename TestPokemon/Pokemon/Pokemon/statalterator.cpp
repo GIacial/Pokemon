@@ -91,7 +91,7 @@ double StatAlterator::getAlteratorCoef(int t)const{
     double r = 1.0;
     if(t != 0){
         if(t<0){
-            r = 1.0/(-t+1);
+            r = 2.0/(-t+2);
         }
         else{
             r += (0.5*t);
