@@ -6,21 +6,24 @@
 //-------------------------------------------------------------------------
 //--------------------------Constructeur-----------------------------------
 //-------------------------------------------------------------------------
-AbstractPokemon::AbstractPokemon(const QString nom,AbstractType* type, int basePv, int baseAttP, int baseDefP, int baseAttS, int baseDefS, int baseVitesse) : QObject()
+AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int basePv, int baseAttP, int baseDefP, int baseAttS, int baseDefS, int baseVitesse, int level) : KernelObject()
 {
     this->nom = new QString(nom);
-    this->pvAct = new int(0.01*basePv);
-    this->basePv = new int(basePv);
-    this->baseAttP = new int (baseAttP);
-    this->baseDefP = new int (baseDefP);
-    this->baseAttS = new int (baseAttS);
-    this->baseDefS = new int (baseDefS);
-    this->baseVitesse = new int (baseVitesse);
-    this->level = new int (1);
+    this->basePv = new int(MULTBASE*basePv);
+    this->baseAttP = new int (MULTBASE*baseAttP);
+    this->baseDefP = new int (MULTBASE*baseDefP);
+    this->baseAttS = new int (MULTBASE*baseAttS);
+    this->baseDefS = new int (MULTBASE*baseDefS);
+    this->baseVitesse = new int (MULTBASE*baseVitesse);
+    this->level = new int (level);
     this->attaque = new std::vector<AbstractAttaque *>();
     this->statut = NULL;
     this->xpAct = new int(0);
     this->type = type;
+    this->alterations = new StatAlterator(*this);
+    QObject::connect(alterations,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
+
+    this->pvAct = new int(((double)level/MAX_LEVEL)*MULTBASE*basePv +MIN_PV);
 }
 //-------------------------------------------------------------------------
 //------------------------Destructeur--------------------------------------
@@ -46,6 +49,7 @@ AbstractPokemon::~AbstractPokemon() throw(){
     if(type != NULL){
         delete type;
     }
+    delete alterations;
 }
 
 //-------------------------------------------------------------------------
@@ -80,27 +84,27 @@ int AbstractPokemon::getBaseVitesse()const{
 }
 //-------------------------------------------------------------------------
 int AbstractPokemon::getMaxPv()const{
-    return (this->getLevel()/MAX_LEVEL)*this->getBasePv()+1;
+    return ((double)this->getLevel()/MAX_LEVEL)*this->getBasePv()+MIN_PV;
 }
 //-------------------------------------------------------------------------
 int AbstractPokemon::getAttP()const{
-    return (this->getLevel()/MAX_LEVEL)*this->getBaseAttP()+1;
+    return this->alterations->getCoefAltAttP()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseAttP()+1;
 }
 //-------------------------------------------------------------------------
 int AbstractPokemon::getAttS()const{
-    return (this->getLevel()/MAX_LEVEL)*this->getBaseAttS()+1;
+    return this->alterations->getCoefAltAttS()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseAttS()+1;
 }
 //-------------------------------------------------------------------------
 int AbstractPokemon::getDefP()const{
-    return (this->getLevel()/MAX_LEVEL)*this->getBaseDefP()+1;
+    return this->alterations->getCoefAltDefP()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseDefP()+1;
 }
 //-------------------------------------------------------------------------
 int AbstractPokemon::getDefS()const{
-    return (this->getLevel()/MAX_LEVEL)*this->getBaseDefS()+1;
+    return this->alterations->getCoefAltDefS()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseDefS()+1;
 }
 //-------------------------------------------------------------------------
 int AbstractPokemon::getVitesse()const{
-    return (this->getLevel()/MAX_LEVEL)*this->getBaseVitesse()+1;
+    return this->alterations->getCoefAltVit()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseVitesse()+1;
 }
 //-------------------------------------------------------------------------
 QString AbstractPokemon::getNom()const{
@@ -117,6 +121,7 @@ void AbstractPokemon::infligerDegat(unsigned int v){
     if(pv <0){
         pv = 0;
     }
+    emit sendMsg(this->getNom()+" a subi "+QString::number(v)+" de degats");
 }
 //--------------------------------------------------------------------------
 double AbstractPokemon::getAttCoef(const AbstractType &type)const{
@@ -137,25 +142,68 @@ void AbstractPokemon::soigner(unsigned int v){
 }
 //--------------------------------------------------------------------------
 QString AbstractPokemon::getNomAttaque(unsigned int t)const throw(QString){
-    if(t< 0 || t >= this->attaque->size()){
+    if( t >= this->attaque->size()){
         throw QString("Poke attaque out of range :"+QString::number(t)+" n'est pas entre 0 et "+QString::number(this->attaque->size()));
     }
-    return this->attaque->at(i)->getNom();
+    return this->attaque->at(t)->getNom();
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::useAttaque(unsigned int t,AbstractPokemon& cible)const throw(QString){
-    if(t< 0 || t >= this->attaque->size()){
+void AbstractPokemon::useAttaque(unsigned int t,AbstractPokemon& cible) throw(QString){
+    if( t >= this->attaque->size()){
         throw QString("Poke attaque out of range :"+QString::number(t)+" n'est pas entre 0 et "+QString::number(this->attaque->size()));
     }
-    return this->attaque->at(i)->use(cible);
+    this->attaque->at(t)->use(cible);
 }
-
+//--------------------------------------------------------------------------
+bool AbstractPokemon::isInLife()const{
+    return this->getPvAct() > 0;
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::upgradeAttP(){
+    this->alterations->upgradeAttP();
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::upgradeAttS(){
+    this->alterations->upgradeAttS();
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::upgradeDefP(){
+    this->alterations->upgradeDefP();
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::upgradeDefS(){
+    this->alterations->upgradeDefS();
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::upgradeVit(){
+    this->alterations->upgradeVit();
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::decreaseAttP(){
+    this->alterations->decreaseAttP();
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::decreaseAttS(){
+    this->alterations->decreaseAttS();
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::decreaseDefP(){
+    this->alterations->decreaseDefP();
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::decreaseDefS(){
+    this->alterations->decreaseDefS();
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::decreaseVit(){
+    this->alterations->decreaseVit();
+}
 //--------------------------------------------------------------------------
 //-------------------------Protected fonction-------------------------------
 //--------------------------------------------------------------------------
 void AbstractPokemon::apprendreAttaque(AbstractAttaque *a, unsigned int place) throw (QString){
     if(this->attaque->size() == NB_MAX_ATTAQUE){
-        if(place< 0 || place >= this->attaque->size()){
+        if( place >= this->attaque->size()){
             throw QString("Poke attaque out of range :"+QString::number(place)+" n'est pas entre 0 et "+QString::number(this->attaque->size()));
         }
         delete this->attaque->at(place);
@@ -163,4 +211,5 @@ void AbstractPokemon::apprendreAttaque(AbstractAttaque *a, unsigned int place) t
         this->attaque->pop_back();
     }
     this->attaque->push_back(a);
+    QObject::connect(a,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
 }

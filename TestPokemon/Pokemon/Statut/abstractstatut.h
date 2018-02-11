@@ -4,8 +4,9 @@
 class AbstractStatut;
 #include <QObject>
 #include "../Pokemon/abstractpokemon.h"
+#include "../kernelobject.h"
 
-class AbstractStatut : public QObject
+class AbstractStatut : public KernelObject
 {
     Q_OBJECT
 public:

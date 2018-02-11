@@ -38,7 +38,17 @@ SOURCES += main.cpp \
     Type/typevol.cpp \
     Pokemon/abstractpokemon.cpp \
     Attaque/abstractattaque.cpp \
-    Statut/abstractstatut.cpp
+    Statut/abstractstatut.cpp \
+    Attaque/Attaque/specialattaque.cpp \
+    Attaque/Attaque/physicalattaque.cpp \
+    Pokemon/Pokemon/fakemon.cpp \
+    kernelobject.cpp \
+    Interface/combattestconsole.cpp \
+    KernelMecanic/km_combat.cpp \
+    Pokemon/statalterator.cpp \
+    Attaque/Attaque/alterationattque.cpp \
+    Attaque/Attaque/AlterationAttaque/rugissement.cpp \
+    Attaque/Attaque/PhysicalAttaque/charge.cpp
 
 HEADERS += \
     Type/abstracttype.h \
@@ -64,4 +74,14 @@ HEADERS += \
     Type/typevol.h \
     Pokemon/abstractpokemon.h \
     Attaque/abstractattaque.h \
-    Statut/abstractstatut.h
+    Statut/abstractstatut.h \
+    Attaque/Attaque/specialattaque.h \
+    Attaque/Attaque/physicalattaque.h \
+    Pokemon/Pokemon/fakemon.h \
+    kernelobject.h \
+    Interface/combattestconsole.h \
+    KernelMecanic/km_combat.h \
+    Pokemon/statalterator.h \
+    Attaque/Attaque/alterationattque.h \
+    Attaque/Attaque/AlterationAttaque/rugissement.h \
+    Attaque/Attaque/PhysicalAttaque/charge.h

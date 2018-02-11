@@ -5,7 +5,7 @@
 //-------------------------------------------------------------------------
 //--------------------------Constructeur-----------------------------------
 //-------------------------------------------------------------------------
-AbstractStatut::AbstractStatut(const QString &nom, AbstractPokemon &cible) : QObject() , cible(cible)
+AbstractStatut::AbstractStatut(const QString &nom, AbstractPokemon &cible) : KernelObject() , cible(cible)
 {
     this->nom = new QString(nom);
 }

@@ -3,12 +3,13 @@
 
 #include <QObject>
 #include "tabletypes.h"
+#include "../kernelobject.h"
 
 class DoubleType;
 /**
  * @brief The AbstractType class    Definit de facon abstraite le type d'une créature
  */
-class AbstractType : public QObject
+class AbstractType : public KernelObject
 {
     Q_OBJECT
 public:

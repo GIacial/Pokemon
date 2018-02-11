@@ -5,13 +5,17 @@ class AbstractPokemon;
 #include "../Attaque/abstractattaque.h"
 #include "../Statut/abstractstatut.h"
 #include "../Type/abstracttype.h"
+#include "../kernelobject.h"
+#include "statalterator.h"
 
-class AbstractPokemon : public QObject
+class AbstractPokemon : public KernelObject
 {
     Q_OBJECT
 public:
     static constexpr int const&  MAX_LEVEL = 100;
     static constexpr int const&  NB_MAX_ATTAQUE = 100;
+    static constexpr int const&  MIN_PV = 10;
+    static constexpr int const&  MULTBASE = 4;
     //destructeur
     virtual ~AbstractPokemon() throw () = 0;
 
@@ -42,6 +46,21 @@ public:
     QString getNomAttaque(unsigned int t)const throw(QString);   //donne le nom de la i-eme attaque (exeption out of range)
     void    useAttaque(unsigned int t ,AbstractPokemon& cible) throw(QString);  //utilise la i-eme attaque sur la cible
 
+    bool    isInLife()const;                                    //permet de savoir si la creature est vivante
+
+    void    upgradeAttP();                                      //augmente AttP
+    void    upgradeAttS();                                      //augmente AttS
+    void    upgradeDefP();                                      //augmente DefP
+    void    upgradeDefS();                                      //augmente DefS
+    void    upgradeVit();                                      //augmente Vit
+
+    void    decreaseAttP();                                     //diminue Attp
+    void    decreaseDefS();                                     //diminue defs
+    void    decreaseAttS();                                     //diminue atts
+    void    decreaseDefP();                                     //diminue defp
+    void    decreaseVit();                                     //diminue vit
+
+
 signals:
 
 public slots:
@@ -59,7 +78,7 @@ protected:
      * @param baseDefS          la base de la defense speciale de la creature
      * @param baseVitesse       la base de la vitesse de la creature
      */
-    explicit AbstractPokemon(const QString nom , AbstractType *type, int basePv , int baseAttP , int baseDefP , int baseAttS , int baseDefS , int baseVitesse);
+    explicit AbstractPokemon(const QString nom , AbstractType *type, int basePv , int baseAttP , int baseDefP , int baseAttS , int baseDefS , int baseVitesse , int level = 1);
 
     //fonction
     void apprendreAttaque(AbstractAttaque* a,unsigned int place = 0) throw (QString);                              //apprend une attaque (place => place pour l'attaque a enlever si plein
@@ -77,6 +96,7 @@ private:
     AbstractStatut* statut;
     int* xpAct;
     AbstractType* type;
+    StatAlterator* alterations;
 
 };
 

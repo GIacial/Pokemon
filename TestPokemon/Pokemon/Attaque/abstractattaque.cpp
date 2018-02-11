@@ -4,7 +4,7 @@
 //-------------------------------------------------------------------------
 //--------------------------Constructeur-----------------------------------
 //-------------------------------------------------------------------------
-AbstractAttaque::AbstractAttaque(AbstractPokemon &user, unsigned int precision, unsigned int puissance, AbstractType *type,const QString nom) : QObject() , utilisateur(user)
+AbstractAttaque::AbstractAttaque(AbstractPokemon &user, unsigned int precision, unsigned int puissance, AbstractType *type,const QString nom) : KernelObject() , utilisateur(user)
 {
     this->type = type;
     this->precision = new unsigned int(precision);
@@ -44,4 +44,24 @@ bool AbstractAttaque::isSameTypeUser()const{
 //-------------------------------------------------------------------------
 QString AbstractAttaque::getNom()const{
     return * nom;
+}
+//-------------------------------------------------------------------------
+void AbstractAttaque::use(AbstractPokemon &cible){
+    emit sendMsg(this->utilisateur.getNom()+" utilise "+this->getNom());
+    if(toucheLaCible()){
+        this->attaqueEffect(cible);
+    }
+    else{
+        emit sendMsg(this->getUser().getNom()+" a rate son attaque");
+    }
+}
+//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+const AbstractPokemon& AbstractAttaque::getUser()const{
+    return this->utilisateur;
+}
+//-------------------------------------------------------------------------
+const AbstractType& AbstractAttaque::getType() const{
+    return * this->type;
 }

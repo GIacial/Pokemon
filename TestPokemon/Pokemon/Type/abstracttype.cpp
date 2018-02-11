@@ -6,7 +6,7 @@ using namespace std;
 //--------------------------------------------------------------------------------------
 //---------------------Constructeur-----------------------------------------------------
 //--------------------------------------------------------------------------------------
-AbstractType::AbstractType(const QString nom, const TypeCreature t) : QObject()
+AbstractType::AbstractType(const QString nom, const TypeCreature t) : KernelObject()
 {
     this->nom = new QString(nom);
     this->type = new TypeCreature(t);

@@ -5,15 +5,18 @@ class AbstractAttaque;
 #include <QObject>
 #include "../Pokemon/abstractpokemon.h"
 #include "../Pokemon/Type/abstracttype.h"
+#include "../kernelobject.h"
 
-class AbstractAttaque : public QObject
+class AbstractAttaque : public KernelObject
 {
     Q_OBJECT
-public:
+public://constante
+     static constexpr double const&  COEF_STAB = 2.0;
+     static constexpr int const&  BASE_PUISSANCE = 100;
      virtual ~AbstractAttaque() throw() = 0;
 
     //fonction
-     virtual void use(AbstractPokemon& cible) = 0;                  //utilise l'attaque
+    void use(AbstractPokemon& cible) ;                  //utilise l'attaque
     unsigned int getPrecision()const;                               //donne la precision de l'attaque
     unsigned int getPuissance()const;                               //donne la puissance de l'attaque
 
@@ -21,7 +24,6 @@ public:
     bool isSameTypeUser()const;                                     //donne si c'est le meme type que l'utilisateur
     QString getNom()const;                                          //donne le nom de l'attaque
 
-    virtual int getAttaque(AbstractPokemon& cible)const;            //donne la puissance de l'attaque théorique de l'attaque
 
 signals:
 
@@ -30,6 +32,12 @@ public slots:
 protected:
     AbstractAttaque(AbstractPokemon& user, unsigned int precision , unsigned int puissance , AbstractType* type, const QString nom);
 
+    //fonction
+    virtual int getAttaque(AbstractPokemon& cible)const = 0;            //donne la puissance de l'attaque théorique de l'attaque(avec prise en compte de la def)
+    const AbstractPokemon& getUser()const;                              //donne l'utilisateur
+    const AbstractType& getType()const;                                 //donne le type de l'attaque
+
+    virtual void attaqueEffect(AbstractPokemon& cible) = 0;                  //l'effect de l'attaque
 private:
     AbstractPokemon& utilisateur;
     unsigned int* precision;
