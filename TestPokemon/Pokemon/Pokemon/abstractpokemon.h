@@ -7,6 +7,8 @@ class AbstractPokemon;
 #include "../Type/abstracttype.h"
 #include "../kernelobject.h"
 #include "statalterator.h"
+#include "XpCourbe/abstractcourbe.h"
+#include "../Exeption/outofrange_personalexeption.h"
 
 class AbstractPokemon : public KernelObject
 {
@@ -44,8 +46,8 @@ public:
     bool isOneOfMyType(const AbstractType& type)const;       //true si le poke poseeede ce type
     void soigner(unsigned int v);                            //soigne le poke
 
-    QString getNomAttaque(unsigned int t)const throw(QString);   //donne le nom de la i-eme attaque (exeption out of range)
-    void    useAttaque(unsigned int t ,AbstractPokemon& cible) throw(QString);  //utilise la i-eme attaque sur la cible
+    QString getNomAttaque(unsigned int t)const throw(OutOfRange_PersonalExeption);   //donne le nom de la i-eme attaque (exeption out of range)
+    void    useAttaque(unsigned int t ,AbstractPokemon& cible) throw(OutOfRange_PersonalExeption);  //utilise la i-eme attaque sur la cible
 
     bool    isInLife()const;                                    //permet de savoir si la creature est vivante
 
@@ -61,6 +63,11 @@ public:
     void    decreaseDefP();                                     //diminue defp
     void    decreaseVit();                                     //diminue vit
 
+    void    earnXp(const AbstractPokemon& p);                   //gagne de xp
+    int     getXp()const;                                       //donne xp Act
+    void    soinComplet();                                      //soigne completement le pokemon
+    unsigned int getNbAttaque()const;                           //donne le nd d'attaque de la creature
+
 
 signals:
 
@@ -68,18 +75,9 @@ public slots:
 
 protected:
     //constructeur
-    /**
-     * @brief AbstractPokemon   constructeur d'une créature
-     * @param nom               le nom de la créature
-     * @param type              le type de la créature (sera détruit à la destruction de la créature)
-     * @param basePv            la base de pv de la créature
-     * @param baseAttP          la base d'attaque physique de la créature
-     * @param baseDefP          la base de la defense de la créature
-     * @param baseAttS          la base de l'attaque spéciale de la créature
-     * @param baseDefS          la base de la defense speciale de la creature
-     * @param baseVitesse       la base de la vitesse de la creature
-     */
-    explicit AbstractPokemon(const QString nom , AbstractType *type, int basePv , int baseAttP , int baseDefP , int baseAttS , int baseDefS , int baseVitesse , int level = 1);
+    explicit AbstractPokemon(const QString nom , AbstractType *type, int basePv , int baseAttP ,
+                             int baseDefP , int baseAttS , int baseDefS , int baseVitesse , AbstractCourbe* xpCour,
+                             int level = 1);
 
     //fonction
     void apprendreAttaque(AbstractAttaque* a,unsigned int place = 0) throw (QString);                              //apprend une attaque (place => place pour l'attaque a enlever si plein
@@ -98,6 +96,7 @@ private:
     int* xpAct;
     AbstractType* type;
     StatAlterator* alterations;
+    AbstractCourbe* xpCourbe;
 
 };
 

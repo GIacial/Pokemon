@@ -1,4 +1,6 @@
 QT -= gui
+QT       += core gui
+QT += widgets
 
 CONFIG += c++11 console
 CONFIG -= app_bundle
@@ -14,53 +16,34 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += main.cpp \
-    Type/abstracttype.cpp \
-    Type/tabletypes.cpp \
-    Type/typeacier.cpp \
-    Type/doubletype.cpp \
-    Type/typecombat.cpp \
-    Type/typedragon.cpp \
-    Type/typeeau.cpp \
-    Type/typeelectrique.cpp \
-    Type/typefeu.cpp \
-    Type/typefee.cpp \
-    Type/typeglace.cpp \
-    Type/typeinsecte.cpp \
-    Type/typenormal.cpp \
-    Type/typeplante.cpp \
-    Type/typepoison.cpp \
-    Type/typepsy.cpp \
-    Type/typeroche.cpp \
-    Type/typesol.cpp \
-    Type/typespectre.cpp \
-    Type/typetenebres.cpp \
-    Type/typevol.cpp \
-    Pokemon/abstractpokemon.cpp \
-    Attaque/abstractattaque.cpp \
-    Statut/abstractstatut.cpp \
-    Attaque/Attaque/specialattaque.cpp \
-    Attaque/Attaque/physicalattaque.cpp \
-    Pokemon/Pokemon/fakemon.cpp \
-    kernelobject.cpp \
-    Interface/combattestconsole.cpp \
-    KernelMecanic/km_combat.cpp \
-    Pokemon/statalterator.cpp \
-    Attaque/Attaque/alterationattque.cpp \
-    Attaque/Attaque/AlterationAttaque/rugissement.cpp \
-    Attaque/Attaque/PhysicalAttaque/charge.cpp
-
 HEADERS += \
+    Attaque/Attaque/AlterationAttaque/rugissement.h \
+    Attaque/Attaque/PhysicalAttaque/charge.h \
+    Attaque/Attaque/alterationattque.h \
+    Attaque/Attaque/physicalattaque.h \
+    Attaque/Attaque/specialattaque.h \
+    Attaque/abstractattaque.h \
+    Interface/Graphics/ObjectGraphics/barvie.h \
+    Interface/Graphics/ObjectGraphics/graphicsprogressbar.h \
+    Interface/Graphics/graphicsview.h \
+    Interface/Graphics/mainwindowspoke.h \
+    Interface/combattestconsole.h \
+    KernelMecanic/km_combat.h \
+    Pokemon/Pokemon/fakemon.h \
+    Pokemon/abstractpokemon.h \
+    Pokemon/statalterator.h \
+    Statut/abstractstatut.h \
     Type/abstracttype.h \
+    Type/alltype.h \
+    Type/doubletype.h \
     Type/tabletypes.h \
     Type/typeacier.h \
-    Type/doubletype.h \
     Type/typecombat.h \
     Type/typedragon.h \
     Type/typeeau.h \
     Type/typeelectrique.h \
-    Type/typefeu.h \
     Type/typefee.h \
+    Type/typefeu.h \
     Type/typeglace.h \
     Type/typeinsecte.h \
     Type/typenormal.h \
@@ -72,16 +55,55 @@ HEADERS += \
     Type/typespectre.h \
     Type/typetenebres.h \
     Type/typevol.h \
-    Pokemon/abstractpokemon.h \
-    Attaque/abstractattaque.h \
-    Statut/abstractstatut.h \
-    Attaque/Attaque/specialattaque.h \
-    Attaque/Attaque/physicalattaque.h \
-    Pokemon/Pokemon/fakemon.h \
     kernelobject.h \
-    Interface/combattestconsole.h \
-    KernelMecanic/km_combat.h \
-    Pokemon/statalterator.h \
-    Attaque/Attaque/alterationattque.h \
-    Attaque/Attaque/AlterationAttaque/rugissement.h \
-    Attaque/Attaque/PhysicalAttaque/charge.h
+    Interface/Graphics/Scene/pokebatlescene.h \
+    Pokemon/XpCourbe/abstractcourbe.h \
+    Pokemon/XpCourbe/rapidecourbe.h \
+    Exeption/personalexeption.h \
+    Exeption/outofrange_personalexeption.h
+
+SOURCES += \
+    Attaque/Attaque/AlterationAttaque/rugissement.cpp \
+    Attaque/Attaque/PhysicalAttaque/charge.cpp \
+    Attaque/Attaque/alterationattque.cpp \
+    Attaque/Attaque/physicalattaque.cpp \
+    Attaque/Attaque/specialattaque.cpp \
+    Attaque/abstractattaque.cpp \
+    Interface/Graphics/ObjectGraphics/barvie.cpp \
+    Interface/Graphics/ObjectGraphics/graphicsprogressbar.cpp \
+    Interface/Graphics/graphicsview.cpp \
+    Interface/Graphics/mainwindowspoke.cpp \
+    Interface/combattestconsole.cpp \
+    KernelMecanic/km_combat.cpp \
+    Pokemon/Pokemon/fakemon.cpp \
+    Pokemon/abstractpokemon.cpp \
+    Pokemon/statalterator.cpp \
+    Statut/abstractstatut.cpp \
+    Type/abstracttype.cpp \
+    Type/doubletype.cpp \
+    Type/tabletypes.cpp \
+    Type/typeacier.cpp \
+    Type/typecombat.cpp \
+    Type/typedragon.cpp \
+    Type/typeeau.cpp \
+    Type/typeelectrique.cpp \
+    Type/typefee.cpp \
+    Type/typefeu.cpp \
+    Type/typeglace.cpp \
+    Type/typeinsecte.cpp \
+    Type/typenormal.cpp \
+    Type/typeplante.cpp \
+    Type/typepoison.cpp \
+    Type/typepsy.cpp \
+    Type/typeroche.cpp \
+    Type/typesol.cpp \
+    Type/typespectre.cpp \
+    Type/typetenebres.cpp \
+    Type/typevol.cpp \
+    kernelobject.cpp \
+    main.cpp \
+    Interface/Graphics/Scene/pokebatlescene.cpp \
+    Pokemon/XpCourbe/abstractcourbe.cpp \
+    Pokemon/XpCourbe/rapidecourbe.cpp \
+    Exeption/personalexeption.cpp \
+    Exeption/outofrange_personalexeption.cpp

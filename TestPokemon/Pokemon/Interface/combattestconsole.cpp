@@ -1,32 +1,43 @@
 #include "combattestconsole.h"
 
-#include "Pokemon/Pokemon/fakemon.h"
-#include "../KernelMecanic/km_combat.h"
 #include <iostream>
 
 using namespace std;
-
-combatTestConsole::combatTestConsole() : QObject()
+//-----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
+combatTestConsole::combatTestConsole(AbstractPokemon& y , AbstractPokemon& o) : QObject()
 {
 
+    this->c = new KM_Combat(y,o);
+    QObject::connect(c,SIGNAL(sendMsg(QString)),this,SLOT(afficheTexte(QString)));
 }
-
+//-----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
+combatTestConsole::~combatTestConsole() throw (){
+    delete c;
+}
+//-----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
 void combatTestConsole::launchCombat(){
-    Fakemon y(5);
-    Fakemon o(5);
-    AbstractPokemon& you = y;
-    AbstractPokemon& other = o;
-    KM_Combat c(you,other);
-    QObject::connect(&c,SIGNAL(sendMsg(QString)),this,SLOT(afficheTexte(QString)));
-    while(c.allInLife()){
-        cout << other.getNom().toStdString() <<" sauvage (Lv" << other.getLevel() << ") : " <<other.getPvAct() << "/" << other.getMaxPv() << endl;
-        cout <<"ton "<< you.getNom().toStdString() <<" (Lv" << you.getLevel() << ") : " <<you.getPvAct() << "/" << you.getMaxPv() << endl;
+    while(c->allInLife()){
+        cout << c->getNomCreature(CibleKM_COMBAT::OTHERS).toStdString()
+             <<" sauvage (Lv" << c->getLevelCreature(CibleKM_COMBAT::OTHERS) << ") : "
+            <<c->getVieCreature(CibleKM_COMBAT::OTHERS) << "/"
+           << c->getMaxVieCreature(CibleKM_COMBAT::OTHERS) << endl;
+
+        cout <<"ton "<< c->getNomCreature(CibleKM_COMBAT::ME).toStdString()
+            <<" (Lv" << c->getLevelCreature(CibleKM_COMBAT::ME)
+           << ") : "<<c->getVieCreature(CibleKM_COMBAT::ME) << "/"
+          << c->getMaxVieCreature(CibleKM_COMBAT::ME)<< endl;
         try{
             for(unsigned int i=0 ; i<AbstractPokemon::NB_MAX_ATTAQUE ; i++){
-                cout << i <<":" <<you.getNomAttaque(i).toStdString() <<" ";
+                cout << i <<":" <<c->getNomAttaqueCreature(CibleKM_COMBAT::ME,i).toStdString() <<" ";
             }
         }
-        catch(QString& r){
+        catch(OutOfRange_PersonalExeption& ){
             cout << endl;
         }
 
@@ -36,21 +47,22 @@ void combatTestConsole::launchCombat(){
             cout << "Choix de votre attaque" << endl;
             cin >> attaque;
             try{
-                c.useAttaque(attaque);
+                c->useAttaque(attaque);
                 ok = true;
             }
-            catch(QString& r){
-
+            catch(OutOfRange_PersonalExeption& r){
+                cerr << "OutofRange :"+r.getMsg().toStdString() << endl;
             }
         }
         cout << endl << endl;
 
     }
-    if(other.isInLife()){
+    if(c->isInLife(CibleKM_COMBAT::OTHERS)){
         cout << "Vous etes mort :(" << endl;
     }
     else{
         cout << "Vous avez gagnez :)" << endl;
+        c->earnXp();
     }
 }
 //---------------------------------------------------------------------------------

@@ -6,8 +6,9 @@
 //-------------------------------------------------------------------------
 //--------------------------Constructeur-----------------------------------
 //-------------------------------------------------------------------------
-AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int basePv, int baseAttP, int baseDefP, int baseAttS, int baseDefS, int baseVitesse, int level) : KernelObject()
+AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int basePv, int baseAttP, int baseDefP, int baseAttS, int baseDefS, int baseVitesse, AbstractCourbe *xpCour, int level) : KernelObject()
 {
+    this->xpCourbe = xpCour;
     this->nom = new QString(nom);
     this->basePv = new int(MULTBASE*basePv);
     this->baseAttP = new int (MULTBASE*baseAttP);
@@ -24,6 +25,9 @@ AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int base
     QObject::connect(alterations,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
 
     this->pvAct = new int(this->getMaxPv());
+    if(xpCourbe != NULL){
+        *xpAct = this->xpCourbe->getPredXp();   //monter en niveau artificielle
+    }
 }
 //-------------------------------------------------------------------------
 //------------------------Destructeur--------------------------------------
@@ -50,6 +54,9 @@ AbstractPokemon::~AbstractPokemon() throw(){
         delete type;
     }
     delete alterations;
+    if(xpCourbe != NULL){
+        delete xpCourbe;
+    }
 }
 
 //-------------------------------------------------------------------------
@@ -141,16 +148,16 @@ void AbstractPokemon::soigner(unsigned int v){
     }
 }
 //--------------------------------------------------------------------------
-QString AbstractPokemon::getNomAttaque(unsigned int t)const throw(QString){
+QString AbstractPokemon::getNomAttaque(unsigned int t)const throw(OutOfRange_PersonalExeption){
     if( t >= this->attaque->size()){
-        throw QString("Poke attaque out of range :"+QString::number(t)+" n'est pas entre 0 et "+QString::number(this->attaque->size()));
+        throw OutOfRange_PersonalExeption("Poke attaque out of range :"+QString::number(t)+" n'est pas entre 0 et "+QString::number(this->attaque->size()));
     }
     return this->attaque->at(t)->getNom();
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::useAttaque(unsigned int t,AbstractPokemon& cible) throw(QString){
+void AbstractPokemon::useAttaque(unsigned int t,AbstractPokemon& cible) throw(OutOfRange_PersonalExeption){
     if( t >= this->attaque->size()){
-        throw QString("Poke attaque out of range :"+QString::number(t)+" n'est pas entre 0 et "+QString::number(this->attaque->size()));
+        throw OutOfRange_PersonalExeption("Poke attaque out of range :"+QString::number(t)+" n'est pas entre 0 et "+QString::number(this->attaque->size()));
     }
     this->attaque->at(t)->use(cible);
 }
@@ -197,6 +204,29 @@ void AbstractPokemon::decreaseDefS(){
 //--------------------------------------------------------------------------
 void AbstractPokemon::decreaseVit(){
     this->alterations->decreaseVit();
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::earnXp(const AbstractPokemon &p){
+    int xp = (p.xpCourbe->getBase()*p.getLevel()/7.0)+1;
+    (*xpAct) += xp;
+    emit sendMsg(this->getNom() + " gagne "+ QString::number(xp) + " xp");
+    //verif monter de niveau
+    while(this->xpCourbe->isUpNextPalier(this->getXp())){
+        (*level)++;
+        emit sendMsg(this->getNom() + " est maintenant au niveau "+ QString::number(this->getLevel()));
+    }
+}
+//--------------------------------------------------------------------------
+int AbstractPokemon::getXp()const{
+    return *xpAct;
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::soinComplet(){
+    this->soigner((unsigned int)this->getMaxPv());
+}
+//--------------------------------------------------------------------------
+unsigned int AbstractPokemon::getNbAttaque()const{
+    return this->attaque->size();
 }
 //--------------------------------------------------------------------------
 //-------------------------Protected fonction-------------------------------
