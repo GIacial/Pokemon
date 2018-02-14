@@ -9,13 +9,14 @@ class AbstractPokemon;
 #include "statalterator.h"
 #include "XpCourbe/abstractcourbe.h"
 #include "../Exeption/outofrange_personalexeption.h"
+#include "./ListApprentissage/listapprentissage.h"
 
 class AbstractPokemon : public KernelObject
 {
     Q_OBJECT
 public:
     static constexpr int const&  MAX_LEVEL = 100;
-    static constexpr int const&  NB_MAX_ATTAQUE = 100;
+    static constexpr int const&  NB_MAX_ATTAQUE = 4;
     static constexpr int const&  MIN_PV = 10;
     static constexpr int const&  MULTBASE = 2;
     static constexpr int const&  MINSTAT = 5;
@@ -39,7 +40,7 @@ public:
     int getVitesse()const;                              //donne la vitesse
 
     QString getNom()const;                              //donne le nom
-    int getLevel()const;                                //donne le niveau
+    unsigned int getLevel()const;                                //donne le niveau
 
     void infligerDegat(unsigned int v);                 //inflige des degats
     double getAttCoef(const AbstractType& type)const;        //donne le coef du attaque de type type sur la creature
@@ -64,7 +65,7 @@ public:
     void    decreaseVit();                                     //diminue vit
 
     void    earnXp(const AbstractPokemon& p);                   //gagne de xp
-    int     getXp()const;                                       //donne xp Act
+    Xp getXp()const;                                       //donne xp Act
     void    soinComplet();                                      //soigne completement le pokemon
     unsigned int getNbAttaque()const;                           //donne le nd d'attaque de la creature
 
@@ -76,11 +77,12 @@ public slots:
 protected:
     //constructeur
     explicit AbstractPokemon(const QString nom , AbstractType *type, int basePv , int baseAttP ,
-                             int baseDefP , int baseAttS , int baseDefS , int baseVitesse , AbstractCourbe* xpCour,
-                             int level = 1);
+                             int baseDefP , int baseAttS , int baseDefS , int baseVitesse ,
+                             AbstractCourbe* xpCour, ListApprentissage* apprentissage,
+                             unsigned int level = 1);
 
     //fonction
-    void apprendreAttaque(AbstractAttaque* a,unsigned int place = 0) throw (QString);                              //apprend une attaque (place => place pour l'attaque a enlever si plein
+    void apprendreAttaque(Attaque::AbstractAttaque* a,unsigned int place = 0) throw (QString);                              //apprend une attaque (place => place pour l'attaque a enlever si plein
 private:
     QString* nom;
     int* pvAct;
@@ -90,13 +92,14 @@ private:
     int* baseAttS;
     int* baseDefS;
     int* baseVitesse;
-    int* level;
-    std::vector<AbstractAttaque*>* attaque;
+    unsigned int* level;
+    std::vector<Attaque::AbstractAttaque*>* attaque;
     AbstractStatut* statut;
-    int* xpAct;
+    Xp* xpAct;
     AbstractType* type;
     StatAlterator* alterations;
     AbstractCourbe* xpCourbe;
+    ListApprentissage* nextAttaque;
 
 };
 

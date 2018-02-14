@@ -60,7 +60,15 @@ HEADERS += \
     Pokemon/XpCourbe/abstractcourbe.h \
     Pokemon/XpCourbe/rapidecourbe.h \
     Exeption/personalexeption.h \
-    Exeption/outofrange_personalexeption.h
+    Exeption/outofrange_personalexeption.h \
+    Attaque/Attaque/PhysicalAttaque/fouetliane.h \
+    Attaque/Attaque/PhysicalAttaque/griffe.h \
+    Attaque/Attaque/SpecialAttaque/flammeche.h \
+    Attaque/Attaque/SpecialAttaque/pistoletaeau.h \
+    Pokemon/Pokemon/Gen1/bulbizarre.h \
+    Pokemon/Pokemon/pokemonfactory.h \
+    Pokemon/ListApprentissage/cellulelistapprentissage.h \
+    Pokemon/ListApprentissage/listapprentissage.h
 
 SOURCES += \
     Attaque/Attaque/AlterationAttaque/rugissement.cpp \
@@ -106,4 +114,12 @@ SOURCES += \
     Pokemon/XpCourbe/abstractcourbe.cpp \
     Pokemon/XpCourbe/rapidecourbe.cpp \
     Exeption/personalexeption.cpp \
-    Exeption/outofrange_personalexeption.cpp
+    Exeption/outofrange_personalexeption.cpp \
+    Attaque/Attaque/PhysicalAttaque/fouetliane.cpp \
+    Attaque/Attaque/PhysicalAttaque/griffe.cpp \
+    Attaque/Attaque/SpecialAttaque/flammeche.cpp \
+    Attaque/Attaque/SpecialAttaque/pistoletaeau.cpp \
+    Pokemon/Pokemon/Gen1/bulbizarre.cpp \
+    Pokemon/Pokemon/pokemonfactory.cpp \
+    Pokemon/ListApprentissage/cellulelistapprentissage.cpp \
+    Pokemon/ListApprentissage/listapprentissage.cpp

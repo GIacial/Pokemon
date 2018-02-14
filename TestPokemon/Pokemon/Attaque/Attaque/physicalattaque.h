@@ -4,6 +4,8 @@
 #include <QObject>
 #include "../abstractattaque.h"
 
+namespace Attaque{
+
 class PhysicalAttaque : public AbstractAttaque
 {
     Q_OBJECT
@@ -19,6 +21,8 @@ protected:
     PhysicalAttaque(AbstractPokemon &user, int precision, int puissance, AbstractType *type, const QString nom);
     //fonction surcharge
     int getAttaque(AbstractPokemon& cible)const;
+    void attaqueEffect(AbstractPokemon& cible);
 };
 
+}
 #endif // PHYSICALATTAQUE_H

@@ -4,6 +4,8 @@
 #include <QObject>
 #include "../abstractattaque.h"
 
+namespace Attaque{
+
 class AlterationAttque : public AbstractAttaque
 {
     Q_OBJECT
@@ -20,4 +22,5 @@ protected :
     int getAttaque(AbstractPokemon& cible)const;
 };
 
+}
 #endif // ALTERATIONATTQUE_H

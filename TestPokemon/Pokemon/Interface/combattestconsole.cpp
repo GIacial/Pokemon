@@ -6,7 +6,7 @@ using namespace std;
 //-----------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
-combatTestConsole::combatTestConsole(AbstractPokemon& y , AbstractPokemon& o) : QObject()
+combatTestConsole::combatTestConsole(AbstractPokemon* y , AbstractPokemon* o) : QObject()
 {
 
     this->c = new KM_Combat(y,o);
@@ -38,8 +38,9 @@ void combatTestConsole::launchCombat(){
             }
         }
         catch(OutOfRange_PersonalExeption& ){
-            cout << endl;
+
         }
+        cout << endl;
 
         bool ok = false;
         unsigned int attaque;

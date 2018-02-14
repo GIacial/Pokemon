@@ -9,7 +9,7 @@ class RapideCourbe : public AbstractCourbe
     Q_OBJECT
 public:
     //constructeur
-    explicit RapideCourbe(int base, int level =1);
+    explicit RapideCourbe(Xp base, int level =1);
     //destructeur
     virtual ~RapideCourbe() throw();
 
@@ -18,7 +18,7 @@ signals:
 
 protected:
     //override
-     int calcXpNextLevel()const;
+     Xp calcXpNextLevel()const;
 
 public slots:
 };

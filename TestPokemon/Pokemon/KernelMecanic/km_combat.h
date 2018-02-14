@@ -11,7 +11,7 @@ class KM_Combat : public KernelObject
 {
     Q_OBJECT
 public:
-    explicit KM_Combat(AbstractPokemon& you , AbstractPokemon& other);
+    explicit KM_Combat(AbstractPokemon* you , AbstractPokemon* other);
     virtual ~KM_Combat() throw ();
 
     void useAttaque(unsigned int t) throw(OutOfRange_PersonalExeption);                                    //lance la t-iem attaque de ton poke
@@ -32,8 +32,8 @@ protected:
     void playOneTurn(unsigned int t) throw(OutOfRange_PersonalExeption);                                   //fait un tour de combat
 
 private:
-    AbstractPokemon& you;
-    AbstractPokemon& other;
+    AbstractPokemon* you;
+    AbstractPokemon* other;
 };
 
 #endif // KM_COMBAT_H

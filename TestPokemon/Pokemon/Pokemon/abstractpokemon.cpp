@@ -1,14 +1,15 @@
 #include "abstractpokemon.h"
 
-
+using namespace Attaque;
 
 
 //-------------------------------------------------------------------------
 //--------------------------Constructeur-----------------------------------
 //-------------------------------------------------------------------------
-AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int basePv, int baseAttP, int baseDefP, int baseAttS, int baseDefS, int baseVitesse, AbstractCourbe *xpCour, int level) : KernelObject()
+AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int basePv, int baseAttP, int baseDefP, int baseAttS, int baseDefS, int baseVitesse, AbstractCourbe *xpCour, ListApprentissage *apprentissage, unsigned int level) : KernelObject()
 {
     this->xpCourbe = xpCour;
+    this->nextAttaque = apprentissage;
     this->nom = new QString(nom);
     this->basePv = new int(MULTBASE*basePv);
     this->baseAttP = new int (MULTBASE*baseAttP);
@@ -16,10 +17,10 @@ AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int base
     this->baseAttS = new int (MULTBASE*baseAttS);
     this->baseDefS = new int (MULTBASE*baseDefS);
     this->baseVitesse = new int (MULTBASE*baseVitesse);
-    this->level = new int (level);
+    this->level = new unsigned int (level);
     this->attaque = new std::vector<AbstractAttaque *>();
     this->statut = NULL;
-    this->xpAct = new int(0);
+    this->xpAct = new Xp(0);
     this->type = type;
     this->alterations = new StatAlterator(*this);
     QObject::connect(alterations,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
@@ -56,6 +57,9 @@ AbstractPokemon::~AbstractPokemon() throw(){
     delete alterations;
     if(xpCourbe != NULL){
         delete xpCourbe;
+    }
+    if(nextAttaque != NULL){
+        delete nextAttaque;
     }
 }
 
@@ -118,7 +122,7 @@ QString AbstractPokemon::getNom()const{
     return *nom;
 }
 //-------------------------------------------------------------------------
-int AbstractPokemon::getLevel()const{
+unsigned int AbstractPokemon::getLevel()const{
     return *level;
 }
 //-------------------------------------------------------------------------
@@ -207,17 +211,32 @@ void AbstractPokemon::decreaseVit(){
 }
 //--------------------------------------------------------------------------
 void AbstractPokemon::earnXp(const AbstractPokemon &p){
-    int xp = (p.xpCourbe->getBase()*p.getLevel()/7.0)+1;
-    (*xpAct) += xp;
-    emit sendMsg(this->getNom() + " gagne "+ QString::number(xp) + " xp");
-    //verif monter de niveau
-    while(this->xpCourbe->isUpNextPalier(this->getXp())){
-        (*level)++;
-        emit sendMsg(this->getNom() + " est maintenant au niveau "+ QString::number(this->getLevel()));
+    if(this->getLevel() < MAX_LEVEL){
+        Xp xp = (p.xpCourbe->getBase()*p.getLevel()/7.0)+1;
+        (*xpAct) += xp;
+        emit sendMsg(this->getNom() + " gagne "+ QString::number(xp) + " xp");
+        //verif monter de niveau
+        while(this->xpCourbe->isUpNextPalier(this->getXp())){
+            (*level)++;
+            emit sendMsg(this->getNom() + " est maintenant au niveau "+ QString::number(this->getLevel()));
+            if(this->nextAttaque->isMyLvl(this->getLevel())){
+                   AbstractAttaque* a = this->nextAttaque->getNewAttaque(*this);
+                if(this->getNbAttaque() == NB_MAX_ATTAQUE){
+                    //cas attaque pleine
+                    emit sendMsg("Plus de place pour apprendre "+ a->getNom());
+                    delete a; //evite la fuite de l'attaque
+                }
+                else{
+                    this->apprendreAttaque(a);
+                    emit sendMsg(this->getNom()+" apprends "+ a->getNom());
+                }
+            }
+        }
     }
+
 }
 //--------------------------------------------------------------------------
-int AbstractPokemon::getXp()const{
+Xp AbstractPokemon::getXp()const{
     return *xpAct;
 }
 //--------------------------------------------------------------------------

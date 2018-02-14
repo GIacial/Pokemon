@@ -3,11 +3,11 @@
 //-------------------------------------------------------------------------
 //-----------------------constructeur--------------------------------------
 //-------------------------------------------------------------------------
-AbstractCourbe::AbstractCourbe(int base ) : KernelObject()
+AbstractCourbe::AbstractCourbe(Xp base ) : KernelObject()
 {
-    this->xpPred = new int (base);
-    this->xpSuiv = new int (base);
-    this->base   = new int (base);
+    this->xpPred = new Xp (base);
+    this->xpSuiv = new Xp (base);
+    this->base   = new Xp (base);
 
 }
 //-------------------------------------------------------------------------
@@ -21,7 +21,7 @@ AbstractCourbe::~AbstractCourbe() throw(){
 //-------------------------------------------------------------------------
 //------------------------fonction-----------------------------------------
 //-------------------------------------------------------------------------
-bool AbstractCourbe::isUpNextPalier(const int x){
+bool AbstractCourbe::isUpNextPalier(const Xp x){
     //std::cerr << x << "/" << this->getSuivXp() << std::endl;
     bool r = x >= this->getSuivXp();
     if(r){
@@ -31,11 +31,11 @@ bool AbstractCourbe::isUpNextPalier(const int x){
     return r;
 }
 //-------------------------------------------------------------------------
-int AbstractCourbe::getBase()const{
+Xp AbstractCourbe::getBase()const{
     return *base;
 }
 //-------------------------------------------------------------------------
-int AbstractCourbe::getPredXp()const{
+Xp AbstractCourbe::getPredXp()const{
     return *xpPred;
 }
 //-------------------------------------------------------------------------
@@ -43,6 +43,6 @@ int AbstractCourbe::getPredXp()const{
 //-------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------
-int AbstractCourbe::getSuivXp()const{
+Xp AbstractCourbe::getSuivXp()const{
     return *xpSuiv;
 }

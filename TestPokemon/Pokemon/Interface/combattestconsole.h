@@ -10,7 +10,7 @@ class combatTestConsole : public QObject
 
     Q_OBJECT
 public:
-    explicit combatTestConsole(AbstractPokemon& y , AbstractPokemon& o);
+    explicit combatTestConsole(AbstractPokemon *y , AbstractPokemon *o);
     //destructeur
     virtual ~combatTestConsole() throw();
     //fonction

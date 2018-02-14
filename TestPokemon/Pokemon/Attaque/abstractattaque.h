@@ -1,11 +1,14 @@
 #ifndef ABSTRACTATTAQUE_H
 #define ABSTRACTATTAQUE_H
-
+namespace Attaque{
 class AbstractAttaque;
+}
 #include <QObject>
 #include "../Pokemon/abstractpokemon.h"
 #include "../Pokemon/Type/abstracttype.h"
 #include "../kernelobject.h"
+namespace Attaque{
+
 
 class AbstractAttaque : public KernelObject
 {
@@ -47,5 +50,7 @@ private:
     AbstractType* type;
     QString* nom;
 };
+
+}//fin namespace
 
 #endif // ABSTRACTATTAQUE_H

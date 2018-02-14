@@ -3,12 +3,13 @@
 
 #include <QObject>
 #include "../alterationattque.h"
+namespace Attaque{
 
 class Rugissement : public AlterationAttque
 {
     Q_OBJECT
 public:
-    explicit Rugissement(AbstractPokemon& user);
+      Q_INVOKABLE explicit Rugissement(AbstractPokemon& user);
     virtual ~Rugissement() throw();
 
 protected:
@@ -17,6 +18,12 @@ protected:
 signals:
 
 public slots:
+
+private:
+
+    //var static
+    static constexpr int const&  PRECISION = 100;
 };
 
+}
 #endif // RUGISSEMENT_H

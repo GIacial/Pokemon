@@ -8,12 +8,16 @@ class Fakemon : public AbstractPokemon
 {
     Q_OBJECT
 public:
-    explicit Fakemon(unsigned int level=1);
+    Q_INVOKABLE explicit Fakemon(unsigned int level=1);
     virtual ~Fakemon() throw ();
+
 
 signals:
 
 public slots:
+
+private:
+    static ListApprentissage* getListApprentissage();
 };
 
 #endif // FAKEMON_H

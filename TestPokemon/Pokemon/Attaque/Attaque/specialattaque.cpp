@@ -1,5 +1,6 @@
 #include "specialattaque.h"
 
+using namespace Attaque;
 
 //--------------------------------------------------------------
 //--------------------------------------------------------------
@@ -43,4 +44,8 @@ int SpecialAttaque::getAttaque(AbstractPokemon &cible) const{
         }
     }
     return res;
+}
+//------------------------------------------------------------------
+void SpecialAttaque::attaqueEffect(AbstractPokemon &cible){
+    cible.infligerDegat(this->getAttaque(cible));
 }

@@ -4,6 +4,8 @@
 #include <QObject>
 #include "../../kernelobject.h"
 
+typedef unsigned long int Xp;
+
 class AbstractCourbe : public KernelObject
 {
     Q_OBJECT
@@ -12,10 +14,10 @@ public:
     virtual  ~AbstractCourbe() throw();
 
      //fonction
-     bool isUpNextPalier(int const x);                  //vérifie si c'est au desus du palier xp du niveau suivant
-     int  getBase()const;                               //donne la base de la courbe
+     bool isUpNextPalier(const Xp x);                  //vérifie si c'est au desus du palier xp du niveau suivant
+     Xp  getBase()const;                               //donne la base de la courbe
 
-    int getPredXp()const;          //donne xpPred
+     Xp getPredXp()const;          //donne xpPred
 
 signals:
 
@@ -23,17 +25,17 @@ public slots:
 
 protected:
      //constructeur
-      AbstractCourbe(int base);
+      AbstractCourbe(Xp base);
     //fonction
-    virtual int calcXpNextLevel()const = 0;
-      int getSuivXp()const;          //donne xpSuiv
+    virtual Xp calcXpNextLevel()const = 0;
+      Xp getSuivXp()const;          //donne xpSuiv
 
 private:
      //fonction
      //variable
-     int* base;                     //xp de base du poke
-     int* xpPred;                    //xp pour arriver à se niveau
-     int* xpSuiv;                    //xp pour le prochain niveau
+     Xp* base;                     //xp de base du poke
+     Xp* xpPred;                    //xp pour arriver à se niveau
+     Xp* xpSuiv;                    //xp pour le prochain niveau
 };
 
 #endif // ABSTRACTCOURBE_H

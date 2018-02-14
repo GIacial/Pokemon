@@ -1,5 +1,6 @@
 #include "physicalattaque.h"
 
+using namespace Attaque;
 
 //-----------------------------------------------------------------
 //-----------------------------------------------------------------
@@ -44,4 +45,9 @@ int PhysicalAttaque::getAttaque(AbstractPokemon &cible) const{
     }
 
     return res;
+}
+
+//------------------------------------------------------------------
+void PhysicalAttaque::attaqueEffect(AbstractPokemon &cible){
+    cible.infligerDegat(this->getAttaque(cible));
 }
