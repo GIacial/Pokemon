@@ -13,8 +13,7 @@ Bulbizarre::Bulbizarre(unsigned int level) :
     AbstractPokemon("Bulbizarre",new TypePlante(),BASE_PV,BASE_ATTP,BASE_DEFP,BASE_ATTS,BASE_DEFS,BASE_VIT
                     ,new RapideCourbe(BASE_XP,level), Bulbizarre::getListApprentissage(),level)
 {
-    this->apprendreAttaque(new Charge(*this));
-    this->apprendreAttaque(new Rugissement(*this));
+
 }
 
 Bulbizarre::~Bulbizarre() throw(){
@@ -24,5 +23,7 @@ Bulbizarre::~Bulbizarre() throw(){
 ListApprentissage* Bulbizarre::getListApprentissage(){
     std::vector<CelluleListApprentissage> l;
     l.push_back(CelluleListApprentissage(6,FouetLiane::staticMetaObject));
+    l.push_back(CelluleListApprentissage(0,Charge::staticMetaObject));
+    l.push_back(CelluleListApprentissage(0,Rugissement::staticMetaObject));
     return new ListApprentissage(l);
 }

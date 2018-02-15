@@ -37,10 +37,14 @@ bool CelluleListApprentissage::operator <(const CelluleListApprentissage& c)cons
 //----------------------------------------------------------------------------------------------------
 //-----------------------------------fonction---------------------------------------------------------
 //----------------------------------------------------------------------------------------------------
-AbstractAttaque* CelluleListApprentissage::createInstanceAttaque(AbstractPokemon& user)const{
-    return (AbstractAttaque*)this->attaque.newInstance(Q_ARG(AbstractPokemon&,user));
+AbstractAttaque* CelluleListApprentissage::createInstanceAttaque(AbstractPokemon& user)const throw (MetaConstructeurFail_PersonalException){
+    AbstractAttaque* a = (AbstractAttaque*)this->attaque.newInstance(Q_ARG(AbstractPokemon&,user));
+    if(a == NULL){
+        throw MetaConstructeurFail_PersonalException("tu as oublier un Q_INVOKE pour "+QString(attaque.className()));
+    }
+    return a;
 }
 //----------------------------------------------------------------------------------------------------
 bool CelluleListApprentissage::isMyLevel(unsigned int lv) const{
-    return lv == (*lvl);
+    return lv >= (*lvl);
 }

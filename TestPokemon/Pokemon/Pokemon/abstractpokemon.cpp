@@ -1,5 +1,5 @@
 #include "abstractpokemon.h"
-
+#include <iostream>
 using namespace Attaque;
 
 
@@ -26,8 +26,16 @@ AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int base
     QObject::connect(alterations,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
 
     this->pvAct = new int(this->getMaxPv());
+
     if(xpCourbe != NULL){
         *xpAct = this->xpCourbe->getPredXp();   //monter en niveau artificielle
+    }
+
+    if(nextAttaque != NULL){
+        while(nextAttaque->isMyLvl(*(this->level))){
+            this->apprendreAttaque(this->nextAttaque->getNewAttaque(*this),rand()%NB_MAX_ATTAQUE);                                   //apprendre les attaques en mode random
+
+        }
     }
 }
 //-------------------------------------------------------------------------

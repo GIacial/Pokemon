@@ -68,7 +68,8 @@ HEADERS += \
     Pokemon/Pokemon/Gen1/bulbizarre.h \
     Pokemon/Pokemon/pokemonfactory.h \
     Pokemon/ListApprentissage/cellulelistapprentissage.h \
-    Pokemon/ListApprentissage/listapprentissage.h
+    Pokemon/ListApprentissage/listapprentissage.h \
+    Exeption/metaconstructeurfail_personalexception.h
 
 SOURCES += \
     Attaque/Attaque/AlterationAttaque/rugissement.cpp \
@@ -122,4 +123,5 @@ SOURCES += \
     Pokemon/Pokemon/Gen1/bulbizarre.cpp \
     Pokemon/Pokemon/pokemonfactory.cpp \
     Pokemon/ListApprentissage/cellulelistapprentissage.cpp \
-    Pokemon/ListApprentissage/listapprentissage.cpp
+    Pokemon/ListApprentissage/listapprentissage.cpp \
+    Exeption/metaconstructeurfail_personalexception.cpp
