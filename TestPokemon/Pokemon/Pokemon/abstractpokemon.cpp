@@ -8,6 +8,33 @@ using namespace Attaque;
 //-------------------------------------------------------------------------
 AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int basePv, int baseAttP, int baseDefP, int baseAttS, int baseDefS, int baseVitesse, AbstractCourbe *xpCour, ListApprentissage *apprentissage, unsigned int level) : KernelObject()
 {
+    this->generalConstructeur(nom,type,basePv,baseAttP,baseDefP,baseAttS,baseDefS,baseVitesse,xpCour,apprentissage,level);
+    //apprentissage artifficielle
+    if(nextAttaque != NULL){
+        while(nextAttaque->isMyLvl(*(this->level))){
+            this->apprendreAttaque(this->nextAttaque->getNewAttaque(*this),rand()%NB_MAX_ATTAQUE);                                   //apprendre les attaques en mode random
+
+        }
+    }
+}
+//-------------------------------------------------------------------------
+AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int basePv, int baseAttP, int baseDefP, int baseAttS, int baseDefS, int baseVitesse, AbstractCourbe *xpCour, ListApprentissage *apprentissage,const AbstractPokemon& preEvolution, unsigned int level) : KernelObject()
+{
+    this->generalConstructeur(nom,type,basePv,baseAttP,baseDefP,baseAttS,baseDefS,baseVitesse,xpCour,apprentissage,level);
+
+    if(nextAttaque != NULL){
+        while(nextAttaque->isMyLvl(*(this->level))){
+                //oublie des attaque de bas level
+        }
+    }
+
+    //on apprends les attaque de l'ancien
+    for(unsigned int i=0 ; i<preEvolution.attaque->size() ; i++){
+        this->apprendreAttaque((AbstractAttaque*)preEvolution.attaque->at(i)->metaObject()->newInstance(Q_ARG(AbstractPokemon&,*this)));
+    }
+}
+//-------------------------------------------------------------------------
+void AbstractPokemon::generalConstructeur(const QString nom, AbstractType *type, int basePv, int baseAttP, int baseDefP, int baseAttS, int baseDefS, int baseVitesse, AbstractCourbe *xpCour, ListApprentissage *apprentissage, unsigned int level){
     this->xpCourbe = xpCour;
     this->nextAttaque = apprentissage;
     this->nom = new QString(nom);
@@ -31,12 +58,7 @@ AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int base
         *xpAct = this->xpCourbe->getPredXp();   //monter en niveau artificielle
     }
 
-    if(nextAttaque != NULL){
-        while(nextAttaque->isMyLvl(*(this->level))){
-            this->apprendreAttaque(this->nextAttaque->getNewAttaque(*this),rand()%NB_MAX_ATTAQUE);                                   //apprendre les attaques en mode random
 
-        }
-    }
 }
 //-------------------------------------------------------------------------
 //------------------------Destructeur--------------------------------------
@@ -254,6 +276,18 @@ void AbstractPokemon::soinComplet(){
 //--------------------------------------------------------------------------
 unsigned int AbstractPokemon::getNbAttaque()const{
     return this->attaque->size();
+}
+//--------------------------------------------------------------------------
+double AbstractPokemon::getPrecision()const{
+    return this->alterations->getCoefAltPrec();
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::upgradePrecision(){
+    this->alterations->upgradePrec();
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::decreasePrecision(){
+    this->alterations->decreasePrec();
 }
 //--------------------------------------------------------------------------
 //-------------------------Protected fonction-------------------------------

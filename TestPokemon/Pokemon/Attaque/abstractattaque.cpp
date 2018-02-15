@@ -37,7 +37,7 @@ unsigned int AbstractAttaque::getPuissance()const{
 }
 //-------------------------------------------------------------------------
 bool AbstractAttaque::toucheLaCible()const{
-    return ((unsigned int)rand()%100) <= this->getPrecision();
+    return ((unsigned int)rand()%100) <= this->getPrecision()*this->utilisateur.getPrecision();
 }
 //-------------------------------------------------------------------------
 bool AbstractAttaque::isSameTypeUser()const{

@@ -2,7 +2,7 @@
 #include <iostream>
 //include poke
 #include "./fakemon.h"
-#include "./Gen1/bulbizarre.h"
+#include "./Gen1/allgen1.h"
 
 //-------------------------------------------------------------------
 //-----------------------------Constructeur--------------------------
@@ -12,6 +12,9 @@ PokemonFactory::PokemonFactory() : QObject()
     this->listPoke = new QList<QMetaObject> ();
     listPoke->append(Fakemon::staticMetaObject);
     listPoke->append(Bulbizarre::staticMetaObject);
+    listPoke->append(Herbizarre::staticMetaObject);
+    listPoke->append(Florizarre::staticMetaObject);
+    listPoke->append(Salameche::staticMetaObject);
 }
 
 //-------------------------------------------------------------------

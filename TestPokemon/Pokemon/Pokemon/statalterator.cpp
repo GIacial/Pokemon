@@ -11,6 +11,7 @@ StatAlterator::StatAlterator(const AbstractPokemon &user) : KernelObject(),user(
     this->altDefP = new int(0);
     this->altDefS = new int(0);
     this->altVit  = new int(0);
+    this->precision = new int (0);
 }
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
@@ -21,6 +22,7 @@ StatAlterator::~StatAlterator() throw(){
     delete altDefP;
     delete altDefS;
     delete altVit;
+    delete precision;
 }
 //---------------------------------------------------------------------------
 //-------------------------public--------------------------------------------
@@ -45,6 +47,10 @@ double StatAlterator::getCoefAltVit()const{
     return this->getAlteratorCoef(*altVit);
 }
 //---------------------------------------------------------------------------
+double StatAlterator::getCoefAltPrec()const{
+    return this->getAlteratorCoef(*precision);
+}
+//---------------------------------------------------------------------------
 void StatAlterator::upgradeAttP(){
     this->genericUpgrade(altAttP,"son Attaque Physique");
 }
@@ -65,6 +71,10 @@ void StatAlterator::upgradeVit(){
     this->genericUpgrade(altVit,"sa vitesse");
 }
 //---------------------------------------------------------------------------
+void StatAlterator::upgradePrec(){
+    this->genericUpgrade(precision,"sa precision");
+}
+//---------------------------------------------------------------------------
 void StatAlterator::decreaseAttP(){
     this->genericDecrease(altAttP,"son Attaque Physique");
 }
@@ -83,6 +93,10 @@ void StatAlterator::decreaseDefS(){
 //---------------------------------------------------------------------------
 void StatAlterator::decreaseVit(){
     this->genericDecrease(altVit,"sa vitesse");
+}
+//---------------------------------------------------------------------------
+void StatAlterator::decreasePrec(){
+    this->genericDecrease(precision,"sa precision");
 }
 //---------------------------------------------------------------------------
 //------------------------private--------------------------------------------

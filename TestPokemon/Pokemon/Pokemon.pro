@@ -69,7 +69,12 @@ HEADERS += \
     Pokemon/Pokemon/pokemonfactory.h \
     Pokemon/ListApprentissage/cellulelistapprentissage.h \
     Pokemon/ListApprentissage/listapprentissage.h \
-    Exeption/metaconstructeurfail_personalexception.h
+    Exeption/metaconstructeurfail_personalexception.h \
+    Pokemon/Pokemon/Gen1/herbizarre.h \
+    Pokemon/Pokemon/Gen1/allgen1.h \
+    Pokemon/Pokemon/Gen1/florizarre.h \
+    Pokemon/Pokemon/Gen1/salameche.h \
+    Attaque/Attaque/AlterationAttaque/brouillard.h
 
 SOURCES += \
     Attaque/Attaque/AlterationAttaque/rugissement.cpp \
@@ -124,4 +129,8 @@ SOURCES += \
     Pokemon/Pokemon/pokemonfactory.cpp \
     Pokemon/ListApprentissage/cellulelistapprentissage.cpp \
     Pokemon/ListApprentissage/listapprentissage.cpp \
-    Exeption/metaconstructeurfail_personalexception.cpp
+    Exeption/metaconstructeurfail_personalexception.cpp \
+    Pokemon/Pokemon/Gen1/herbizarre.cpp \
+    Pokemon/Pokemon/Gen1/florizarre.cpp \
+    Pokemon/Pokemon/Gen1/salameche.cpp \
+    Attaque/Attaque/AlterationAttaque/brouillard.cpp

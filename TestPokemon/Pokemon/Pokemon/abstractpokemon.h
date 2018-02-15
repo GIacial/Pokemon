@@ -69,6 +69,10 @@ public:
     void    soinComplet();                                      //soigne completement le pokemon
     unsigned int getNbAttaque()const;                           //donne le nd d'attaque de la creature
 
+    double  getPrecision()const;                                //donne la precision
+    void    upgradePrecision();                                 //augmente la precision
+    void    decreasePrecision();                                //baisse la precision
+
 
 signals:
 
@@ -80,10 +84,20 @@ protected:
                              int baseDefP , int baseAttS , int baseDefS , int baseVitesse ,
                              AbstractCourbe* xpCour, ListApprentissage* apprentissage,
                              unsigned int level = 1);
-
+    explicit AbstractPokemon(const QString nom , AbstractType *type, int basePv , int baseAttP ,
+                             int baseDefP , int baseAttS , int baseDefS , int baseVitesse ,
+                             AbstractCourbe* xpCour, ListApprentissage* apprentissage,const AbstractPokemon& preEvolution,
+                             unsigned int level = 1);//recup les attaque de la pre evolution
     //fonction
     void apprendreAttaque(Attaque::AbstractAttaque* a,unsigned int place = 0) throw (QString);                              //apprend une attaque (place => place pour l'attaque a enlever si plein
+
 private:
+    //fonction
+    void generalConstructeur(const QString nom , AbstractType *type, int basePv , int baseAttP ,
+                             int baseDefP , int baseAttS , int baseDefS , int baseVitesse ,
+                             AbstractCourbe* xpCour, ListApprentissage* apprentissage,
+                             unsigned int level);
+    //variable
     QString* nom;
     int* pvAct;
     int* basePv;

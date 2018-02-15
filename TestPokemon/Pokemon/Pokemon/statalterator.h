@@ -23,18 +23,21 @@ public:
     double getCoefAltDefP()const;                                   //donne le coef d'alt pour defP
     double getCoefAltDefS()const;                                   //donne le coef d'alt pour defS
     double getCoefAltVit()const;                                   //donne le coef d'alt pour vit
+    double getCoefAltPrec()const;                                   //donne la stat de precision
 
     void   upgradeAttP();                                           //augmente la stat
     void   upgradeAttS();                                           //augmente la stat
     void   upgradeDefP();                                           //augmente la stat
     void   upgradeDefS();                                           //augmente la stat
     void   upgradeVit();                                           //augmente la stat
+    void   upgradePrec();                                           //augmente la precision
 
     void   decreaseAttP();                                           //baisse la stat
     void   decreaseAttS();                                           //baisse la stat
     void   decreaseDefP();                                           //baisse la stat
     void   decreaseDefS();                                           //baisse la stat
     void   decreaseVit();                                           //baisse la stat
+    void   decreasePrec();                                          //baisse la precision
 
 
 signals:
@@ -54,6 +57,7 @@ private:
     int* altDefS;
     int* altDefP;
     int* altVit;
+    int* precision;
     const AbstractPokemon& user;
 };
 
