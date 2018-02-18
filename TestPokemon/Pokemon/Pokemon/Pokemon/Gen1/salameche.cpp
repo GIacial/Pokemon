@@ -7,6 +7,7 @@
 //attaque
 #include "../../../Attaque/Attaque/PhysicalAttaque/griffe.h"
 #include "../../../Attaque/Attaque/SpecialAttaque/flammeche.h"
+#include "../../../Attaque/Attaque/SpecialAttaque/dracorage.h"
 #include "../../../Attaque/Attaque/AlterationAttaque/rugissement.h"
 #include "../../../Attaque/Attaque/AlterationAttaque/brouillard.h"
 
@@ -38,5 +39,6 @@ ListApprentissage* Salameche::getListApprentissage(){
     l.push_back(CelluleListApprentissage(0,Griffe::staticMetaObject));
     l.push_back(CelluleListApprentissage(0,Rugissement::staticMetaObject));
     l.push_back(CelluleListApprentissage(10,Brouillard::staticMetaObject));
+    l.push_back(CelluleListApprentissage(16,DracoRage::staticMetaObject));
     return new ListApprentissage(l);
 }

@@ -11,6 +11,7 @@ combatTestConsole::combatTestConsole(AbstractPokemon* y , AbstractPokemon* o) : 
 
     this->c = new KM_Combat(y,o);
     QObject::connect(c,SIGNAL(sendMsg(QString)),this,SLOT(afficheTexte(QString)));
+    QObject::connect(c,SIGNAL(PokemonVeutApprendreAttaque(int*)),this,SLOT(apprendreAttaque(int*)));
 }
 //-----------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
@@ -69,4 +70,9 @@ void combatTestConsole::launchCombat(){
 //---------------------------------------------------------------------------------
 void combatTestConsole::afficheTexte(QString m){
     cout << m.toStdString() << endl;
+}
+//---------------------------------------------------------------------------------
+void combatTestConsole::apprendreAttaque(int *t){
+    cout << "Quel attaque a oublié ?" << endl;
+    cin >> (*t);
 }

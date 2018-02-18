@@ -25,8 +25,10 @@ public:
     bool    isInLife(CibleKM_COMBAT c)const;                                            //dit si la cible est en vie
     void    earnXp();                                                                   //fait gagner de xp a you
 signals:
+    void PokemonVeutApprendreAttaque(int* t);                                                 //emit quand un pokem veut apprendre une attaque
 
 public slots:
+    void apprendreAttaqueSlot(int *t);                                                        //transmets le signal d'apprendtissage d'un poke
 
 protected:
     void playOneTurn(unsigned int t) throw(OutOfRange_PersonalExeption);                                   //fait un tour de combat

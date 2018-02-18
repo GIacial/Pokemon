@@ -5,7 +5,7 @@ class AbstractAttaque;
 }
 #include <QObject>
 #include "../Pokemon/abstractpokemon.h"
-#include "../Pokemon/Type/abstracttype.h"
+#include "../../Pokemon/Type/abstracttype.h"
 #include "../kernelobject.h"
 namespace Attaque{
 

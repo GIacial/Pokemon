@@ -1,7 +1,9 @@
 #ifndef POKEMON_H
 #define POKEMON_H
 class AbstractPokemon;
+
 #include <QObject>
+
 #include "../Attaque/abstractattaque.h"
 #include "../Statut/abstractstatut.h"
 #include "../Type/abstracttype.h"
@@ -75,7 +77,7 @@ public:
 
 
 signals:
-
+    void veutApprendreAttaque(int * t);                                //emit quand il veut apprendre une attaque
 public slots:
 
 protected:

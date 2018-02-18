@@ -6,6 +6,7 @@
 #include "../../Attaque/Attaque/PhysicalAttaque/fouetliane.h"
 #include "../../Attaque/Attaque/SpecialAttaque/flammeche.h"
 #include "../../Attaque/Attaque/SpecialAttaque/pistoletaeau.h"
+#include "../../Attaque/Attaque/AlterationAttaque/brouillard.h"
 
 
 using namespace Attaque;
@@ -25,6 +26,7 @@ ListApprentissage* Fakemon::getListApprentissage(){
 
     l.push_back(CelluleListApprentissage(0,Charge::staticMetaObject));
     l.push_back(CelluleListApprentissage(0,Rugissement::staticMetaObject));
+    l.push_back(CelluleListApprentissage(0,Brouillard::staticMetaObject));
     l.push_back(CelluleListApprentissage(6,FouetLiane::staticMetaObject));
     l.push_back(CelluleListApprentissage(7,Flammeche::staticMetaObject));
     l.push_back(CelluleListApprentissage(8,PistoletAEau::staticMetaObject));

@@ -25,7 +25,7 @@ Florizarre::Florizarre(unsigned int level) :
 Florizarre::Florizarre(const Herbizarre &b) :
     AbstractPokemon ("Florizarre",new DoubleType(POISON,PLANTE, "Plante Poison"),
                      BASE_PV,BASE_ATTP,BASE_DEFP,BASE_ATTS,BASE_DEFS,BASE_VIT
-                     ,new RapideCourbe(BASE_XP,b.getLevel()),Florizarre::getListApprentissage(),b.getLevel())
+                     ,new RapideCourbe(BASE_XP,b.getLevel()),Florizarre::getListApprentissage(),b,b.getLevel())
 {
 
 }

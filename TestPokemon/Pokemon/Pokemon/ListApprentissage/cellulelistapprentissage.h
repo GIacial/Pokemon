@@ -4,9 +4,7 @@
 class CelluleListApprentissage;
 
 #include <QObject>
-//#include "../../Exeption/metaconstructeurfail_personalexception.h"
 #include "Exeption/metaconstructeurfail_personalexception.h"
-
 #include "../../Attaque/abstractattaque.h"
 
 class CelluleListApprentissage

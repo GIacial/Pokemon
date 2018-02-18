@@ -24,7 +24,7 @@ Herbizarre::Herbizarre(unsigned int level) :
 Herbizarre::Herbizarre(const Bulbizarre &b) :
     AbstractPokemon ("Herbizarre",new DoubleType(POISON,PLANTE, "Plante Poison"),
                      BASE_PV,BASE_ATTP,BASE_DEFP,BASE_ATTS,BASE_DEFS,BASE_VIT
-                     ,new RapideCourbe(BASE_XP,b.getLevel()),Herbizarre::getListApprentissage(),b.getLevel())
+                     ,new RapideCourbe(BASE_XP,b.getLevel()),Herbizarre::getListApprentissage(),b,b.getLevel())
 {
 
 }

@@ -254,7 +254,16 @@ void AbstractPokemon::earnXp(const AbstractPokemon &p){
                 if(this->getNbAttaque() == NB_MAX_ATTAQUE){
                     //cas attaque pleine
                     emit sendMsg("Plus de place pour apprendre "+ a->getNom());
-                    delete a; //evite la fuite de l'attaque
+                    int t = NB_MAX_ATTAQUE+1;
+                    emit veutApprendreAttaque(&t);
+                    if(t == NB_MAX_ATTAQUE+1){
+                        delete a; //evite la fuite de l'attaque
+                    }
+                    else{
+                        this->apprendreAttaque(a,t);
+                        emit sendMsg(this->getNom()+" apprends "+ a->getNom());
+                    }
+
                 }
                 else{
                     this->apprendreAttaque(a);

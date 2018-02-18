@@ -7,6 +7,8 @@ KM_Combat::KM_Combat(AbstractPokemon *you, AbstractPokemon *other) : KernelObjec
 {
     QObject::connect(you,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
     QObject::connect(other,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
+
+    QObject::connect(you,SIGNAL(veutApprendreAttaque(int*)),this,SLOT(apprendreAttaqueSlot(int*)));
 }
 //---------------------------------------------------------------
 //---------------------------------------------------------------
@@ -71,6 +73,14 @@ void KM_Combat::earnXp(){
     if(you->isInLife()){
         you->earnXp(*other);
     }
+}
+
+
+//---------------------------------------------------------------
+//-----------------------slot------------------------------------
+//---------------------------------------------------------------
+void KM_Combat::apprendreAttaqueSlot(int * t){
+    emit PokemonVeutApprendreAttaque(t);
 }
 //---------------------------------------------------------------
 //---------------------------------------------------------------

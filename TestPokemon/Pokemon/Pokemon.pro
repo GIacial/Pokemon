@@ -17,19 +17,38 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 HEADERS += \
+    Attaque/Attaque/AlterationAttaque/brouillard.h \
     Attaque/Attaque/AlterationAttaque/rugissement.h \
     Attaque/Attaque/PhysicalAttaque/charge.h \
+    Attaque/Attaque/PhysicalAttaque/fouetliane.h \
+    Attaque/Attaque/PhysicalAttaque/griffe.h \
+    Attaque/Attaque/SpecialAttaque/flammeche.h \
+    Attaque/Attaque/SpecialAttaque/pistoletaeau.h \
     Attaque/Attaque/alterationattque.h \
     Attaque/Attaque/physicalattaque.h \
     Attaque/Attaque/specialattaque.h \
     Attaque/abstractattaque.h \
+    Exeption/metaconstructeurfail_personalexception.h \
+    Exeption/outofrange_personalexeption.h \
+    Exeption/personalexeption.h \
     Interface/Graphics/ObjectGraphics/barvie.h \
     Interface/Graphics/ObjectGraphics/graphicsprogressbar.h \
+    Interface/Graphics/Scene/pokebatlescene.h \
     Interface/Graphics/graphicsview.h \
     Interface/Graphics/mainwindowspoke.h \
     Interface/combattestconsole.h \
     KernelMecanic/km_combat.h \
+    Pokemon/ListApprentissage/cellulelistapprentissage.h \
+    Pokemon/ListApprentissage/listapprentissage.h \
+    Pokemon/Pokemon/Gen1/allgen1.h \
+    Pokemon/Pokemon/Gen1/bulbizarre.h \
+    Pokemon/Pokemon/Gen1/florizarre.h \
+    Pokemon/Pokemon/Gen1/herbizarre.h \
+    Pokemon/Pokemon/Gen1/salameche.h \
     Pokemon/Pokemon/fakemon.h \
+    Pokemon/Pokemon/pokemonfactory.h \
+    Pokemon/XpCourbe/abstractcourbe.h \
+    Pokemon/XpCourbe/rapidecourbe.h \
     Pokemon/abstractpokemon.h \
     Pokemon/statalterator.h \
     Statut/abstractstatut.h \
@@ -56,40 +75,40 @@ HEADERS += \
     Type/typetenebres.h \
     Type/typevol.h \
     kernelobject.h \
-    Interface/Graphics/Scene/pokebatlescene.h \
-    Pokemon/XpCourbe/abstractcourbe.h \
-    Pokemon/XpCourbe/rapidecourbe.h \
-    Exeption/personalexeption.h \
-    Exeption/outofrange_personalexeption.h \
-    Attaque/Attaque/PhysicalAttaque/fouetliane.h \
-    Attaque/Attaque/PhysicalAttaque/griffe.h \
-    Attaque/Attaque/SpecialAttaque/flammeche.h \
-    Attaque/Attaque/SpecialAttaque/pistoletaeau.h \
-    Pokemon/Pokemon/Gen1/bulbizarre.h \
-    Pokemon/Pokemon/pokemonfactory.h \
-    Pokemon/ListApprentissage/cellulelistapprentissage.h \
-    Pokemon/ListApprentissage/listapprentissage.h \
-    Exeption/metaconstructeurfail_personalexception.h \
-    Pokemon/Pokemon/Gen1/herbizarre.h \
-    Pokemon/Pokemon/Gen1/allgen1.h \
-    Pokemon/Pokemon/Gen1/florizarre.h \
-    Pokemon/Pokemon/Gen1/salameche.h \
-    Attaque/Attaque/AlterationAttaque/brouillard.h
+    Attaque/Attaque/SpecialAttaque/dracorage.h
 
 SOURCES += \
+    Attaque/Attaque/AlterationAttaque/brouillard.cpp \
     Attaque/Attaque/AlterationAttaque/rugissement.cpp \
     Attaque/Attaque/PhysicalAttaque/charge.cpp \
+    Attaque/Attaque/PhysicalAttaque/fouetliane.cpp \
+    Attaque/Attaque/PhysicalAttaque/griffe.cpp \
+    Attaque/Attaque/SpecialAttaque/flammeche.cpp \
+    Attaque/Attaque/SpecialAttaque/pistoletaeau.cpp \
     Attaque/Attaque/alterationattque.cpp \
     Attaque/Attaque/physicalattaque.cpp \
     Attaque/Attaque/specialattaque.cpp \
     Attaque/abstractattaque.cpp \
+    Exeption/metaconstructeurfail_personalexception.cpp \
+    Exeption/outofrange_personalexeption.cpp \
+    Exeption/personalexeption.cpp \
     Interface/Graphics/ObjectGraphics/barvie.cpp \
     Interface/Graphics/ObjectGraphics/graphicsprogressbar.cpp \
+    Interface/Graphics/Scene/pokebatlescene.cpp \
     Interface/Graphics/graphicsview.cpp \
     Interface/Graphics/mainwindowspoke.cpp \
     Interface/combattestconsole.cpp \
     KernelMecanic/km_combat.cpp \
+    Pokemon/ListApprentissage/cellulelistapprentissage.cpp \
+    Pokemon/ListApprentissage/listapprentissage.cpp \
+    Pokemon/Pokemon/Gen1/bulbizarre.cpp \
+    Pokemon/Pokemon/Gen1/florizarre.cpp \
+    Pokemon/Pokemon/Gen1/herbizarre.cpp \
+    Pokemon/Pokemon/Gen1/salameche.cpp \
     Pokemon/Pokemon/fakemon.cpp \
+    Pokemon/Pokemon/pokemonfactory.cpp \
+    Pokemon/XpCourbe/abstractcourbe.cpp \
+    Pokemon/XpCourbe/rapidecourbe.cpp \
     Pokemon/abstractpokemon.cpp \
     Pokemon/statalterator.cpp \
     Statut/abstractstatut.cpp \
@@ -116,21 +135,4 @@ SOURCES += \
     Type/typevol.cpp \
     kernelobject.cpp \
     main.cpp \
-    Interface/Graphics/Scene/pokebatlescene.cpp \
-    Pokemon/XpCourbe/abstractcourbe.cpp \
-    Pokemon/XpCourbe/rapidecourbe.cpp \
-    Exeption/personalexeption.cpp \
-    Exeption/outofrange_personalexeption.cpp \
-    Attaque/Attaque/PhysicalAttaque/fouetliane.cpp \
-    Attaque/Attaque/PhysicalAttaque/griffe.cpp \
-    Attaque/Attaque/SpecialAttaque/flammeche.cpp \
-    Attaque/Attaque/SpecialAttaque/pistoletaeau.cpp \
-    Pokemon/Pokemon/Gen1/bulbizarre.cpp \
-    Pokemon/Pokemon/pokemonfactory.cpp \
-    Pokemon/ListApprentissage/cellulelistapprentissage.cpp \
-    Pokemon/ListApprentissage/listapprentissage.cpp \
-    Exeption/metaconstructeurfail_personalexception.cpp \
-    Pokemon/Pokemon/Gen1/herbizarre.cpp \
-    Pokemon/Pokemon/Gen1/florizarre.cpp \
-    Pokemon/Pokemon/Gen1/salameche.cpp \
-    Attaque/Attaque/AlterationAttaque/brouillard.cpp
+    Attaque/Attaque/SpecialAttaque/dracorage.cpp
