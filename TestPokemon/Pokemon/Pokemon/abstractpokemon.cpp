@@ -193,51 +193,54 @@ void AbstractPokemon::useAttaque(unsigned int t,AbstractPokemon& cible) throw(Ou
     if( t >= this->attaque->size()){
         throw OutOfRange_PersonalExeption("Poke attaque out of range :"+QString::number(t)+" n'est pas entre 0 et "+QString::number(this->attaque->size()));
     }
-    this->attaque->at(t)->use(cible);
+    if(this->statutEffect()){
+
+        this->attaque->at(t)->use(cible);
+    }
 }
 //--------------------------------------------------------------------------
 bool AbstractPokemon::isInLife()const{
     return this->getPvAct() > 0;
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::upgradeAttP(){
-    this->alterations->upgradeAttP();
+void AbstractPokemon::upgradeAttP(unsigned int nb){
+    this->alterations->upgradeAttP(nb);
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::upgradeAttS(){
-    this->alterations->upgradeAttS();
+void AbstractPokemon::upgradeAttS(unsigned int nb){
+    this->alterations->upgradeAttS(nb);
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::upgradeDefP(){
-    this->alterations->upgradeDefP();
+void AbstractPokemon::upgradeDefP(unsigned int nb){
+    this->alterations->upgradeDefP(nb);
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::upgradeDefS(){
-    this->alterations->upgradeDefS();
+void AbstractPokemon::upgradeDefS(unsigned int nb){
+    this->alterations->upgradeDefS(nb);
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::upgradeVit(){
-    this->alterations->upgradeVit();
+void AbstractPokemon::upgradeVit(unsigned int nb){
+    this->alterations->upgradeVit(nb);
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::decreaseAttP(){
-    this->alterations->decreaseAttP();
+void AbstractPokemon::decreaseAttP(unsigned int nb){
+    this->alterations->decreaseAttP(nb);
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::decreaseAttS(){
-    this->alterations->decreaseAttS();
+void AbstractPokemon::decreaseAttS(unsigned int nb){
+    this->alterations->decreaseAttS(nb);
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::decreaseDefP(){
-    this->alterations->decreaseDefP();
+void AbstractPokemon::decreaseDefP(unsigned int nb){
+    this->alterations->decreaseDefP(nb);
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::decreaseDefS(){
-    this->alterations->decreaseDefS();
+void AbstractPokemon::decreaseDefS(unsigned int nb){
+    this->alterations->decreaseDefS(nb);
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::decreaseVit(){
-    this->alterations->decreaseVit();
+void AbstractPokemon::decreaseVit(unsigned int nb){
+    this->alterations->decreaseVit(nb);
 }
 //--------------------------------------------------------------------------
 void AbstractPokemon::earnXp(const AbstractPokemon &p){
@@ -254,9 +257,9 @@ void AbstractPokemon::earnXp(const AbstractPokemon &p){
                 if(this->getNbAttaque() == NB_MAX_ATTAQUE){
                     //cas attaque pleine
                     emit sendMsg("Plus de place pour apprendre "+ a->getNom());
-                    int t = NB_MAX_ATTAQUE+1;
+                    unsigned int t = NB_MAX_ATTAQUE+1;
                     emit veutApprendreAttaque(&t);
-                    if(t == NB_MAX_ATTAQUE+1){
+                    if(t > NB_MAX_ATTAQUE){
                         delete a; //evite la fuite de l'attaque
                     }
                     else{
@@ -281,6 +284,11 @@ Xp AbstractPokemon::getXp()const{
 //--------------------------------------------------------------------------
 void AbstractPokemon::soinComplet(){
     this->soigner((unsigned int)this->getMaxPv());
+    this->alterations->resetAlt();
+    if(this->statut != NULL){
+        delete this->statut;
+        this->statut = NULL;
+    }
 }
 //--------------------------------------------------------------------------
 unsigned int AbstractPokemon::getNbAttaque()const{
@@ -291,12 +299,32 @@ double AbstractPokemon::getPrecision()const{
     return this->alterations->getCoefAltPrec();
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::upgradePrecision(){
-    this->alterations->upgradePrec();
+void AbstractPokemon::upgradePrecision(unsigned int nb ){
+    this->alterations->upgradePrec(nb);
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::decreasePrecision(){
-    this->alterations->decreasePrec();
+void AbstractPokemon::decreasePrecision(unsigned int nb){
+    this->alterations->decreasePrec(nb);
+}
+//--------------------------------------------------------------------------
+bool AbstractPokemon::statutEffect(){
+    bool t = true;
+    if(this->statut != NULL){
+        t = statut->effect();
+    }
+    return t;
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::setStatut(AbstractStatut* newStatut){
+    if(this->statut == NULL){
+        emit sendMsg(this->getNom()+" souffre maintenant de "+ newStatut->getName());
+        this->statut = newStatut;
+        QObject::connect(newStatut,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
+    }
+    else{
+        delete newStatut;
+        emit sendMsg(this->getNom()+" ne peux pas souffrir d'un autre statut");
+    }
 }
 //--------------------------------------------------------------------------
 //-------------------------Protected fonction-------------------------------

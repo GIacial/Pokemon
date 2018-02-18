@@ -25,19 +25,21 @@ public:
     double getCoefAltVit()const;                                   //donne le coef d'alt pour vit
     double getCoefAltPrec()const;                                   //donne la stat de precision
 
-    void   upgradeAttP();                                           //augmente la stat
-    void   upgradeAttS();                                           //augmente la stat
-    void   upgradeDefP();                                           //augmente la stat
-    void   upgradeDefS();                                           //augmente la stat
-    void   upgradeVit();                                           //augmente la stat
-    void   upgradePrec();                                           //augmente la precision
+    void   upgradeAttP(unsigned int nb = 1);                                           //augmente la stat
+    void   upgradeAttS(unsigned int nb = 1);                                           //augmente la stat
+    void   upgradeDefP(unsigned int nb = 1);                                           //augmente la stat
+    void   upgradeDefS(unsigned int nb = 1);                                           //augmente la stat
+    void   upgradeVit(unsigned int nb = 1);                                           //augmente la stat
+    void   upgradePrec(unsigned int nb = 1);                                           //augmente la precision
 
-    void   decreaseAttP();                                           //baisse la stat
-    void   decreaseAttS();                                           //baisse la stat
-    void   decreaseDefP();                                           //baisse la stat
-    void   decreaseDefS();                                           //baisse la stat
-    void   decreaseVit();                                           //baisse la stat
-    void   decreasePrec();                                          //baisse la precision
+    void   decreaseAttP(unsigned int nb = 1);                                           //baisse la stat
+    void   decreaseAttS(unsigned int nb = 1);                                           //baisse la stat
+    void   decreaseDefP(unsigned int nb = 1);                                           //baisse la stat
+    void   decreaseDefS(unsigned int nb = 1);                                           //baisse la stat
+    void   decreaseVit(unsigned int nb = 1);                                           //baisse la stat
+    void   decreasePrec(unsigned int nb = 1);                                          //baisse la precision
+
+    void   resetAlt();                                                                 //remets tout a la base
 
 
 signals:
@@ -49,8 +51,8 @@ protected:
 private:
 
     double getAlteratorCoef(int t)const;                             //donne le coef d'alteration d'un stat
-    void   genericUpgrade(int* val ,const QString textStat);          //augmente la valeur contenu dans val et emet un texte avec textStat
-    void   genericDecrease(int *val, const QString textStat);         //diminue ...
+    void   genericUpgrade(int* val ,const QString textStat,unsigned int nb);          //augmente la valeur contenu dans val et emet un texte avec textStat
+    void   genericDecrease(int *val, const QString textStat,unsigned int nb);         //diminue ...
     //stat
     int* altAttP;
     int* altAttS;

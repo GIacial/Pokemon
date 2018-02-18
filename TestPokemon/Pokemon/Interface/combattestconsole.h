@@ -20,7 +20,7 @@ signals:
 
 public slots:
     void afficheTexte(QString m);
-    void apprendreAttaque(int* t);                //veut apprendre une attaque
+    void apprendreAttaque(unsigned int* t);                //veut apprendre une attaque
 
 private:
     KM_Combat* c;

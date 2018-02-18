@@ -75,7 +75,9 @@ HEADERS += \
     Type/typetenebres.h \
     Type/typevol.h \
     kernelobject.h \
-    Attaque/Attaque/SpecialAttaque/dracorage.h
+    Attaque/Attaque/SpecialAttaque/dracorage.h \
+    Attaque/Attaque/AlterationAttaque/grimace.h \
+    Statut/statut_brulure.h
 
 SOURCES += \
     Attaque/Attaque/AlterationAttaque/brouillard.cpp \
@@ -135,4 +137,6 @@ SOURCES += \
     Type/typevol.cpp \
     kernelobject.cpp \
     main.cpp \
-    Attaque/Attaque/SpecialAttaque/dracorage.cpp
+    Attaque/Attaque/SpecialAttaque/dracorage.cpp \
+    Attaque/Attaque/AlterationAttaque/grimace.cpp \
+    Statut/statut_brulure.cpp

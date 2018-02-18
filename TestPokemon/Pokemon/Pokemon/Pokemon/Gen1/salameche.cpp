@@ -10,6 +10,7 @@
 #include "../../../Attaque/Attaque/SpecialAttaque/dracorage.h"
 #include "../../../Attaque/Attaque/AlterationAttaque/rugissement.h"
 #include "../../../Attaque/Attaque/AlterationAttaque/brouillard.h"
+#include "../../../Attaque/Attaque/AlterationAttaque/grimace.h"
 
 using namespace Attaque;
 
@@ -40,5 +41,6 @@ ListApprentissage* Salameche::getListApprentissage(){
     l.push_back(CelluleListApprentissage(0,Rugissement::staticMetaObject));
     l.push_back(CelluleListApprentissage(10,Brouillard::staticMetaObject));
     l.push_back(CelluleListApprentissage(16,DracoRage::staticMetaObject));
+    l.push_back(CelluleListApprentissage(19,Grimace::staticMetaObject));
     return new ListApprentissage(l);
 }

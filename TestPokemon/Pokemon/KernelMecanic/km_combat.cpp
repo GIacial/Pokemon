@@ -8,7 +8,7 @@ KM_Combat::KM_Combat(AbstractPokemon *you, AbstractPokemon *other) : KernelObjec
     QObject::connect(you,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
     QObject::connect(other,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
 
-    QObject::connect(you,SIGNAL(veutApprendreAttaque(int*)),this,SLOT(apprendreAttaqueSlot(int*)));
+    QObject::connect(you,SIGNAL(veutApprendreAttaque(unsigned int*)),this,SLOT(apprendreAttaqueSlot(unsigned int*)));
 }
 //---------------------------------------------------------------
 //---------------------------------------------------------------
@@ -79,7 +79,7 @@ void KM_Combat::earnXp(){
 //---------------------------------------------------------------
 //-----------------------slot------------------------------------
 //---------------------------------------------------------------
-void KM_Combat::apprendreAttaqueSlot(int * t){
+void KM_Combat::apprendreAttaqueSlot(unsigned int *t){
     emit PokemonVeutApprendreAttaque(t);
 }
 //---------------------------------------------------------------
@@ -109,5 +109,6 @@ void KM_Combat::playOneTurn(unsigned int t) throw(OutOfRange_PersonalExeption){
             you->useAttaque(t,*other);
         }
     }
+
 
 }

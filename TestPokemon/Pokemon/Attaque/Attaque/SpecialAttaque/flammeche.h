@@ -18,11 +18,15 @@ signals:
 
 public slots:
 
+protected:
+    //override
+    void attaqueEffect(AbstractPokemon& cible);
 
 private:
     //var static
     static constexpr int const&  PRECISION = 100;
     static constexpr int const&  PUISSANCE = 40;
+    static constexpr int const&  CHANCE_BRULURE = 10;
 };
 
 }

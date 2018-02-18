@@ -14,7 +14,7 @@ public:
      virtual ~AbstractStatut() throw () = 0;
 
     //fonction
-    virtual void effect() = 0;                          //applique l'effect du statut
+    virtual bool effect() = 0;                          //applique l'effect du statut
     QString getName()const;                             //donne le nom du statut
 
 signals:

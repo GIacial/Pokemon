@@ -54,17 +54,17 @@ public:
 
     bool    isInLife()const;                                    //permet de savoir si la creature est vivante
 
-    void    upgradeAttP();                                      //augmente AttP
-    void    upgradeAttS();                                      //augmente AttS
-    void    upgradeDefP();                                      //augmente DefP
-    void    upgradeDefS();                                      //augmente DefS
-    void    upgradeVit();                                      //augmente Vit
+    void    upgradeAttP(unsigned int nb = 1);                                      //augmente AttP
+    void    upgradeAttS(unsigned int nb = 1);                                      //augmente AttS
+    void    upgradeDefP(unsigned int nb = 1);                                      //augmente DefP
+    void    upgradeDefS(unsigned int nb = 1);                                      //augmente DefS
+    void    upgradeVit(unsigned int nb = 1);                                      //augmente Vit
 
-    void    decreaseAttP();                                     //diminue Attp
-    void    decreaseDefS();                                     //diminue defs
-    void    decreaseAttS();                                     //diminue atts
-    void    decreaseDefP();                                     //diminue defp
-    void    decreaseVit();                                     //diminue vit
+    void    decreaseAttP(unsigned int nb = 1);                                     //diminue Attp
+    void    decreaseDefS(unsigned int nb = 1);                                     //diminue defs
+    void    decreaseAttS(unsigned int nb = 1);                                     //diminue atts
+    void    decreaseDefP(unsigned int nb = 1);                                     //diminue defp
+    void    decreaseVit(unsigned int nb = 1);                                     //diminue vit
 
     void    earnXp(const AbstractPokemon& p);                   //gagne de xp
     Xp getXp()const;                                       //donne xp Act
@@ -72,12 +72,14 @@ public:
     unsigned int getNbAttaque()const;                           //donne le nd d'attaque de la creature
 
     double  getPrecision()const;                                //donne la precision
-    void    upgradePrecision();                                 //augmente la precision
-    void    decreasePrecision();                                //baisse la precision
+    void    upgradePrecision(unsigned int nb = 1);                                 //augmente la precision
+    void    decreasePrecision(unsigned int nb = 1);                                //baisse la precision
+
+    void    setStatut(AbstractStatut* newStatut);                                                            //applique un statut
 
 
 signals:
-    void veutApprendreAttaque(int * t);                                //emit quand il veut apprendre une attaque
+    void veutApprendreAttaque(unsigned int * t);                                //emit quand il veut apprendre une attaque
 public slots:
 
 protected:
@@ -95,6 +97,8 @@ protected:
 
 private:
     //fonction
+    bool statutEffect();                                                         //lance les effect de statut
+
     void generalConstructeur(const QString nom , AbstractType *type, int basePv , int baseAttP ,
                              int baseDefP , int baseAttS , int baseDefS , int baseVitesse ,
                              AbstractCourbe* xpCour, ListApprentissage* apprentissage,

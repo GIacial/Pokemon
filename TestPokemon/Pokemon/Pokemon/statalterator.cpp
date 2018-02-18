@@ -51,52 +51,61 @@ double StatAlterator::getCoefAltPrec()const{
     return this->getAlteratorCoef(*precision);
 }
 //---------------------------------------------------------------------------
-void StatAlterator::upgradeAttP(){
-    this->genericUpgrade(altAttP,"son Attaque Physique");
+void StatAlterator::upgradeAttP(unsigned int nb){
+    this->genericUpgrade(altAttP,"son Attaque Physique",nb);
 }
 //---------------------------------------------------------------------------
-void StatAlterator::upgradeAttS(){
-    this->genericUpgrade(altAttS,"son Attaque Spéciale");
+void StatAlterator::upgradeAttS(unsigned int nb){
+    this->genericUpgrade(altAttS,"son Attaque Spéciale",nb);
 }
 //---------------------------------------------------------------------------
-void StatAlterator::upgradeDefP(){
-    this->genericUpgrade(altDefP,"sa Défense Physique");
+void StatAlterator::upgradeDefP(unsigned int nb){
+    this->genericUpgrade(altDefP,"sa Défense Physique",nb);
 }
 //---------------------------------------------------------------------------
-void StatAlterator::upgradeDefS(){
-    this->genericUpgrade(altDefS,"sa Défense Spéciale");
+void StatAlterator::upgradeDefS(unsigned int nb){
+    this->genericUpgrade(altDefS,"sa Défense Spéciale",nb);
 }
 //---------------------------------------------------------------------------
-void StatAlterator::upgradeVit(){
-    this->genericUpgrade(altVit,"sa vitesse");
+void StatAlterator::upgradeVit(unsigned int nb){
+    this->genericUpgrade(altVit,"sa vitesse",nb);
 }
 //---------------------------------------------------------------------------
-void StatAlterator::upgradePrec(){
-    this->genericUpgrade(precision,"sa precision");
+void StatAlterator::upgradePrec(unsigned int nb){
+    this->genericUpgrade(precision,"sa precision",nb);
 }
 //---------------------------------------------------------------------------
-void StatAlterator::decreaseAttP(){
-    this->genericDecrease(altAttP,"son Attaque Physique");
+void StatAlterator::decreaseAttP(unsigned int nb){
+    this->genericDecrease(altAttP,"son Attaque Physique",nb);
 }
 //---------------------------------------------------------------------------
-void StatAlterator::decreaseAttS(){
-    this->genericDecrease(altAttS,"son Attaque Spéciale");
+void StatAlterator::decreaseAttS(unsigned int nb){
+    this->genericDecrease(altAttS,"son Attaque Spéciale",nb);
 }
 //---------------------------------------------------------------------------
-void StatAlterator::decreaseDefP(){
-    this->genericDecrease(altDefP,"sa Défense Physique");
+void StatAlterator::decreaseDefP(unsigned int nb){
+    this->genericDecrease(altDefP,"sa Défense Physique",nb);
 }
 //---------------------------------------------------------------------------
-void StatAlterator::decreaseDefS(){
-    this->genericDecrease(altDefS,"sa Défense Spéciale");
+void StatAlterator::decreaseDefS(unsigned int nb){
+    this->genericDecrease(altDefS,"sa Défense Spéciale",nb);
 }
 //---------------------------------------------------------------------------
-void StatAlterator::decreaseVit(){
-    this->genericDecrease(altVit,"sa vitesse");
+void StatAlterator::decreaseVit(unsigned int nb){
+    this->genericDecrease(altVit,"sa vitesse",nb);
 }
 //---------------------------------------------------------------------------
-void StatAlterator::decreasePrec(){
-    this->genericDecrease(precision,"sa precision");
+void StatAlterator::decreasePrec(unsigned int nb){
+    this->genericDecrease(precision,"sa precision",nb);
+}
+//---------------------------------------------------------------------------
+void StatAlterator::resetAlt(){
+    *(this->altAttP) = 0;
+    *(this->altAttS) = 0;
+    *(this->altDefP) = 0;
+    *(this->altDefS) = 0;
+    *(this->altVit) = 0;
+    *(this->precision) = 0;
 }
 //---------------------------------------------------------------------------
 //------------------------private--------------------------------------------
@@ -114,9 +123,12 @@ double StatAlterator::getAlteratorCoef(int t)const{
     return r;
 }
 //---------------------------------------------------------------------------
-void StatAlterator::genericUpgrade(int *val, const QString textStat){
+void StatAlterator::genericUpgrade(int *val, const QString textStat, unsigned int nb){
     if((*val) < MAX_UPGRADE){
-        (*val)++;
+        (*val)+= nb;
+        if((*val)> MAX_UPGRADE){
+            (*val) = MAX_UPGRADE;
+        }
          emit sendMsg(this->user.getNom()+" augmente "+textStat);
     }
     else{
@@ -124,9 +136,12 @@ void StatAlterator::genericUpgrade(int *val, const QString textStat){
     }
 }
 //---------------------------------------------------------------------------
-void StatAlterator::genericDecrease(int *val, const QString textStat){
+void StatAlterator::genericDecrease(int *val, const QString textStat,unsigned int nb){
     if((*val) > MAX_DECREASE){
-        (*val)--;
+        (*val)-= nb;
+        if((*val)> MAX_DECREASE){
+            (*val) = MAX_DECREASE;
+        }
          emit sendMsg(this->user.getNom()+" vois diminuer "+textStat);
     }
     else{

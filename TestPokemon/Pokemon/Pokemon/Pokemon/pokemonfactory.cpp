@@ -40,7 +40,7 @@ AbstractPokemon* PokemonFactory::createPoke(unsigned int num , unsigned int lv )
 }
 //-------------------------------------------------------------------
 AbstractPokemon* PokemonFactory::createRandomPokemon(unsigned int lv) const throw (MetaConstructeurFail_PersonalException){
-    return this->createPoke(rand()%listPoke->size(),lv);
+    return this->createPoke((rand()%listPoke->size()-1)+1,lv);
 
 }
 //-------------------------------------------------------------------
