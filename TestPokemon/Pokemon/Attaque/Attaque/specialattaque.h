@@ -17,10 +17,10 @@ signals:
 public slots:
 protected:
     //constructeur
-     SpecialAttaque(AbstractPokemon &user, int precision, int puissance, AbstractType *type, const QString nom);
+     SpecialAttaque(PokemonInterface &user, int precision, int puissance, AbstractType *type, const QString nom);
      //fonction surcharge
-     int getAttaque(AbstractPokemon& cible)const;
-     void attaqueEffect(AbstractPokemon& cible);
+     int getAttaque(PokemonInterface& cible)const;
+     void attaqueEffect(PokemonInterface& cible);
 
 };
 

@@ -5,7 +5,7 @@
 //-------------------------------------------------------------------------
 //--------------------------Constructeur-----------------------------------
 //-------------------------------------------------------------------------
-AbstractStatut::AbstractStatut(const QString &nom, AbstractPokemon &cible) : KernelObject() , cible(cible)
+AbstractStatut::AbstractStatut(const QString &nom, PokemonInterface &cible) : KernelObject() , cible(cible)
 {
     this->nom = new QString(nom);
 }
@@ -24,6 +24,6 @@ QString AbstractStatut::getName()const{
 //-------------------------------------------------------------------------
 //------------------------Protected fonction-------------------------------
 //-------------------------------------------------------------------------
-AbstractPokemon& AbstractStatut::getCible(){
+PokemonInterface &AbstractStatut::getCible(){
     return cible;
 }

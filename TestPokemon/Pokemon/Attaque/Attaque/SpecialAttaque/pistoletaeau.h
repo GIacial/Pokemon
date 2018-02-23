@@ -10,7 +10,7 @@ class PistoletAEau : public SpecialAttaque
 {
     Q_OBJECT
 public:
-      Q_INVOKABLE explicit PistoletAEau(AbstractPokemon& user);
+      Q_INVOKABLE explicit PistoletAEau(PokemonInterface& user);
     virtual ~PistoletAEau() throw ();
 
 signals:

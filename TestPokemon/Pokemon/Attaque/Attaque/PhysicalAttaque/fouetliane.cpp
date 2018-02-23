@@ -4,7 +4,7 @@
 using namespace Attaque;
 
 
-FouetLiane::FouetLiane(AbstractPokemon&user) : PhysicalAttaque(user,PRECISION,PUISSANCE,new TypePlante(),"Fouet Lianes")
+FouetLiane::FouetLiane(PokemonInterface&user) : PhysicalAttaque(user,PRECISION,PUISSANCE,new TypePlante(),"Fouet Lianes")
 {
 
 }

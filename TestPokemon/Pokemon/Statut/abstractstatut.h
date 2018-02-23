@@ -3,7 +3,7 @@
 
 class AbstractStatut;
 #include <QObject>
-#include "../Pokemon/abstractpokemon.h"
+#include "../Pokemon/pokemoninterface.h"
 #include "../kernelobject.h"
 
 class AbstractStatut : public KernelObject
@@ -23,11 +23,11 @@ public slots:
 
 protected:
     //constructeur
-     AbstractStatut(const QString& nom,AbstractPokemon& cible);
+     AbstractStatut(const QString& nom,PokemonInterface& cible);
      //fonction
-     AbstractPokemon& getCible();                   //donne la cible du statut
+     PokemonInterface& getCible();                   //donne la cible du statut
 private:
-     AbstractPokemon& cible;
+     PokemonInterface& cible;
      QString* nom;
 };
 

@@ -3,7 +3,7 @@
 
 using namespace Attaque;
 
-Charge::Charge(AbstractPokemon &user) : PhysicalAttaque(user,PRECISION,PUISSANCE,new TypeNormal(),"Charge")
+Charge::Charge(PokemonInterface &user) : PhysicalAttaque(user,PRECISION,PUISSANCE,new TypeNormal(),"Charge")
 {
 
 }

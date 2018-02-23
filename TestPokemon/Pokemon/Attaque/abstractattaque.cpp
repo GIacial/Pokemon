@@ -6,7 +6,7 @@ using namespace Attaque;
 //-------------------------------------------------------------------------
 //--------------------------Constructeur-----------------------------------
 //-------------------------------------------------------------------------
-AbstractAttaque::AbstractAttaque(AbstractPokemon &user, unsigned int precision, unsigned int puissance, AbstractType *type,const QString nom) : KernelObject() , utilisateur(user)
+AbstractAttaque::AbstractAttaque(PokemonInterface &user, unsigned int precision, unsigned int puissance, AbstractType *type, const QString nom) : KernelObject() , utilisateur(user)
 {
     this->type = type;
     this->precision = new unsigned int(precision);
@@ -48,7 +48,7 @@ QString AbstractAttaque::getNom()const{
     return * nom;
 }
 //-------------------------------------------------------------------------
-void AbstractAttaque::use(AbstractPokemon &cible){
+void AbstractAttaque::use(PokemonInterface &cible){
     emit sendMsg(this->utilisateur.getNom()+" utilise "+this->getNom());
     if(toucheLaCible()){
         this->attaqueEffect(cible);
@@ -60,7 +60,7 @@ void AbstractAttaque::use(AbstractPokemon &cible){
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
-const AbstractPokemon& AbstractAttaque::getUser()const{
+const PokemonInterface &AbstractAttaque::getUser()const{
     return this->utilisateur;
 }
 //-------------------------------------------------------------------------

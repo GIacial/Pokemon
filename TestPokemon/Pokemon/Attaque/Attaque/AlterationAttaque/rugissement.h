@@ -9,11 +9,11 @@ class Rugissement : public AlterationAttque
 {
     Q_OBJECT
 public:
-      Q_INVOKABLE explicit Rugissement(AbstractPokemon& user);
+      Q_INVOKABLE explicit Rugissement(PokemonInterface& user);
     virtual ~Rugissement() throw();
 
 protected:
-    void attaqueEffect(AbstractPokemon& cible);
+    void attaqueEffect(PokemonInterface& cible);
 
 signals:
 

@@ -20,7 +20,7 @@ public:
     bool operator <(const CelluleListApprentissage& c)const;                                         //comparaison par lv
     //fonction
 
-    Attaque::AbstractAttaque* createInstanceAttaque(AbstractPokemon &user)const throw (MetaConstructeurFail_PersonalException);                     //cree une instance de l'attaque
+    Attaque::AbstractAttaque* createInstanceAttaque(PokemonInterface &user)const throw (MetaConstructeurFail_PersonalException);                     //cree une instance de l'attaque
     bool    isMyLevel(unsigned int lv)const;                                                         //verifie si mon lv correspond au lv de l'attaque
 
 signals:

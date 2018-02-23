@@ -8,7 +8,7 @@ class Statut_Brulure : public AbstractStatut
 {
     Q_OBJECT
 public:
-    explicit Statut_Brulure(AbstractPokemon& owner);
+    explicit Statut_Brulure(PokemonInterface& owner);
     virtual ~Statut_Brulure() throw ();
 
     bool effect();

@@ -3,7 +3,7 @@
 
 using namespace Attaque;
 
-DracoRage::DracoRage(AbstractPokemon& user) : SpecialAttaque(user,PRECISION,PUISSANCE,new TypeDragon(),"Draco-Rage")
+DracoRage::DracoRage(PokemonInterface& user) : SpecialAttaque(user,PRECISION,PUISSANCE,new TypeDragon(),"Draco-Rage")
 {
 
 }
@@ -12,6 +12,6 @@ DracoRage::~DracoRage() throw (){
 
 }
 
-int DracoRage::getAttaque(AbstractPokemon &) const{
+int DracoRage::getAttaque(PokemonInterface &) const{
     return DEGAT_FIXE;
 }

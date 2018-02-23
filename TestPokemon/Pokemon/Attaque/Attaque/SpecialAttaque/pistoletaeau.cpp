@@ -3,7 +3,7 @@
 
 using namespace Attaque;
 
-PistoletAEau::PistoletAEau(AbstractPokemon& user) : SpecialAttaque(user,PRECISION,PUISSANCE,new TypeEau(),"Pistolet a Eau")
+PistoletAEau::PistoletAEau(PokemonInterface& user) : SpecialAttaque(user,PRECISION,PUISSANCE,new TypeEau(),"Pistolet a Eau")
 {
 
 }

@@ -8,7 +8,7 @@ class Grimace : public AlterationAttque
 {
     Q_OBJECT
 public:
-    Q_INVOKABLE explicit Grimace(AbstractPokemon& user);
+    Q_INVOKABLE explicit Grimace(PokemonInterface& user);
     virtual ~Grimace() throw ();
 
 signals:
@@ -16,7 +16,7 @@ signals:
 public slots:
 
 protected:
-    void attaqueEffect(AbstractPokemon& cible);
+    void attaqueEffect(PokemonInterface& cible);
 
 private:
 

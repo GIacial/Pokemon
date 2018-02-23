@@ -1,6 +1,6 @@
 #include "statut_brulure.h"
 
-Statut_Brulure::Statut_Brulure(AbstractPokemon &owner) : AbstractStatut("Brulure",owner)
+Statut_Brulure::Statut_Brulure(PokemonInterface &owner) : AbstractStatut("Brulure",owner)
 {
 
 }

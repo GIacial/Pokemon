@@ -4,7 +4,7 @@
 
 using namespace Attaque;
 
-Flammeche::Flammeche(AbstractPokemon& user) : SpecialAttaque(user,PRECISION,PUISSANCE,new TypeFeu(),"Flammeche")
+Flammeche::Flammeche(PokemonInterface& user) : SpecialAttaque(user,PRECISION,PUISSANCE,new TypeFeu(),"Flammeche")
 {
 
 }
@@ -13,7 +13,7 @@ Flammeche::~Flammeche() throw (){
 
 }
 
-void Flammeche::attaqueEffect(AbstractPokemon &cible){
+void Flammeche::attaqueEffect(PokemonInterface &cible){
     SpecialAttaque::attaqueEffect(cible);
     if(rand()%100 < CHANCE_BRULURE){
         cible.setStatut(new Statut_Brulure(cible));

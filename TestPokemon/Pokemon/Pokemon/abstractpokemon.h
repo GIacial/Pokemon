@@ -5,15 +5,11 @@ class AbstractPokemon;
 #include <QObject>
 
 #include "../Attaque/abstractattaque.h"
-#include "../Statut/abstractstatut.h"
-#include "../Type/abstracttype.h"
-#include "../kernelobject.h"
 #include "statalterator.h"
-#include "XpCourbe/abstractcourbe.h"
-#include "../Exeption/outofrange_personalexeption.h"
 #include "./ListApprentissage/listapprentissage.h"
+#include "pokemoninterface.h"
 
-class AbstractPokemon : public KernelObject
+class AbstractPokemon : public PokemonInterface
 {
     Q_OBJECT
 public:
@@ -24,6 +20,8 @@ public:
     static constexpr int const&  MINSTAT = 5;
     //destructeur
     virtual ~AbstractPokemon() throw () = 0;
+
+//debut override
 
     //fonction
     int getPvAct()const;                                //donne les pvAct
@@ -50,7 +48,7 @@ public:
     void soigner(unsigned int v);                            //soigne le poke
 
     QString getNomAttaque(unsigned int t)const throw(OutOfRange_PersonalExeption);   //donne le nom de la i-eme attaque (exeption out of range)
-    void    useAttaque(unsigned int t ,AbstractPokemon& cible) throw(OutOfRange_PersonalExeption);  //utilise la i-eme attaque sur la cible
+    void    useAttaque(unsigned int t ,PokemonInterface& cible) throw(OutOfRange_PersonalExeption);  //utilise la i-eme attaque sur la cible
 
     bool    isInLife()const;                                    //permet de savoir si la creature est vivante
 
@@ -66,7 +64,7 @@ public:
     void    decreaseDefP(unsigned int nb = 1);                                     //diminue defp
     void    decreaseVit(unsigned int nb = 1);                                     //diminue vit
 
-    void    earnXp(const AbstractPokemon& p);                   //gagne de xp
+    void    earnXp(const PokemonInterface& p);                   //gagne de xp
     Xp getXp()const;                                       //donne xp Act
     void    soinComplet();                                      //soigne completement le pokemon
     unsigned int getNbAttaque()const;                           //donne le nd d'attaque de la creature
@@ -76,10 +74,10 @@ public:
     void    decreasePrecision(unsigned int nb = 1);                                //baisse la precision
 
     void    setStatut(AbstractStatut* newStatut);                                                            //applique un statut
+    Xp     getBaseXp()const;                                                           //donne xp de base
 
+//fin des override
 
-signals:
-    void veutApprendreAttaque(unsigned int * t);                                //emit quand il veut apprendre une attaque
 public slots:
 
 protected:

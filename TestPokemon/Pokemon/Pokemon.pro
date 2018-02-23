@@ -77,7 +77,8 @@ HEADERS += \
     kernelobject.h \
     Attaque/Attaque/SpecialAttaque/dracorage.h \
     Attaque/Attaque/AlterationAttaque/grimace.h \
-    Statut/statut_brulure.h
+    Statut/statut_brulure.h \
+    Pokemon/pokemoninterface.h
 
 SOURCES += \
     Attaque/Attaque/AlterationAttaque/brouillard.cpp \
@@ -139,4 +140,5 @@ SOURCES += \
     main.cpp \
     Attaque/Attaque/SpecialAttaque/dracorage.cpp \
     Attaque/Attaque/AlterationAttaque/grimace.cpp \
-    Statut/statut_brulure.cpp
+    Statut/statut_brulure.cpp \
+    Pokemon/pokemoninterface.cpp

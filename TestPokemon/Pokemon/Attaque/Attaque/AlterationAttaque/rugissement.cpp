@@ -4,7 +4,7 @@
 using namespace Attaque;
 
 
-Rugissement::Rugissement(AbstractPokemon &user) : AlterationAttque(user,PRECISION,new TypeNormal,"Rugissement")
+Rugissement::Rugissement(PokemonInterface &user) : AlterationAttque(user,PRECISION,new TypeNormal,"Rugissement")
 {
 
 }
@@ -13,7 +13,7 @@ Rugissement::~Rugissement() throw(){
 
 }
 
-void Rugissement::attaqueEffect(AbstractPokemon &cible){
+void Rugissement::attaqueEffect(PokemonInterface &cible){
 
     cible.decreaseAttP();
 }

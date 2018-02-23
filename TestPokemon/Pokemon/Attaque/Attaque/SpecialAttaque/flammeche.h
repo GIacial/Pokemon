@@ -11,7 +11,7 @@ class Flammeche : public SpecialAttaque
 {
     Q_OBJECT
 public:
-      Q_INVOKABLE explicit Flammeche(AbstractPokemon& user);
+      Q_INVOKABLE explicit Flammeche(PokemonInterface& user);
     virtual ~Flammeche() throw ();
 
 signals:
@@ -20,7 +20,7 @@ public slots:
 
 protected:
     //override
-    void attaqueEffect(AbstractPokemon& cible);
+    void attaqueEffect(PokemonInterface& cible);
 
 private:
     //var static

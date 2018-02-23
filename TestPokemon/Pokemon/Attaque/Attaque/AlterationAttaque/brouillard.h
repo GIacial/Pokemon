@@ -10,7 +10,7 @@ class Brouillard : public AlterationAttque
 {
     Q_OBJECT
 public:
-    Q_INVOKABLE explicit Brouillard(AbstractPokemon& user);
+    Q_INVOKABLE explicit Brouillard(PokemonInterface& user);
     virtual ~Brouillard() throw ();
 
 signals:
@@ -18,7 +18,7 @@ signals:
 public slots:
 
 protected:
-    void attaqueEffect(AbstractPokemon& cible);
+    void attaqueEffect(PokemonInterface& cible);
 
 private:
 

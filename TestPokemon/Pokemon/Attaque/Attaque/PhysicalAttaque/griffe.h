@@ -9,7 +9,7 @@ class Griffe : public PhysicalAttaque
 {
     Q_OBJECT
 public:
-      Q_INVOKABLE explicit Griffe(AbstractPokemon& user);
+      Q_INVOKABLE explicit Griffe(PokemonInterface& user);
     virtual ~Griffe() throw ();
 
 signals:

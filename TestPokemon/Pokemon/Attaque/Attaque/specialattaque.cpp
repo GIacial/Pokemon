@@ -5,7 +5,7 @@ using namespace Attaque;
 //--------------------------------------------------------------
 //--------------------------------------------------------------
 //--------------------------------------------------------------
-SpecialAttaque::SpecialAttaque(AbstractPokemon& user,int precision,int puissance,AbstractType* type,const QString nom) : AbstractAttaque(user,precision,puissance,type,nom)
+SpecialAttaque::SpecialAttaque(PokemonInterface& user,int precision,int puissance,AbstractType* type,const QString nom) : AbstractAttaque(user,precision,puissance,type,nom)
 {
 
 }
@@ -20,7 +20,7 @@ SpecialAttaque::~SpecialAttaque() throw(){
 //--------------------------------------------------------------
 //--------------------------------------------------------------
 //--------------------------------------------------------------
-int SpecialAttaque::getAttaque(AbstractPokemon &cible) const{
+int SpecialAttaque::getAttaque(PokemonInterface &cible) const{
     int res = AbstractAttaque::BASE_PUIS_PAR_LVL*this->getUser().getLevel()+2;
     res *= this->getUser().getAttS()*this->getPuissance();
     res /= (AbstractAttaque::COEF_DEF*cible.getDefS());
@@ -46,6 +46,6 @@ int SpecialAttaque::getAttaque(AbstractPokemon &cible) const{
     return res;
 }
 //------------------------------------------------------------------
-void SpecialAttaque::attaqueEffect(AbstractPokemon &cible){
+void SpecialAttaque::attaqueEffect(PokemonInterface &cible){
     cible.infligerDegat(this->getAttaque(cible));
 }

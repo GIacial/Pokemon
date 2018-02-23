@@ -35,7 +35,7 @@ bool ListApprentissage::isMyLvl(unsigned int lv)const{
     return t;
 }
 //------------------------------------------------------------------
-Attaque::AbstractAttaque* ListApprentissage::getNewAttaque(AbstractPokemon& user)throw (MetaConstructeurFail_PersonalException){
+Attaque::AbstractAttaque* ListApprentissage::getNewAttaque(PokemonInterface &user)throw (MetaConstructeurFail_PersonalException){
     Attaque::AbstractAttaque* n = NULL;
     if(!this->list->isEmpty()){
        n = this->list->top()->createInstanceAttaque(user);

@@ -3,7 +3,7 @@
 
 using namespace Attaque;
 
-Griffe::Griffe(AbstractPokemon &user) : PhysicalAttaque(user,PRECISION,PUISSANCE,new TypeNormal(),"Griffe")
+Griffe::Griffe(PokemonInterface &user) : PhysicalAttaque(user,PRECISION,PUISSANCE,new TypeNormal(),"Griffe")
 {
 
 }

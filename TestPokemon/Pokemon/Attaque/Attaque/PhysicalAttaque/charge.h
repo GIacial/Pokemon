@@ -9,7 +9,7 @@ class Charge : public PhysicalAttaque
 {
     Q_OBJECT
 public:
-      Q_INVOKABLE explicit Charge(AbstractPokemon& user);
+      Q_INVOKABLE explicit Charge(PokemonInterface& user);
     virtual ~Charge() throw ();
 
 

@@ -13,7 +13,7 @@ public:
 
     //fonction
      bool isMyLvl(unsigned int lv)const;                   //permet de savoir si la prochainne attaque est a mon lvl
-     Attaque::AbstractAttaque* getNewAttaque(AbstractPokemon& user)throw (MetaConstructeurFail_PersonalException);        //donne une instance de la nouvelle attaque
+     Attaque::AbstractAttaque* getNewAttaque(PokemonInterface& user)throw (MetaConstructeurFail_PersonalException);        //donne une instance de la nouvelle attaque
 
 signals:
 

@@ -4,8 +4,8 @@ namespace Attaque{
 class AbstractAttaque;
 }
 #include <QObject>
-#include "../Pokemon/abstractpokemon.h"
-#include "../../Pokemon/Type/abstracttype.h"
+#include "../Pokemon/pokemoninterface.h"
+#include "../Type/abstracttype.h"
 #include "../kernelobject.h"
 namespace Attaque{
 
@@ -21,7 +21,7 @@ public://constante
      virtual ~AbstractAttaque() throw() = 0;
 
     //fonction
-    void use(AbstractPokemon& cible) ;                  //utilise l'attaque
+    void use(PokemonInterface& cible) ;                  //utilise l'attaque
     unsigned int getPrecision()const;                               //donne la precision de l'attaque
     unsigned int getPuissance()const;                               //donne la puissance de l'attaque
 
@@ -35,16 +35,16 @@ signals:
 public slots:
 
 protected:
-    AbstractAttaque(AbstractPokemon& user, unsigned int precision , unsigned int puissance , AbstractType* type, const QString nom);
+    AbstractAttaque(PokemonInterface& user, unsigned int precision , unsigned int puissance , AbstractType* type, const QString nom);
 
     //fonction
-    virtual int getAttaque(AbstractPokemon& cible)const = 0;            //donne la puissance de l'attaque théorique de l'attaque(avec prise en compte de la def)
-    const AbstractPokemon& getUser()const;                              //donne l'utilisateur
+    virtual int getAttaque(PokemonInterface& cible)const = 0;            //donne la puissance de l'attaque théorique de l'attaque(avec prise en compte de la def)
+    const PokemonInterface& getUser()const;                              //donne l'utilisateur
     const AbstractType& getType()const;                                 //donne le type de l'attaque
 
-    virtual void attaqueEffect(AbstractPokemon& cible) = 0;                  //l'effect de l'attaque
+    virtual void attaqueEffect(PokemonInterface& cible) = 0;                  //l'effect de l'attaque
 private:
-    AbstractPokemon& utilisateur;
+    PokemonInterface& utilisateur;
     unsigned int* precision;
     unsigned int* puissance;
     AbstractType* type;

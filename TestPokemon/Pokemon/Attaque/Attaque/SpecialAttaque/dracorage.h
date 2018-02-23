@@ -8,7 +8,7 @@ class DracoRage : public SpecialAttaque
 {
     Q_OBJECT
 public:
-     Q_INVOKABLE explicit DracoRage(AbstractPokemon& user);
+     Q_INVOKABLE explicit DracoRage(PokemonInterface& user);
     virtual ~DracoRage() throw ();
 
 signals:
@@ -16,7 +16,7 @@ signals:
 public slots:
 
 protected://fonction surcharge
-    int getAttaque(AbstractPokemon&)const;
+    int getAttaque(PokemonInterface&)const;
 private:
 
     //var static

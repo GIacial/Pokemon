@@ -11,7 +11,7 @@ class FouetLiane : public PhysicalAttaque
 public:
 
     //constructeur
-       Q_INVOKABLE explicit FouetLiane(AbstractPokemon & user);
+       Q_INVOKABLE explicit FouetLiane(PokemonInterface & user);
     //destructeur
     virtual ~FouetLiane() throw ();
 

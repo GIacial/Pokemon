@@ -3,7 +3,7 @@
 
 using namespace Attaque;
 
-Brouillard::Brouillard(AbstractPokemon& user) : AlterationAttque(user,PRECISION,new TypeNormal(),"Brouillard")
+Brouillard::Brouillard(PokemonInterface& user) : AlterationAttque(user,PRECISION,new TypeNormal(),"Brouillard")
 {
 
 }
@@ -12,6 +12,6 @@ Brouillard::~Brouillard() throw(){
 
 }
 
-void Brouillard::attaqueEffect(AbstractPokemon &cible){
+void Brouillard::attaqueEffect(PokemonInterface &cible){
     cible.decreasePrecision();
 }

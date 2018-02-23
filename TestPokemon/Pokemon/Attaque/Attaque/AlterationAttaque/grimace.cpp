@@ -3,7 +3,7 @@
 
 using namespace Attaque;
 
-Grimace::Grimace(AbstractPokemon& user) : AlterationAttque(user,PRECISION,new TypeNormal(),"Grimace")
+Grimace::Grimace(PokemonInterface& user) : AlterationAttque(user,PRECISION,new TypeNormal(),"Grimace")
 {
 
 }
@@ -12,6 +12,6 @@ Grimace::~Grimace() throw(){
 
 }
 
-void Grimace::attaqueEffect(AbstractPokemon &cible){
+void Grimace::attaqueEffect(PokemonInterface &cible){
     cible.decreaseVit(2);
 }

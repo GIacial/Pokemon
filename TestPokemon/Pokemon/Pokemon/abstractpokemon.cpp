@@ -6,7 +6,7 @@ using namespace Attaque;
 //-------------------------------------------------------------------------
 //--------------------------Constructeur-----------------------------------
 //-------------------------------------------------------------------------
-AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int basePv, int baseAttP, int baseDefP, int baseAttS, int baseDefS, int baseVitesse, AbstractCourbe *xpCour, ListApprentissage *apprentissage, unsigned int level) : KernelObject()
+AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int basePv, int baseAttP, int baseDefP, int baseAttS, int baseDefS, int baseVitesse, AbstractCourbe *xpCour, ListApprentissage *apprentissage, unsigned int level) : PokemonInterface()
 {
     this->generalConstructeur(nom,type,basePv,baseAttP,baseDefP,baseAttS,baseDefS,baseVitesse,xpCour,apprentissage,level);
     //apprentissage artifficielle
@@ -18,7 +18,7 @@ AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int base
     }
 }
 //-------------------------------------------------------------------------
-AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int basePv, int baseAttP, int baseDefP, int baseAttS, int baseDefS, int baseVitesse, AbstractCourbe *xpCour, ListApprentissage *apprentissage,const AbstractPokemon& preEvolution, unsigned int level) : KernelObject()
+AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int basePv, int baseAttP, int baseDefP, int baseAttS, int baseDefS, int baseVitesse, AbstractCourbe *xpCour, ListApprentissage *apprentissage,const AbstractPokemon& preEvolution, unsigned int level) : PokemonInterface()
 {
     this->generalConstructeur(nom,type,basePv,baseAttP,baseDefP,baseAttS,baseDefS,baseVitesse,xpCour,apprentissage,level);
 
@@ -189,7 +189,7 @@ QString AbstractPokemon::getNomAttaque(unsigned int t)const throw(OutOfRange_Per
     return this->attaque->at(t)->getNom();
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::useAttaque(unsigned int t,AbstractPokemon& cible) throw(OutOfRange_PersonalExeption){
+void AbstractPokemon::useAttaque(unsigned int t, PokemonInterface &cible) throw(OutOfRange_PersonalExeption){
     if( t >= this->attaque->size()){
         throw OutOfRange_PersonalExeption("Poke attaque out of range :"+QString::number(t)+" n'est pas entre 0 et "+QString::number(this->attaque->size()));
     }
@@ -243,9 +243,9 @@ void AbstractPokemon::decreaseVit(unsigned int nb){
     this->alterations->decreaseVit(nb);
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::earnXp(const AbstractPokemon &p){
+void AbstractPokemon::earnXp(const PokemonInterface &p){
     if(this->getLevel() < MAX_LEVEL){
-        Xp xp = (p.xpCourbe->getBase()*p.getLevel()/7.0)+1;
+        Xp xp = (p.getBaseXp()*p.getLevel()/7.0)+1;
         (*xpAct) += xp;
         emit sendMsg(this->getNom() + " gagne "+ QString::number(xp) + " xp");
         //verif monter de niveau
@@ -325,6 +325,10 @@ void AbstractPokemon::setStatut(AbstractStatut* newStatut){
         delete newStatut;
         emit sendMsg(this->getNom()+" ne peux pas souffrir d'un autre statut");
     }
+}
+//--------------------------------------------------------------------------
+Xp AbstractPokemon::getBaseXp()const{
+    return this->xpCourbe->getBase();
 }
 //--------------------------------------------------------------------------
 //-------------------------Protected fonction-------------------------------

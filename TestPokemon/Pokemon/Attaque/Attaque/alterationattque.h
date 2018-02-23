@@ -17,9 +17,9 @@ public slots:
 protected :
 
     //constructeur
-    explicit AlterationAttque(AbstractPokemon &user, int precision, AbstractType *type, const QString nom);
+    explicit AlterationAttque(PokemonInterface &user, int precision, AbstractType *type, const QString nom);
     //fonction surcharge
-    int getAttaque(AbstractPokemon& cible)const;
+    int getAttaque(PokemonInterface& cible)const;
 };
 
 }
