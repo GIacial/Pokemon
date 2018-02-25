@@ -2,11 +2,10 @@
 #include <iostream>
 #include <time.h>
 #include "./Pokemon/Pokemon/pokemonfactory.h"
+#include "./Pokemon/capturedpokemon.h"
 
 //console
 
-#include "Pokemon/Pokemon/fakemon.h"
-#include "Pokemon/Pokemon/Gen1/bulbizarre.h"
 #include "Interface/combattestconsole.h"
 
 //graphics
@@ -26,7 +25,7 @@ int main(int argc, char *argv[])
             cin >> num;
         }while (num>= PokemonFactory::getInstance().getNbPoke());
 
-        AbstractPokemon* you = PokemonFactory::getInstance().createPoke(num,5);
+        CapturedPokemon* you = new CapturedPokemon(PokemonFactory::getInstance().createPoke(num,15));
         while(true){
             cout<< "Un nouveau combat" << endl;
 

@@ -3,12 +3,13 @@
 //---------------------------------------------------------------
 //---------------------------------------------------------------
 //---------------------------------------------------------------
-KM_Combat::KM_Combat(AbstractPokemon *you, AbstractPokemon *other) : KernelObject(), you(you) , other(other)
+KM_Combat::KM_Combat(PokemonInterface *you, PokemonInterface *other) : KernelObject(), you(you) , other(other)
 {
     QObject::connect(you,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
     QObject::connect(other,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
 
     QObject::connect(you,SIGNAL(veutApprendreAttaque(unsigned int*)),this,SLOT(apprendreAttaqueSlot(unsigned int*)));
+    QObject::connect(you,SIGNAL(veutEvoluer(bool*)),this,SLOT(veutEvoluer(bool*)));
 }
 //---------------------------------------------------------------
 //---------------------------------------------------------------
@@ -74,13 +75,22 @@ void KM_Combat::earnXp(){
         you->earnXp(*other);
     }
 }
-
+//---------------------------------------------------------------
+unsigned int KM_Combat::getNbAttaque()const{
+    return you->getNbAttaque();
+}
 
 //---------------------------------------------------------------
 //-----------------------slot------------------------------------
 //---------------------------------------------------------------
 void KM_Combat::apprendreAttaqueSlot(unsigned int *t){
     emit PokemonVeutApprendreAttaque(t);
+}
+//---------------------------------------------------------------
+void KM_Combat::veutEvoluer(bool *t){
+    if(t != NULL){
+        emit PokemonVeutEvoluer(t);
+    }
 }
 //---------------------------------------------------------------
 //---------------------------------------------------------------

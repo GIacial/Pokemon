@@ -2,28 +2,28 @@
 #define COMBATTESTCONSOLE_H
 
 #include <QObject>
-#include "../kernelobject.h"
-#include "../KernelMecanic/km_combat.h"
+#include "AbstractInterface/abstractcombatinterface.h"
 
-class combatTestConsole : public QObject
+class combatTestConsole : public AbstractCombatInterface
 {
 
     Q_OBJECT
 public:
-    explicit combatTestConsole(AbstractPokemon *y , AbstractPokemon *o);
+    explicit combatTestConsole(PokemonInterface *y , PokemonInterface *o);
     //destructeur
     virtual ~combatTestConsole() throw();
-    //fonction
-    void launchCombat();                //lance un combat
+    //fonction override
+     void launchCombat() ;                //lance un combat
 
 signals:
 
 public slots:
+     //override
     void afficheTexte(QString m);
     void apprendreAttaque(unsigned int* t);                //veut apprendre une attaque
+    void evoluer(bool* t);                                        //veut evoluer
 
 private:
-    KM_Combat* c;
 };
 
 #endif // COMBATTESTCONSOLE_H

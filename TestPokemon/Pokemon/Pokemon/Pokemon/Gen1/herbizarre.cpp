@@ -1,7 +1,7 @@
 #include "herbizarre.h"
 #include "../../XpCourbe/rapidecourbe.h"
 #include "../../../Type/doubletype.h"
-
+#include "florizarre.h"
 
 //attaque
 #include "../../../Attaque/Attaque/PhysicalAttaque/charge.h"
@@ -37,11 +37,22 @@ Herbizarre::~Herbizarre() throw(){
 //--------------------------------------------------------------------------------------------------
 //-----------------------------------fonction-------------------------------------------------------
 //--------------------------------------------------------------------------------------------------
-
 ListApprentissage* Herbizarre::getListApprentissage(){
     std::vector<CelluleListApprentissage> l;
     l.push_back(CelluleListApprentissage(9,FouetLiane::staticMetaObject));
     l.push_back(CelluleListApprentissage(0,Charge::staticMetaObject));
     l.push_back(CelluleListApprentissage(0,Rugissement::staticMetaObject));
     return new ListApprentissage(l);
+}
+//--------------------------------------------------------------------------------------------------
+//-----------------------------------override public -----------------------------------------------
+//--------------------------------------------------------------------------------------------------
+AbstractPokemon* Herbizarre::evolution()const{
+    return new Florizarre(*this);
+}
+//--------------------------------------------------------------------------------------------------
+//-----------------------------------override protected---------------------------------------------
+//--------------------------------------------------------------------------------------------------
+bool Herbizarre::pretEvolution()const{
+    return this->getLevel() >= EVO_LEVEL;
 }

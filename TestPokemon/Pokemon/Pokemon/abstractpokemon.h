@@ -78,6 +78,9 @@ public:
 
 //fin des override
 
+    //fonction
+    virtual AbstractPokemon* evolution()const;                                       //produit un nouveau pokemon qui est l'evolution du pokemon (return null si pas d'evolution possible)
+
 public slots:
 
 protected:
@@ -92,11 +95,16 @@ protected:
                              unsigned int level = 1);//recup les attaque de la pre evolution
     //fonction
     void apprendreAttaque(Attaque::AbstractAttaque* a,unsigned int place = 0) throw (QString);                              //apprend une attaque (place => place pour l'attaque a enlever si plein
+    virtual bool pretEvolution()const ;                                                                                  //permet de savoir si pret a l'evolution
+
 
 private:
     //fonction
-    bool statutEffect();                                                         //lance les effect de statut
+    bool statutEffect();                                                         //lance les effect de statut (bool dit si on peut attaquer)
+    void levelUp();                                                              //fait les monter des niveau
+    void apprendreAttaqueByLevelUp();                                            //apprend les attaque par level up
 
+    //constructeur
     void generalConstructeur(const QString nom , AbstractType *type, int basePv , int baseAttP ,
                              int baseDefP , int baseAttS , int baseDefS , int baseVitesse ,
                              AbstractCourbe* xpCour, ListApprentissage* apprentissage,

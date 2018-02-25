@@ -11,9 +11,17 @@ public:
     Q_INVOKABLE explicit Bulbizarre(unsigned int level=1);
     virtual ~Bulbizarre() throw ();
 
+    //override
+     AbstractPokemon* evolution()const;                                       //produit un nouveau pokemon qui est l'evolution du pokemon (return null si pas d'evolution possible)
+
 signals:
 
 public slots:
+
+protected:
+    //override
+     bool pretEvolution()const ;                                                                                  //permet de savoir si pret a l'evolution
+
 private:
     static ListApprentissage* getListApprentissage();
     //var static
@@ -25,6 +33,8 @@ private:
     static constexpr int const&  BASE_VIT = 45;
 
     static constexpr int const&  BASE_XP = 10;
+
+    static constexpr unsigned int const& EVO_LEVEL = 16;
 };
 
 #endif // BULBIZARRE_H

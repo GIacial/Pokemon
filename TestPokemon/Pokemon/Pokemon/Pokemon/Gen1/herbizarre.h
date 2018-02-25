@@ -14,9 +14,17 @@ public:
     //destructeur
     virtual ~Herbizarre() throw();
 
+    //override
+     AbstractPokemon* evolution()const;                                       //produit un nouveau pokemon qui est l'evolution du pokemon (return null si pas d'evolution possible)
+
 signals:
 
 public slots:
+
+protected:
+    //override
+     bool pretEvolution()const ;                                                                                  //permet de savoir si pret a l'evolution
+
 private:
 
     static ListApprentissage* getListApprentissage();
@@ -29,6 +37,9 @@ private:
     static constexpr int const&  BASE_VIT = 60;
 
     static constexpr int const&  BASE_XP = 15;
+
+
+    static constexpr unsigned int const&  EVO_LEVEL = 32;
 };
 
 #endif // HERBIZARRE_H

@@ -25,12 +25,17 @@ AbstractPokemon::AbstractPokemon(const QString nom, AbstractType* type, int base
     if(nextAttaque != NULL){
         while(nextAttaque->isMyLvl(*(this->level))){
                 //oublie des attaque de bas level
+            delete nextAttaque->getNewAttaque(*this);
         }
     }
 
     //on apprends les attaque de l'ancien
     for(unsigned int i=0 ; i<preEvolution.attaque->size() ; i++){
-        this->apprendreAttaque((AbstractAttaque*)preEvolution.attaque->at(i)->metaObject()->newInstance(Q_ARG(AbstractPokemon&,*this)));
+        AbstractAttaque* nattaque = (AbstractAttaque*)preEvolution.attaque->at(i)->metaObject()->newInstance(Q_ARG(PokemonInterface&,*this));
+        if(nattaque == NULL){
+            throw MetaConstructeurFail_PersonalException("L'attaque n'a pas pu etre copier "+QString(preEvolution.attaque->at(i)->metaObject()->className()));
+        }
+        this->apprendreAttaque(nattaque);
     }
 }
 //-------------------------------------------------------------------------
@@ -249,31 +254,7 @@ void AbstractPokemon::earnXp(const PokemonInterface &p){
         (*xpAct) += xp;
         emit sendMsg(this->getNom() + " gagne "+ QString::number(xp) + " xp");
         //verif monter de niveau
-        while(this->xpCourbe->isUpNextPalier(this->getXp())){
-            (*level)++;
-            emit sendMsg(this->getNom() + " est maintenant au niveau "+ QString::number(this->getLevel()));
-            if(this->nextAttaque->isMyLvl(this->getLevel())){
-                   AbstractAttaque* a = this->nextAttaque->getNewAttaque(*this);
-                if(this->getNbAttaque() == NB_MAX_ATTAQUE){
-                    //cas attaque pleine
-                    emit sendMsg("Plus de place pour apprendre "+ a->getNom());
-                    unsigned int t = NB_MAX_ATTAQUE+1;
-                    emit veutApprendreAttaque(&t);
-                    if(t > NB_MAX_ATTAQUE){
-                        delete a; //evite la fuite de l'attaque
-                    }
-                    else{
-                        this->apprendreAttaque(a,t);
-                        emit sendMsg(this->getNom()+" apprends "+ a->getNom());
-                    }
-
-                }
-                else{
-                    this->apprendreAttaque(a);
-                    emit sendMsg(this->getNom()+" apprends "+ a->getNom());
-                }
-            }
-        }
+       this->levelUp();
     }
 
 }
@@ -307,14 +288,6 @@ void AbstractPokemon::decreasePrecision(unsigned int nb){
     this->alterations->decreasePrec(nb);
 }
 //--------------------------------------------------------------------------
-bool AbstractPokemon::statutEffect(){
-    bool t = true;
-    if(this->statut != NULL){
-        t = statut->effect();
-    }
-    return t;
-}
-//--------------------------------------------------------------------------
 void AbstractPokemon::setStatut(AbstractStatut* newStatut){
     if(this->statut == NULL){
         emit sendMsg(this->getNom()+" souffre maintenant de "+ newStatut->getName());
@@ -331,6 +304,10 @@ Xp AbstractPokemon::getBaseXp()const{
     return this->xpCourbe->getBase();
 }
 //--------------------------------------------------------------------------
+AbstractPokemon* AbstractPokemon::evolution()const{
+    return NULL;
+}
+//--------------------------------------------------------------------------
 //-------------------------Protected fonction-------------------------------
 //--------------------------------------------------------------------------
 void AbstractPokemon::apprendreAttaque(AbstractAttaque *a, unsigned int place) throw (QString){
@@ -344,4 +321,54 @@ void AbstractPokemon::apprendreAttaque(AbstractAttaque *a, unsigned int place) t
     }
     this->attaque->push_back(a);
     QObject::connect(a,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
+}
+//--------------------------------------------------------------------------
+bool AbstractPokemon::pretEvolution()const{
+    return false;
+}
+
+//--------------------------------------------------------------------------
+//-------------------------private fonction---------------------------------
+//--------------------------------------------------------------------------
+void AbstractPokemon::levelUp(){
+    while(this->xpCourbe->isUpNextPalier(this->getXp())){
+        (*level)++;
+        emit sendMsg(this->getNom() + " est maintenant au niveau "+ QString::number(this->getLevel()));
+        this->apprendreAttaqueByLevelUp();
+    }
+    if(this->pretEvolution()){
+        emit veutEvoluer(NULL);
+    }
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::apprendreAttaqueByLevelUp(){
+    while(this->nextAttaque->isMyLvl(this->getLevel())){
+           AbstractAttaque* a = this->nextAttaque->getNewAttaque(*this);
+        if(this->getNbAttaque() == NB_MAX_ATTAQUE){
+            //cas attaque pleine
+            emit sendMsg("Plus de place pour apprendre "+ a->getNom());
+            unsigned int t = NB_MAX_ATTAQUE+1;
+            emit veutApprendreAttaque(&t);
+            if(t > NB_MAX_ATTAQUE){
+                delete a; //evite la fuite de l'attaque
+            }
+            else{
+                this->apprendreAttaque(a,t);
+                emit sendMsg(this->getNom()+" apprends "+ a->getNom());
+            }
+
+        }
+        else{
+            this->apprendreAttaque(a);
+            emit sendMsg(this->getNom()+" apprends "+ a->getNom());
+        }
+    }
+}
+//--------------------------------------------------------------------------
+bool AbstractPokemon::statutEffect(){
+    bool t = true;
+    if(this->statut != NULL){
+        t = statut->effect();
+    }
+    return t;
 }

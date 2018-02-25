@@ -78,7 +78,9 @@ HEADERS += \
     Attaque/Attaque/SpecialAttaque/dracorage.h \
     Attaque/Attaque/AlterationAttaque/grimace.h \
     Statut/statut_brulure.h \
-    Pokemon/pokemoninterface.h
+    Pokemon/pokemoninterface.h \
+    Pokemon/capturedpokemon.h \
+    Interface/AbstractInterface/abstractcombatinterface.h
 
 SOURCES += \
     Attaque/Attaque/AlterationAttaque/brouillard.cpp \
@@ -141,4 +143,6 @@ SOURCES += \
     Attaque/Attaque/SpecialAttaque/dracorage.cpp \
     Attaque/Attaque/AlterationAttaque/grimace.cpp \
     Statut/statut_brulure.cpp \
-    Pokemon/pokemoninterface.cpp
+    Pokemon/pokemoninterface.cpp \
+    Pokemon/capturedpokemon.cpp \
+    Interface/AbstractInterface/abstractcombatinterface.cpp

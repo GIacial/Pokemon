@@ -6,50 +6,51 @@ using namespace std;
 //-----------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
-combatTestConsole::combatTestConsole(AbstractPokemon* y , AbstractPokemon* o) : QObject()
+combatTestConsole::combatTestConsole(PokemonInterface *y , PokemonInterface *o) : AbstractCombatInterface(y,o)
 {
 
-    this->c = new KM_Combat(y,o);
-    QObject::connect(c,SIGNAL(sendMsg(QString)),this,SLOT(afficheTexte(QString)));
-    QObject::connect(c,SIGNAL(PokemonVeutApprendreAttaque(unsigned int*)),this,SLOT(apprendreAttaque(unsigned int*)));
+
 }
 //-----------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
 combatTestConsole::~combatTestConsole() throw (){
-    delete c;
+
 }
 //-----------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
 void combatTestConsole::launchCombat(){
-    while(c->allInLife()){
-        cout << c->getNomCreature(CibleKM_COMBAT::OTHERS).toStdString()
-             <<" sauvage (Lv" << c->getLevelCreature(CibleKM_COMBAT::OTHERS) << ") : "
-            <<c->getVieCreature(CibleKM_COMBAT::OTHERS) << "/"
-           << c->getMaxVieCreature(CibleKM_COMBAT::OTHERS) << endl;
+    while(this->getSystemCombat().allInLife()){
+        cout << this->getSystemCombat().getNomCreature(CibleKM_COMBAT::OTHERS).toStdString()
+             <<" sauvage (Lv" << this->getSystemCombat().getLevelCreature(CibleKM_COMBAT::OTHERS) << ") : "
+            <<this->getSystemCombat().getVieCreature(CibleKM_COMBAT::OTHERS) << "/"
+           << this->getSystemCombat().getMaxVieCreature(CibleKM_COMBAT::OTHERS) << endl;
 
-        cout <<"ton "<< c->getNomCreature(CibleKM_COMBAT::ME).toStdString()
-            <<" (Lv" << c->getLevelCreature(CibleKM_COMBAT::ME)
-           << ") : "<<c->getVieCreature(CibleKM_COMBAT::ME) << "/"
-          << c->getMaxVieCreature(CibleKM_COMBAT::ME)<< endl;
+        cout <<"ton "<< this->getSystemCombat().getNomCreature(CibleKM_COMBAT::ME).toStdString()
+            <<" (Lv" << this->getSystemCombat().getLevelCreature(CibleKM_COMBAT::ME)
+           << ") : "<<this->getSystemCombat().getVieCreature(CibleKM_COMBAT::ME) << "/"
+          << this->getSystemCombat().getMaxVieCreature(CibleKM_COMBAT::ME)<< endl;
         try{
-            for(unsigned int i=0 ; i<AbstractPokemon::NB_MAX_ATTAQUE ; i++){
-                cout << i <<":" <<c->getNomAttaqueCreature(CibleKM_COMBAT::ME,i).toStdString() <<" ";
+            for(unsigned int i=0 ; i<this->getSystemCombat().getNbAttaque() ; i++){
+                cout << i <<":" <<this->getSystemCombat().getNomAttaqueCreature(CibleKM_COMBAT::ME,i).toStdString() <<" ";
             }
         }
-        catch(OutOfRange_PersonalExeption& ){
-
+        catch(OutOfRange_PersonalExeption& r){
+            cerr << "OutofRange :"+r.getMsg().toStdString() << endl;
         }
         cout << endl;
 
         bool ok = false;
         unsigned int attaque;
         while(!ok){
+            do{
             cout << "Choix de votre attaque" << endl;
             cin >> attaque;
+            }while(attaque > this->getSystemCombat().getNbAttaque());
+
             try{
-                c->useAttaque(attaque);
+                this->useAttaque(attaque);
                 ok = true;
             }
             catch(OutOfRange_PersonalExeption& r){
@@ -59,12 +60,12 @@ void combatTestConsole::launchCombat(){
         cout << endl << endl;
 
     }
-    if(c->isInLife(CibleKM_COMBAT::OTHERS)){
+    if(this->getSystemCombat().isInLife(CibleKM_COMBAT::OTHERS)){
         cout << "Vous etes mort :(" << endl;
     }
     else{
         cout << "Vous avez gagnez :)" << endl;
-        c->earnXp();
+        this->win();
     }
 }
 //---------------------------------------------------------------------------------
@@ -73,6 +74,14 @@ void combatTestConsole::afficheTexte(QString m){
 }
 //---------------------------------------------------------------------------------
 void combatTestConsole::apprendreAttaque(unsigned int *t){
-    cout << "Quel attaque a oublié ?" << endl;
+    cout << "Quel attaque a oublie ?" << endl;
     cin >> (*t);
+}
+//---------------------------------------------------------------------------------
+void combatTestConsole::evoluer(bool* t){
+    cout << this->getSystemCombat().getNomCreature(CibleKM_COMBAT::ME).toStdString() << " veut evoluer" << endl;
+    cout << "Le laisser faire ? 1:ok" << endl;
+    int a = 0;
+    cin >> a;
+    (*t) = (a == 1);
 }

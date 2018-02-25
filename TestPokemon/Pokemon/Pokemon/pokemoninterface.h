@@ -65,6 +65,7 @@ public:
 
 signals:
     void veutApprendreAttaque(unsigned int * t);                                //emit quand il veut apprendre une attaque
+    void veutEvoluer(bool* ok);                                                 //emit quand il veut evoluer
 protected:
     PokemonInterface();
 };
