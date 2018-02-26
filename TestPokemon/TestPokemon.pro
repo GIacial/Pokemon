@@ -95,7 +95,13 @@ HEADERS += \
     Test/Type/test_typecombat.h \
     Test/Type/test_typedragon.h \
     Test/Type/test_typeeau.h \
-    Test/Type/test_typeelectrique.h
+    Test/Type/test_typeelectrique.h \
+    Test/Type/test_typefee.h \
+    Test/Type/test_typefeu.h \
+    Test/Type/test_typeglace.h \
+    Test/Type/test_typeinsecte.h \
+    Test/Type/test_typenormal.h \
+    Test/Type/test_typeplante.h
 
 SOURCES += \
     Pokemon/Attaque/Attaque/AlterationAttaque/brouillard.cpp \
@@ -173,4 +179,10 @@ SOURCES += \
     Test/Type/test_typedragon.cpp \
     Test/Type/test_typeeau.cpp \
     Test/Type/test_typeelectrique.cpp \
-    main.cpp
+    main.cpp \
+    Test/Type/test_typefee.cpp \
+    Test/Type/test_typefeu.cpp \
+    Test/Type/test_typeglace.cpp \
+    Test/Type/test_typeinsecte.cpp \
+    Test/Type/test_typenormal.cpp \
+    Test/Type/test_typeplante.cpp
