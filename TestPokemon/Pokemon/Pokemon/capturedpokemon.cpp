@@ -187,8 +187,8 @@ void CapturedPokemon::addAttaqueEffect(AttaqueEffect::AbstractAttaqueEffect *e){
     this->poke->addAttaqueEffect(e);
 }
 //----------------------------------------------------------------------------------------
-void CapturedPokemon::appliqueAttaqueEffect(){
-    this->poke->appliqueAttaqueEffect();
+void CapturedPokemon::finTour(){
+    this->poke->finTour();
 }
 //----------------------------------------------------------------------------------------
 bool CapturedPokemon::isUnderAttaqueEffect(const QString className){

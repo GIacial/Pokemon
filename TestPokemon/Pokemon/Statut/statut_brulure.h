@@ -12,7 +12,7 @@ public:
     virtual ~Statut_Brulure() throw ();
 
     //override
-    bool effect();
+    void effectEndTurn();
 
 signals:
 

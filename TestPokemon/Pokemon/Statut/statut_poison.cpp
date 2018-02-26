@@ -9,10 +9,9 @@ Statut_Poison::~Statut_Poison() throw(){
 
 }
 
-bool Statut_Poison::effect(){
+void Statut_Poison::effectEndTurn(){
     emit sendMsg(this->getCible().getNom() + " souffre de son empoisonnement");
     this->getCible().infligerDegat(this->calculDegat(this->getCible().getMaxPv()));
-    return true;
 }
 
 int Statut_Poison::calculDegat(int pvMax){

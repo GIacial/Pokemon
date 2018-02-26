@@ -9,8 +9,7 @@ Statut_Brulure::~Statut_Brulure() throw (){
 
 }
 
-bool Statut_Brulure::effect(){
+void Statut_Brulure::effectEndTurn(){
     emit sendMsg(this->getCible().getNom() + " souffre de sa brulure");
     this->getCible().infligerDegat(COEF_DEG*this->getCible().getMaxPv());
-    return true;
 }

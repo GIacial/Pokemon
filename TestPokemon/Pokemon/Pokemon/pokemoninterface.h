@@ -65,7 +65,7 @@ public:
     virtual Xp     getBaseXp()const = 0;                                                           //donne xp de base
 
     virtual void   addAttaqueEffect(AttaqueEffect::AbstractAttaqueEffect* e) = 0;                                      //ajoute un effect d'attaque
-    virtual void   appliqueAttaqueEffect() = 0;                                 //applique tous les attaque effect
+    virtual void   finTour() = 0;                                 //applique tous les attaque effect et statut de fin de tour
     virtual bool   isUnderAttaqueEffect(const QString className) = 0;               //permet de savoir si le pokemon subit l'effect de cette class
 
 signals:

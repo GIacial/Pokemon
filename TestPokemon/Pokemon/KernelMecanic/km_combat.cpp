@@ -121,10 +121,10 @@ void KM_Combat::playOneTurn(unsigned int t) throw(OutOfRange_PersonalExeption){
     }
     //les effect de combat
     if(you->isInLife()){
-        this->you->appliqueAttaqueEffect();
+        this->you->finTour();
     }
     if(other->isInLife()){
-        this->other->appliqueAttaqueEffect();
+        this->other->finTour();
     }
 
 }

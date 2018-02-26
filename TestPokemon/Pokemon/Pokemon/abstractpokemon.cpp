@@ -321,7 +321,10 @@ void AbstractPokemon::addAttaqueEffect(AttaqueEffect::AbstractAttaqueEffect *e){
     QObject::connect(e,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
 }
 //--------------------------------------------------------------------------
-void AbstractPokemon::appliqueAttaqueEffect(){
+void AbstractPokemon::finTour(){
+    if(this->statut != NULL){
+        this->statut->effectEndTurn();
+    }
     for(unsigned int i = 0 ; i < this->effect->size() ; i++){
         this->effect->at(i)->effect();
     }

@@ -77,7 +77,7 @@ public:
     Xp     getBaseXp()const;                                                           //donne xp de base
 
     void   addAttaqueEffect(AttaqueEffect::AbstractAttaqueEffect* e);                                      //ajoute un effect d'attaque
-    void   appliqueAttaqueEffect();                                 //applique tous les attaque effect
+    void   finTour() ;                                 //applique tous les attaque effect et statut de fin de tour
     bool   isUnderAttaqueEffect(const QString className);               //permet de savoir si le pokemon subit l'effect de cette class
 
 //fin des override
