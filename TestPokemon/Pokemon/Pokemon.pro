@@ -83,7 +83,12 @@ HEADERS += \
     Interface/AbstractInterface/abstractcombatinterface.h \
     Attaque/AttaqueEffect/abstractattaqueeffect.h \
     Attaque/Attaque/AlterationAttaque/vampigraine.h \
-    Attaque/AttaqueEffect/AttaqueEffect/vampigraineeffect.h
+    Attaque/AttaqueEffect/AttaqueEffect/vampigraineeffect.h \
+    Statut/statut_poison.h \
+    Statut/statut_poison_grave.h \
+    Statut/statut_paralysie.h \
+    Statut/statut_gel.h \
+    Statut/statut_sommeil.h
 
 SOURCES += \
     Attaque/Attaque/AlterationAttaque/brouillard.cpp \
@@ -151,4 +156,9 @@ SOURCES += \
     Interface/AbstractInterface/abstractcombatinterface.cpp \
     Attaque/AttaqueEffect/abstractattaqueeffect.cpp \
     Attaque/Attaque/AlterationAttaque/vampigraine.cpp \
-    Attaque/AttaqueEffect/AttaqueEffect/vampigraineeffect.cpp
+    Attaque/AttaqueEffect/AttaqueEffect/vampigraineeffect.cpp \
+    Statut/statut_poison.cpp \
+    Statut/statut_poison_grave.cpp \
+    Statut/statut_paralysie.cpp \
+    Statut/statut_gel.cpp \
+    Statut/statut_sommeil.cpp

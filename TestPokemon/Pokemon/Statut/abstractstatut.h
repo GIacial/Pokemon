@@ -15,6 +15,8 @@ public:
 
     //fonction
     virtual bool effect() = 0;                          //applique l'effect du statut
+    virtual double getCoefAltVit()const;                //donne le coef de reduction de la vitesse
+    virtual bool   isEndOfStatut()const;                //dit si c'est la fin du statut
     QString getName()const;                             //donne le nom du statut
 
 signals:

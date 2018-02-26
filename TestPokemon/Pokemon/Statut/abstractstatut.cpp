@@ -22,6 +22,14 @@ QString AbstractStatut::getName()const{
     return *(this->nom);
 }
 //-------------------------------------------------------------------------
+double AbstractStatut::getCoefAltVit()const{
+    return 1.;
+}
+//-------------------------------------------------------------------------
+bool AbstractStatut::isEndOfStatut()const{
+    return false;
+}
+//-------------------------------------------------------------------------
 //------------------------Protected fonction-------------------------------
 //-------------------------------------------------------------------------
 PokemonInterface &AbstractStatut::getCible(){

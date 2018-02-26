@@ -153,7 +153,11 @@ int AbstractPokemon::getDefS()const{
 }
 //-------------------------------------------------------------------------
 int AbstractPokemon::getVitesse()const{
-    return this->alterations->getCoefAltVit()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseVitesse()+MINSTAT;
+    double coefStatut = 1.;
+    if(this->statut != NULL){
+        coefStatut = this->statut->getCoefAltVit();
+    }
+    return coefStatut*this->alterations->getCoefAltVit()*((double)this->getLevel()/MAX_LEVEL)*this->getBaseVitesse()+MINSTAT;
 }
 //-------------------------------------------------------------------------
 QString AbstractPokemon::getNom()const{
@@ -390,7 +394,13 @@ void AbstractPokemon::apprendreAttaqueByLevelUp(){
 bool AbstractPokemon::statutEffect(){
     bool t = true;
     if(this->statut != NULL){
-        t = statut->effect();
+        if(!statut->isEndOfStatut()){
+            t = statut->effect();
+        }
+        else{
+            delete statut;
+            statut = NULL;
+        }
     }
     return t;
 }

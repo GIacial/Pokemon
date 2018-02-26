@@ -11,6 +11,7 @@ public:
     explicit Statut_Brulure(PokemonInterface& owner);
     virtual ~Statut_Brulure() throw ();
 
+    //override
     bool effect();
 
 signals:
