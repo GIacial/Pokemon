@@ -62,6 +62,7 @@ void AbstractPokemon::generalConstructeur(const QString nom, AbstractType *type,
     if(xpCourbe != NULL){
         *xpAct = this->xpCourbe->getPredXp();   //monter en niveau artificielle
     }
+    this->effect = new std::vector<AttaqueEffect::AbstractAttaqueEffect*>();
 
 
 }
@@ -78,6 +79,8 @@ AbstractPokemon::~AbstractPokemon() throw(){
     delete baseDefS;
     delete baseVitesse;
     delete level;
+    this->clearAttaqueEffect();
+    delete effect;
     for(int i = this->attaque->size() -1; i >= 0 ; i--){
         delete this->attaque->at(i);
         this->attaque->pop_back();
@@ -270,6 +273,7 @@ void AbstractPokemon::soinComplet(){
         delete this->statut;
         this->statut = NULL;
     }
+    this->clearAttaqueEffect();
 }
 //--------------------------------------------------------------------------
 unsigned int AbstractPokemon::getNbAttaque()const{
@@ -308,6 +312,25 @@ AbstractPokemon* AbstractPokemon::evolution()const{
     return NULL;
 }
 //--------------------------------------------------------------------------
+void AbstractPokemon::addAttaqueEffect(AttaqueEffect::AbstractAttaqueEffect *e){
+    this->effect->push_back(e);
+    QObject::connect(e,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::appliqueAttaqueEffect(){
+    for(unsigned int i = 0 ; i < this->effect->size() ; i++){
+        this->effect->at(i)->effect();
+    }
+}
+//--------------------------------------------------------------------------
+bool AbstractPokemon::isUnderAttaqueEffect(const QString className){
+    bool ok = false;
+    for(unsigned int i = 0 ; i < this->effect->size() && !ok ; i++){
+        ok = this->effect->at(i)->inherits(className.toStdString().data());
+    }
+    return ok;
+}
+//--------------------------------------------------------------------------
 //-------------------------Protected fonction-------------------------------
 //--------------------------------------------------------------------------
 void AbstractPokemon::apprendreAttaque(AbstractAttaque *a, unsigned int place) throw (QString){
@@ -326,7 +349,6 @@ void AbstractPokemon::apprendreAttaque(AbstractAttaque *a, unsigned int place) t
 bool AbstractPokemon::pretEvolution()const{
     return false;
 }
-
 //--------------------------------------------------------------------------
 //-------------------------private fonction---------------------------------
 //--------------------------------------------------------------------------
@@ -371,4 +393,12 @@ bool AbstractPokemon::statutEffect(){
         t = statut->effect();
     }
     return t;
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::clearAttaqueEffect(){
+    for(unsigned int i = 0; i < this->effect->size() ; i++){
+        delete this->effect->at(i);
+        this->effect->at(i) = NULL;
+    }
+    this->effect->clear();
 }

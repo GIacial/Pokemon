@@ -7,6 +7,8 @@
 #include "../../../Attaque/Attaque/PhysicalAttaque/charge.h"
 #include "../../../Attaque/Attaque/PhysicalAttaque/fouetliane.h"
 #include "../../../Attaque/Attaque/AlterationAttaque/rugissement.h"
+#include "../../../Attaque/Attaque/AlterationAttaque/vampigraine.h"
+
 using namespace Attaque;
 
 //---------------------------------------------------------------------------------------------------------------------------------------
@@ -47,5 +49,6 @@ ListApprentissage* Bulbizarre::getListApprentissage(){
     l.push_back(CelluleListApprentissage(9,FouetLiane::staticMetaObject));
     l.push_back(CelluleListApprentissage(0,Charge::staticMetaObject));
     l.push_back(CelluleListApprentissage(0,Rugissement::staticMetaObject));
+    l.push_back(CelluleListApprentissage(7,Vampigraine::staticMetaObject));
     return new ListApprentissage(l);
 }

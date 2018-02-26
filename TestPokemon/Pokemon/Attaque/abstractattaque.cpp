@@ -60,7 +60,11 @@ void AbstractAttaque::use(PokemonInterface &cible){
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
-const PokemonInterface &AbstractAttaque::getUser()const{
+const PokemonInterface &AbstractAttaque::getUser() const{
+    return this->utilisateur;
+}
+//-------------------------------------------------------------------------
+ PokemonInterface &AbstractAttaque::getUser() {
     return this->utilisateur;
 }
 //-------------------------------------------------------------------------

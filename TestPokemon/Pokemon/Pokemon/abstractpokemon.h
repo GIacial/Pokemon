@@ -76,6 +76,10 @@ public:
     void    setStatut(AbstractStatut* newStatut);                                                            //applique un statut
     Xp     getBaseXp()const;                                                           //donne xp de base
 
+    void   addAttaqueEffect(AttaqueEffect::AbstractAttaqueEffect* e);                                      //ajoute un effect d'attaque
+    void   appliqueAttaqueEffect();                                 //applique tous les attaque effect
+    bool   isUnderAttaqueEffect(const QString className);               //permet de savoir si le pokemon subit l'effect de cette class
+
 //fin des override
 
     //fonction
@@ -103,6 +107,7 @@ private:
     bool statutEffect();                                                         //lance les effect de statut (bool dit si on peut attaquer)
     void levelUp();                                                              //fait les monter des niveau
     void apprendreAttaqueByLevelUp();                                            //apprend les attaque par level up
+    void clearAttaqueEffect();                                                   //supprime tous les attaqueEffect
 
     //constructeur
     void generalConstructeur(const QString nom , AbstractType *type, int basePv , int baseAttP ,
@@ -126,6 +131,7 @@ private:
     StatAlterator* alterations;
     AbstractCourbe* xpCourbe;
     ListApprentissage* nextAttaque;
+    std::vector<AttaqueEffect::AbstractAttaqueEffect*>* effect;
 
 };
 

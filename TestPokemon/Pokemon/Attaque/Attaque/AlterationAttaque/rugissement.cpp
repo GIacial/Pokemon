@@ -14,6 +14,5 @@ Rugissement::~Rugissement() throw(){
 }
 
 void Rugissement::attaqueEffect(PokemonInterface &cible){
-
     cible.decreaseAttP();
 }

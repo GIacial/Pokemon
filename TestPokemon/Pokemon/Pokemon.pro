@@ -80,7 +80,10 @@ HEADERS += \
     Statut/statut_brulure.h \
     Pokemon/pokemoninterface.h \
     Pokemon/capturedpokemon.h \
-    Interface/AbstractInterface/abstractcombatinterface.h
+    Interface/AbstractInterface/abstractcombatinterface.h \
+    Attaque/AttaqueEffect/abstractattaqueeffect.h \
+    Attaque/Attaque/AlterationAttaque/vampigraine.h \
+    Attaque/AttaqueEffect/AttaqueEffect/vampigraineeffect.h
 
 SOURCES += \
     Attaque/Attaque/AlterationAttaque/brouillard.cpp \
@@ -145,4 +148,7 @@ SOURCES += \
     Statut/statut_brulure.cpp \
     Pokemon/pokemoninterface.cpp \
     Pokemon/capturedpokemon.cpp \
-    Interface/AbstractInterface/abstractcombatinterface.cpp
+    Interface/AbstractInterface/abstractcombatinterface.cpp \
+    Attaque/AttaqueEffect/abstractattaqueeffect.cpp \
+    Attaque/Attaque/AlterationAttaque/vampigraine.cpp \
+    Attaque/AttaqueEffect/AttaqueEffect/vampigraineeffect.cpp

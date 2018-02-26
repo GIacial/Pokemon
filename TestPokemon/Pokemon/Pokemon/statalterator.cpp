@@ -125,7 +125,7 @@ double StatAlterator::getAlteratorCoef(int t)const{
 //---------------------------------------------------------------------------
 void StatAlterator::genericUpgrade(int *val, const QString textStat, unsigned int nb){
     if((*val) < MAX_UPGRADE){
-        (*val)+= nb;
+        (*val)+= (int)nb;
         if((*val)> MAX_UPGRADE){
             (*val) = MAX_UPGRADE;
         }
@@ -138,8 +138,8 @@ void StatAlterator::genericUpgrade(int *val, const QString textStat, unsigned in
 //---------------------------------------------------------------------------
 void StatAlterator::genericDecrease(int *val, const QString textStat,unsigned int nb){
     if((*val) > MAX_DECREASE){
-        (*val)-= nb;
-        if((*val)> MAX_DECREASE){
+        (*val)-= (int)nb;
+        if((*val)< MAX_DECREASE){
             (*val) = MAX_DECREASE;
         }
          emit sendMsg(this->user.getNom()+" vois diminuer "+textStat);

@@ -183,6 +183,18 @@ Xp CapturedPokemon::getBaseXp()const{
     return this->poke->getXp();
 }
 //----------------------------------------------------------------------------------------
+void CapturedPokemon::addAttaqueEffect(AttaqueEffect::AbstractAttaqueEffect *e){
+    this->poke->addAttaqueEffect(e);
+}
+//----------------------------------------------------------------------------------------
+void CapturedPokemon::appliqueAttaqueEffect(){
+    this->poke->appliqueAttaqueEffect();
+}
+//----------------------------------------------------------------------------------------
+bool CapturedPokemon::isUnderAttaqueEffect(const QString className){
+    return this->poke->isUnderAttaqueEffect(className);
+}
+//----------------------------------------------------------------------------------------
 //---------------------slot---------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 void CapturedPokemon::slot_apprendreAttaque(unsigned int *t){

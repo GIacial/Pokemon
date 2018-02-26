@@ -39,7 +39,8 @@ protected:
 
     //fonction
     virtual int getAttaque(PokemonInterface& cible)const = 0;            //donne la puissance de l'attaque théorique de l'attaque(avec prise en compte de la def)
-    const PokemonInterface& getUser()const;                              //donne l'utilisateur
+     PokemonInterface& getUser();                              //donne l'utilisateur
+      const PokemonInterface& getUser()const;                              //donne l'utilisateur
     const AbstractType& getType()const;                                 //donne le type de l'attaque
 
     virtual void attaqueEffect(PokemonInterface& cible) = 0;                  //l'effect de l'attaque
