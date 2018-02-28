@@ -192,6 +192,7 @@ void AbstractPokemon::soigner(unsigned int v){
     if(pv > max){
         pv = max;
     }
+    emit sendMsg(this->getNom()+" se soigne de "+QString::number(v)+" pv");
 }
 //--------------------------------------------------------------------------
 QString AbstractPokemon::getNomAttaque(unsigned int t)const throw(OutOfRange_PersonalExeption){
@@ -336,6 +337,18 @@ bool AbstractPokemon::isUnderAttaqueEffect(const QString className){
         ok = this->effect->at(i)->inherits(className.toStdString().data());
     }
     return ok;
+}
+//--------------------------------------------------------------------------
+double AbstractPokemon::getEsquive()const{
+    return this->alterations->getCoefAltEsquive();
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::upgradeEsquive(unsigned int nb){
+    return this->alterations->upgradeEsquive(nb);
+}
+//--------------------------------------------------------------------------
+void AbstractPokemon::decreaseEsquive(unsigned int nb){
+    return this->alterations->decreaseEsquive(nb);
 }
 //--------------------------------------------------------------------------
 //-------------------------Protected fonction-------------------------------

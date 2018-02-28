@@ -17,6 +17,7 @@ public://constante
      static constexpr double const&  COEF_STAB = 2.0;
      static constexpr double const&  BASE_PUIS_PAR_LVL = 0.4;
      static constexpr double const&  COEF_DEF = 50;
+     static constexpr int const&  MAX_PRECISION = 50000;
      //destructeur
      virtual ~AbstractAttaque() throw() = 0;
 
@@ -25,7 +26,7 @@ public://constante
     unsigned int getPrecision()const;                               //donne la precision de l'attaque
     unsigned int getPuissance()const;                               //donne la puissance de l'attaque
 
-    bool toucheLaCible()const;                                      //true si l'attaque doit toucher
+    bool toucheLaCible(PokemonInterface &cible)const;                                      //true si l'attaque doit toucher
     bool isSameTypeUser()const;                                     //donne si c'est le meme type que l'utilisateur
     QString getNom()const;                                          //donne le nom de l'attaque
 

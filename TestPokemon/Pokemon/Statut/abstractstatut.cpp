@@ -26,7 +26,7 @@ double AbstractStatut::getCoefAltVit()const{
     return 1.;
 }
 //-------------------------------------------------------------------------
-bool AbstractStatut::isEndOfStatut()const{
+bool AbstractStatut::isEndOfStatut(){
     return false;
 }
 //-------------------------------------------------------------------------

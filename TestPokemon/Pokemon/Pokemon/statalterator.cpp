@@ -12,6 +12,7 @@ StatAlterator::StatAlterator(const AbstractPokemon &user) : KernelObject(),user(
     this->altDefS = new int(0);
     this->altVit  = new int(0);
     this->precision = new int (0);
+    this->esquive = new int (0);
 }
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
@@ -23,6 +24,7 @@ StatAlterator::~StatAlterator() throw(){
     delete altDefS;
     delete altVit;
     delete precision;
+    delete esquive;
 }
 //---------------------------------------------------------------------------
 //-------------------------public--------------------------------------------
@@ -51,6 +53,10 @@ double StatAlterator::getCoefAltPrec()const{
     return this->getAlteratorCoef(*precision);
 }
 //---------------------------------------------------------------------------
+double StatAlterator::getCoefAltEsquive()const{
+    return this->getAlteratorCoef(*esquive);
+}
+//---------------------------------------------------------------------------
 void StatAlterator::upgradeAttP(unsigned int nb){
     this->genericUpgrade(altAttP,"son Attaque Physique",nb);
 }
@@ -73,6 +79,10 @@ void StatAlterator::upgradeVit(unsigned int nb){
 //---------------------------------------------------------------------------
 void StatAlterator::upgradePrec(unsigned int nb){
     this->genericUpgrade(precision,"sa precision",nb);
+}
+//---------------------------------------------------------------------------
+void StatAlterator::upgradeEsquive(unsigned int nb){
+    this->genericUpgrade(esquive,"son esquive",nb);
 }
 //---------------------------------------------------------------------------
 void StatAlterator::decreaseAttP(unsigned int nb){
@@ -99,6 +109,10 @@ void StatAlterator::decreasePrec(unsigned int nb){
     this->genericDecrease(precision,"sa precision",nb);
 }
 //---------------------------------------------------------------------------
+void StatAlterator::decreaseEsquive(unsigned int nb){
+    this->genericDecrease(esquive,"son esquive",nb);
+}
+//---------------------------------------------------------------------------
 void StatAlterator::resetAlt(){
     *(this->altAttP) = 0;
     *(this->altAttS) = 0;
@@ -106,6 +120,7 @@ void StatAlterator::resetAlt(){
     *(this->altDefS) = 0;
     *(this->altVit) = 0;
     *(this->precision) = 0;
+    *(this->esquive) = 0;
 }
 //---------------------------------------------------------------------------
 //------------------------private--------------------------------------------

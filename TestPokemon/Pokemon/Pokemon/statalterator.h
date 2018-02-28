@@ -24,6 +24,7 @@ public:
     double getCoefAltDefS()const;                                   //donne le coef d'alt pour defS
     double getCoefAltVit()const;                                   //donne le coef d'alt pour vit
     double getCoefAltPrec()const;                                   //donne la stat de precision
+    double getCoefAltEsquive()const;                                //donne la stat d'esquive
 
     void   upgradeAttP(unsigned int nb = 1);                                           //augmente la stat
     void   upgradeAttS(unsigned int nb = 1);                                           //augmente la stat
@@ -31,6 +32,7 @@ public:
     void   upgradeDefS(unsigned int nb = 1);                                           //augmente la stat
     void   upgradeVit(unsigned int nb = 1);                                           //augmente la stat
     void   upgradePrec(unsigned int nb = 1);                                           //augmente la precision
+    void   upgradeEsquive(unsigned int nb = 1);                                        //augmente l'esquive
 
     void   decreaseAttP(unsigned int nb = 1);                                           //baisse la stat
     void   decreaseAttS(unsigned int nb = 1);                                           //baisse la stat
@@ -38,6 +40,7 @@ public:
     void   decreaseDefS(unsigned int nb = 1);                                           //baisse la stat
     void   decreaseVit(unsigned int nb = 1);                                           //baisse la stat
     void   decreasePrec(unsigned int nb = 1);                                          //baisse la precision
+    void   decreaseEsquive(unsigned int nb = 1);                                       //baisse l'esquive
 
     void   resetAlt();                                                                 //remets tout a la base
 
@@ -60,6 +63,7 @@ private:
     int* altDefP;
     int* altVit;
     int* precision;
+    int* esquive;
     const AbstractPokemon& user;
 };
 

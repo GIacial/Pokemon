@@ -17,7 +17,7 @@ public:
     virtual bool effect() ;                          //applique l'effect du statut
     virtual void effectEndTurn() ;                   //l'effect de fin de tour
     virtual double getCoefAltVit()const;                //donne le coef de reduction de la vitesse
-    virtual bool   isEndOfStatut()const;                //dit si c'est la fin du statut
+    virtual bool   isEndOfStatut();                //dit si c'est la fin du statut
     QString getName()const;                             //donne le nom du statut
 
 signals:

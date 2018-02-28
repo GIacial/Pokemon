@@ -68,6 +68,10 @@ public:
     virtual void   finTour() = 0;                                 //applique tous les attaque effect et statut de fin de tour
     virtual bool   isUnderAttaqueEffect(const QString className) = 0;               //permet de savoir si le pokemon subit l'effect de cette class
 
+    virtual double getEsquive()const = 0;                                           //donne le coef d'esquive du poke
+    virtual void   upgradeEsquive(unsigned int nb = 1) = 0;                                            //augmente l'esquive
+    virtual void   decreaseEsquive(unsigned int nb = 1) = 0;                                           //diminue l'esquive
+
 signals:
     void veutApprendreAttaque(unsigned int * t);                                //emit quand il veut apprendre une attaque
     void veutEvoluer(bool* ok);                                                 //emit quand il veut evoluer

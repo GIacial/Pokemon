@@ -10,7 +10,11 @@ Statut_Paralysie::~Statut_Paralysie() throw (){
 }
 
 bool Statut_Paralysie::effect(){
-    return rand()%100 > COEF_ATT_POSSIBLE;
+    bool attaqueOK = rand()%100 > COEF_ATT_POSSIBLE;
+    if(!attaqueOK){
+        emit sendMsg("La "+this->getName()+" empeche "+this->getCible().getNom()+ " d'attaquer");
+    }
+    return attaqueOK;
 }
 
 double Statut_Paralysie::getCoefAltVit()const{

@@ -36,8 +36,8 @@ unsigned int AbstractAttaque::getPuissance()const{
     return * puissance;
 }
 //-------------------------------------------------------------------------
-bool AbstractAttaque::toucheLaCible()const{
-    return ((unsigned int)rand()%100) <= this->getPrecision()*this->utilisateur.getPrecision();
+bool AbstractAttaque::toucheLaCible(PokemonInterface& cible)const{
+    return ((unsigned int)rand()%100)*cible.getEsquive() <= this->getPrecision()*this->utilisateur.getPrecision();
 }
 //-------------------------------------------------------------------------
 bool AbstractAttaque::isSameTypeUser()const{
@@ -50,7 +50,7 @@ QString AbstractAttaque::getNom()const{
 //-------------------------------------------------------------------------
 void AbstractAttaque::use(PokemonInterface &cible){
     emit sendMsg(this->utilisateur.getNom()+" utilise "+this->getNom());
-    if(toucheLaCible()){
+    if(toucheLaCible(cible)){
         this->attaqueEffect(cible);
     }
     else{

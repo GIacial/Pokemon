@@ -195,6 +195,18 @@ bool CapturedPokemon::isUnderAttaqueEffect(const QString className){
     return this->poke->isUnderAttaqueEffect(className);
 }
 //----------------------------------------------------------------------------------------
+double CapturedPokemon::getEsquive()const{
+    return this->poke->getEsquive();
+}
+//----------------------------------------------------------------------------------------
+void CapturedPokemon::upgradeEsquive(unsigned int nb){
+    return this->poke->upgradeEsquive(nb);
+}
+//----------------------------------------------------------------------------------------
+void CapturedPokemon::decreaseEsquive(unsigned int nb){
+    return this->poke->decreaseEsquive(nb);
+}
+//----------------------------------------------------------------------------------------
 //---------------------slot---------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 void CapturedPokemon::slot_apprendreAttaque(unsigned int *t){

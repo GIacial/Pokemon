@@ -88,7 +88,16 @@ HEADERS += \
     Statut/statut_poison_grave.h \
     Statut/statut_paralysie.h \
     Statut/statut_gel.h \
-    Statut/statut_sommeil.h
+    Statut/statut_sommeil.h \
+    Attaque/Attaque/AlterationAttaque/poudretoxik.h \
+    Attaque/Attaque/AlterationAttaque/poudredodo.h \
+    Attaque/Attaque/PhysicalAttaque/belier.h \
+    Attaque/Attaque/PhysicalAttaque/trancheherbe.h \
+    Attaque/Attaque/AlterationAttaque/douxparfum.h \
+    Attaque/Attaque/AlterationAttaque/croissance.h \
+    Attaque/Attaque/PhysicalAttaque/damocles.h \
+    Attaque/Attaque/AlterationAttaque/synthese.h \
+    Attaque/Attaque/PhysicalAttaque/canongraine.h
 
 SOURCES += \
     Attaque/Attaque/AlterationAttaque/brouillard.cpp \
@@ -161,4 +170,16 @@ SOURCES += \
     Statut/statut_poison_grave.cpp \
     Statut/statut_paralysie.cpp \
     Statut/statut_gel.cpp \
-    Statut/statut_sommeil.cpp
+    Statut/statut_sommeil.cpp \
+    Attaque/Attaque/AlterationAttaque/poudretoxik.cpp \
+    Attaque/Attaque/AlterationAttaque/poudredodo.cpp \
+    Attaque/Attaque/PhysicalAttaque/belier.cpp \
+    Attaque/Attaque/PhysicalAttaque/trancheherbe.cpp \
+    Attaque/Attaque/AlterationAttaque/douxparfum.cpp \
+    Attaque/Attaque/AlterationAttaque/croissance.cpp \
+    Attaque/Attaque/PhysicalAttaque/damocles.cpp \
+    Attaque/Attaque/AlterationAttaque/synthese.cpp \
+    Attaque/Attaque/PhysicalAttaque/canongraine.cpp
+
+DISTFILES += \
+    TODO

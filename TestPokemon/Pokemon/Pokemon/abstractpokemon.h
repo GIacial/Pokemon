@@ -80,6 +80,10 @@ public:
     void   finTour() ;                                 //applique tous les attaque effect et statut de fin de tour
     bool   isUnderAttaqueEffect(const QString className);               //permet de savoir si le pokemon subit l'effect de cette class
 
+    double getEsquive()const ;                                           //donne le coef d'esquive du poke
+    void   upgradeEsquive(unsigned int nb = 1) ;                                            //augmente l'esquive
+    void   decreaseEsquive(unsigned int nb = 1);                                           //diminue l'esquive
+
 //fin des override
 
     //fonction

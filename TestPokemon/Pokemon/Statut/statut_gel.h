@@ -13,7 +13,7 @@ public:
 
     //override
     bool effect();                          //applique l'effect du statut
-    bool   isEndOfStatut()const;                //dit si c'est la fin du statut
+    bool   isEndOfStatut();                //dit si c'est la fin du statut
 signals:
 
 public slots:

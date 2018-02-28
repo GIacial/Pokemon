@@ -10,10 +10,15 @@ Statut_Sommeil::~Statut_Sommeil() throw(){
 }
 
 bool Statut_Sommeil::effect(){
+    emit sendMsg(this->getCible().getNom()+" dort");
     return false;
 }
 
-bool Statut_Sommeil::isEndOfStatut()const{
+bool Statut_Sommeil::isEndOfStatut(){
     (*tour)++;
-    return rand()%100 < COEF_END*(*tour);
+    bool ok = rand()%100 < COEF_END*(*tour);
+    if(ok){
+        emit sendMsg(this->getCible().getNom() + " se reveille");
+    }
+    return ok;
 }

@@ -20,12 +20,12 @@ int main(int argc, char *argv[])
     try{
         srand(time(NULL));
         unsigned int num = 0;
-        cout << "Choisie le numero de ton pokemon : entre 0 et "<< PokemonFactory::getInstance().getNbPoke()-1 << endl;
+        cout << "Choisie le numero de ton pokemon : entre 1 et "<< PokemonFactory::getInstance().getNbPoke()-1 << endl;
         do{
             cin >> num;
         }while (num>= PokemonFactory::getInstance().getNbPoke());
 
-        CapturedPokemon* you = new CapturedPokemon(PokemonFactory::getInstance().createPoke(num,15));
+        CapturedPokemon* you = new CapturedPokemon(PokemonFactory::getInstance().createPoke(num,5));
         while(true){
             cout<< "Un nouveau combat" << endl;
 
