@@ -23,6 +23,7 @@
 #include "../../../Attaque/Attaque/PhysicalAttaque/damocles.h"
 #include "../../../Attaque/Attaque/AlterationAttaque/synthese.h"
 #include "../../../Attaque/Attaque/SpecialAttaque/lancesoleil.h"
+#include "../../../Attaque/Attaque/PhysicalAttaque/tempeteflorale.h"
 
 
 using namespace Attaque;
@@ -71,6 +72,7 @@ ListApprentissage* Florizarre::getListApprentissage(){
     l.push_back(CelluleListApprentissage(28,Croissance::staticMetaObject));
     l.push_back(CelluleListApprentissage(31,Damocles::staticMetaObject));
     l.push_back(CelluleListApprentissage(45,Synthese::staticMetaObject));
+    l.push_back(CelluleListApprentissage(50,TempeteFlorale::staticMetaObject));
     l.push_back(CelluleListApprentissage(53,LanceSoleil::staticMetaObject));
     return new ListApprentissage(l);
 }
