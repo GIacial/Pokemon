@@ -17,6 +17,9 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    int departLV = 5;
+    cout << "Niveau de depart ?" << endl;
+    cin >> departLV;
     try{
         srand(time(NULL));
         unsigned int num = 0;
@@ -25,7 +28,7 @@ int main(int argc, char *argv[])
             cin >> num;
         }while (num>= PokemonFactory::getInstance().getNbPoke());
 
-        CapturedPokemon* you = new CapturedPokemon(PokemonFactory::getInstance().createPoke(num,5));
+        CapturedPokemon* you = new CapturedPokemon(PokemonFactory::getInstance().createPoke(num,departLV));
         while(true){
             cout<< "Un nouveau combat" << endl;
 

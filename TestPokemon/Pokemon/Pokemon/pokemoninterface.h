@@ -72,6 +72,8 @@ public:
     virtual void   upgradeEsquive(unsigned int nb = 1) = 0;                                            //augmente l'esquive
     virtual void   decreaseEsquive(unsigned int nb = 1) = 0;                                           //diminue l'esquive
 
+    virtual bool   isLockAttaque()const = 0;                                    //permet de savoir si le poke est bloquer sur une attaque
+
 signals:
     void veutApprendreAttaque(unsigned int * t);                                //emit quand il veut apprendre une attaque
     void veutEvoluer(bool* ok);                                                 //emit quand il veut evoluer

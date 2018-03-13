@@ -79,7 +79,13 @@ void KM_Combat::earnXp(){
 unsigned int KM_Combat::getNbAttaque()const{
     return you->getNbAttaque();
 }
-
+//---------------------------------------------------------------
+bool KM_Combat::getLockAttaqueCreature(CibleKM_COMBAT c) const{
+    if( c == ME){
+        return you->isLockAttaque();
+    }
+    return other->isLockAttaque();
+}
 //---------------------------------------------------------------
 //-----------------------slot------------------------------------
 //---------------------------------------------------------------

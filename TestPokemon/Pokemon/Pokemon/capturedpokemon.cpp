@@ -207,6 +207,10 @@ void CapturedPokemon::decreaseEsquive(unsigned int nb){
     return this->poke->decreaseEsquive(nb);
 }
 //----------------------------------------------------------------------------------------
+bool CapturedPokemon::isLockAttaque()const{
+    return this->poke->isLockAttaque();
+}
+//----------------------------------------------------------------------------------------
 //---------------------slot---------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 void CapturedPokemon::slot_apprendreAttaque(unsigned int *t){

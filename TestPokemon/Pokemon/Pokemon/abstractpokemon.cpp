@@ -63,7 +63,7 @@ void AbstractPokemon::generalConstructeur(const QString nom, AbstractType *type,
         *xpAct = this->xpCourbe->getPredXp();   //monter en niveau artificielle
     }
     this->effect = new std::vector<AttaqueEffect::AbstractAttaqueEffect*>();
-
+    this->AttaqueToUse = NULL;
 
 }
 //-------------------------------------------------------------------------
@@ -203,13 +203,26 @@ QString AbstractPokemon::getNomAttaque(unsigned int t)const throw(OutOfRange_Per
 }
 //--------------------------------------------------------------------------
 void AbstractPokemon::useAttaque(unsigned int t, PokemonInterface &cible) throw(OutOfRange_PersonalExeption){
-    if( t >= this->attaque->size()){
-        throw OutOfRange_PersonalExeption("Poke attaque out of range :"+QString::number(t)+" n'est pas entre 0 et "+QString::number(this->attaque->size()));
+    if(!this->isLockAttaque()){
+        if( t >= this->attaque->size()){
+            throw OutOfRange_PersonalExeption("Poke attaque out of range :"+QString::number(t)+" n'est pas entre 0 et "+QString::number(this->attaque->size()));
+        }
+        if(this->statutEffect()){
+            AbstractAttaque* skill = this->attaque->at(t);
+            skill->use(cible);
+            if(skill->attaqueCharger()){
+                this->AttaqueToUse = skill;
+            }
+        }
     }
-    if(this->statutEffect()){
+    else{
+        //cas attaque chargé
+        this->AttaqueToUse->use(cible);
+        if(!this->AttaqueToUse->attaqueCharger()){
+            this->AttaqueToUse = NULL;
+        }
+    }
 
-        this->attaque->at(t)->use(cible);
-    }
 }
 //--------------------------------------------------------------------------
 bool AbstractPokemon::isInLife()const{
@@ -349,6 +362,10 @@ void AbstractPokemon::upgradeEsquive(unsigned int nb){
 //--------------------------------------------------------------------------
 void AbstractPokemon::decreaseEsquive(unsigned int nb){
     return this->alterations->decreaseEsquive(nb);
+}
+//--------------------------------------------------------------------------
+bool AbstractPokemon::isLockAttaque()const{
+    return this->AttaqueToUse != NULL;
 }
 //--------------------------------------------------------------------------
 //-------------------------Protected fonction-------------------------------

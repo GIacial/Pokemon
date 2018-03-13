@@ -29,7 +29,7 @@ public://constante
     bool toucheLaCible(PokemonInterface &cible)const;                                      //true si l'attaque doit toucher
     bool isSameTypeUser()const;                                     //donne si c'est le meme type que l'utilisateur
     QString getNom()const;                                          //donne le nom de l'attaque
-
+    virtual bool attaqueCharger()const ;                         //dit si l'attaque est chargé ou pas
 
 signals:
 

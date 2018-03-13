@@ -97,7 +97,8 @@ HEADERS += \
     Attaque/Attaque/AlterationAttaque/croissance.h \
     Attaque/Attaque/PhysicalAttaque/damocles.h \
     Attaque/Attaque/AlterationAttaque/synthese.h \
-    Attaque/Attaque/PhysicalAttaque/canongraine.h
+    Attaque/Attaque/PhysicalAttaque/canongraine.h \
+    Attaque/Attaque/SpecialAttaque/lancesoleil.h
 
 SOURCES += \
     Attaque/Attaque/AlterationAttaque/brouillard.cpp \
@@ -179,7 +180,8 @@ SOURCES += \
     Attaque/Attaque/AlterationAttaque/croissance.cpp \
     Attaque/Attaque/PhysicalAttaque/damocles.cpp \
     Attaque/Attaque/AlterationAttaque/synthese.cpp \
-    Attaque/Attaque/PhysicalAttaque/canongraine.cpp
+    Attaque/Attaque/PhysicalAttaque/canongraine.cpp \
+    Attaque/Attaque/SpecialAttaque/lancesoleil.cpp
 
 DISTFILES += \
     TODO

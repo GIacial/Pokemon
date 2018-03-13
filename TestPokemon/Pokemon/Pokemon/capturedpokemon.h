@@ -75,6 +75,9 @@ public:
         void   upgradeEsquive(unsigned int nb = 1) ;                                            //augmente l'esquive
         void   decreaseEsquive(unsigned int nb = 1);                                           //diminue l'esquive
 
+        bool   isLockAttaque()const;                                    //permet de savoir si le poke est bloquer sur une attaque
+
+
     //fin des override
 signals:
 

@@ -83,6 +83,7 @@ public:
     double getEsquive()const ;                                           //donne le coef d'esquive du poke
     void   upgradeEsquive(unsigned int nb = 1) ;                                            //augmente l'esquive
     void   decreaseEsquive(unsigned int nb = 1);                                           //diminue l'esquive
+    bool   isLockAttaque()const;                                    //permet de savoir si le poke est bloquer sur une attaque
 
 //fin des override
 
@@ -136,6 +137,8 @@ private:
     AbstractCourbe* xpCourbe;
     ListApprentissage* nextAttaque;
     std::vector<AttaqueEffect::AbstractAttaqueEffect*>* effect;
+
+    Attaque::AbstractAttaque* AttaqueToUse;     //l'attaque a utiliser au prochain tour (cas des attaque chargé)
 
 };
 

@@ -1,7 +1,6 @@
 les coups critique (tranch'herbe a plus de chance)
 les talents des pokemons
 la fuite en combat
-faire des attaque charge au premier tour(lance-soleil)
 
 //------------------------------------------------
 //---------------Pokemon--------------------------
@@ -12,7 +11,10 @@ Manque soucigraine car utilise les talents(lv31)
 
 //Herbizarre
 Manque soucigraine car utilise les talents(lv36)
-Manque Lance_soleil (lv44)
+
+//Florizarre
+Manque Danse-fleurs (lv32)
+Manque Tempete florale(lv50)
 
 //------------------------------------------------
 //---------------Attaque--------------------------
@@ -22,4 +24,5 @@ Manque Lance_soleil (lv44)
 Manque le + de cout critique
 
 //synthese
+//Lance_soleil
 Manque gestion de la meteo

@@ -17,6 +17,7 @@
 #include "../../../Attaque/Attaque/AlterationAttaque/croissance.h"
 #include "../../../Attaque/Attaque/PhysicalAttaque/damocles.h"
 #include "../../../Attaque/Attaque/AlterationAttaque/synthese.h"
+#include "../../../Attaque/Attaque/SpecialAttaque/lancesoleil.h"
 
 using namespace Attaque;
 
@@ -61,6 +62,7 @@ ListApprentissage* Herbizarre::getListApprentissage(){
     l.push_back(CelluleListApprentissage(28,Croissance::staticMetaObject));
     l.push_back(CelluleListApprentissage(31,Damocles::staticMetaObject));
     l.push_back(CelluleListApprentissage(39,Synthese::staticMetaObject));
+    l.push_back(CelluleListApprentissage(44,LanceSoleil::staticMetaObject));
     return new ListApprentissage(l);
 }
 //--------------------------------------------------------------------------------------------------

@@ -25,7 +25,7 @@ public:
     bool    isInLife(CibleKM_COMBAT c)const;                                            //dit si la cible est en vie
     void    earnXp();                                                                   //fait gagner de xp a you
     unsigned int getNbAttaque()const;                                                   //donne le nombre d'attaque de you
-
+    bool    getLockAttaqueCreature(CibleKM_COMBAT c)const;                              //donne si la creature est bloqué sur une attaque
 
 signals:
     void PokemonVeutApprendreAttaque(unsigned int* t);                                                 //emit quand un pokem veut apprendre une attaque

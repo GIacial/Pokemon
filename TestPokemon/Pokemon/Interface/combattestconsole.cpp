@@ -42,12 +42,14 @@ void combatTestConsole::launchCombat(){
         cout << endl;
 
         bool ok = false;
-        unsigned int attaque;
+        unsigned int attaque = 0;
         while(!ok){
-            do{
-            cout << "Choix de votre attaque" << endl;
-            cin >> attaque;
-            }while(attaque > this->getSystemCombat().getNbAttaque());
+            if(!this->getSystemCombat().getLockAttaqueCreature(CibleKM_COMBAT::ME)){
+                do{
+                cout << "Choix de votre attaque" << endl;
+                cin >> attaque;
+                }while(attaque > this->getSystemCombat().getNbAttaque());
+            }
 
             try{
                 this->useAttaque(attaque);
