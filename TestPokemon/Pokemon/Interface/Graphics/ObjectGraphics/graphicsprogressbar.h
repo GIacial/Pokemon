@@ -15,7 +15,6 @@ public:
 
     virtual void    setMaximun(unsigned int max);
     virtual void    setValue(unsigned int val);
-    void    setColor(QColor color);
     int     getMaximun()const;
     int     getValue()const;
     QColor  getColor()const;
@@ -27,7 +26,9 @@ public slots:
 
 protected:
 
+    void    setColor(QColor color);
     qreal    calculFinBar()const;            //calcul la position de la fin de bar(entre 0 et 1)
+
 private:
     unsigned int     montantActuel;              //montant actuel de la bar
     qreal   montantAnimation;           //permet de faire une modification fluide a chaque changement du montantActuel

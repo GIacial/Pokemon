@@ -9,9 +9,6 @@ class BarVie : public GraphicsProgressBar
     Q_OBJECT
 public:
     explicit BarVie(unsigned int vieMax, QGraphicsItem *parent = 0);
-    void recevoirDegat( int degat);                             //enleve degat  a la bar
-    void recevoirSoin( int soin);                               //ajoute soin a la bar
-
 
     void    setMaximun(unsigned int max);
     void    setValue(unsigned int val);

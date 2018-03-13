@@ -17,11 +17,20 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    int departLV = 5;
-    cout << "Niveau de depart ?" << endl;
-    cin >> departLV;
+
+    //app Graphics
+    MainWindowsPoke w;
+    cout << "Creation fentre principal" << endl;
+
+    cout << "affichage" << endl;
+    w.show();
     try{
         srand(time(NULL));
+        /*
+        //debut console app
+        int departLV = 5;
+        cout << "Niveau de depart ?" << endl;
+        cin >> departLV;
         unsigned int num = 0;
         cout << "Choisie le numero de ton pokemon : entre 1 et "<< PokemonFactory::getInstance().getNbPoke()-1 << endl;
         do{
@@ -48,11 +57,9 @@ int main(int argc, char *argv[])
             delete other;
         }
         delete you;
+*/
 
 
-
-       /* MainWindowsPoke w;
-        w.show();*/
     }
     catch(PersonalExeption& e){
         cout << e.getMsg().toStdString() << endl;

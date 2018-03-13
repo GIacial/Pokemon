@@ -7,22 +7,6 @@ BarVie::BarVie(unsigned int vieMax, QGraphicsItem *parent) : GraphicsProgressBar
     this->choixCouleur();
 }
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-void BarVie::recevoirDegat(int degat){
-    int vie=this->getValue();
-    vie-=degat;
-    if(vie<0){
-        vie=0;
-    }
-    this->setValue(vie);
-    this->choixCouleur();
-}
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-void BarVie::recevoirSoin(int soin){
-
-    this->setValue(this->getValue()+soin);
-    this->choixCouleur();
-}
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void BarVie::choixCouleur(){
     qreal p=this->calculFinBar();
     QColor c;
