@@ -24,13 +24,13 @@ void BarVie::choixCouleur(){
     this->setColor(c);
 }
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-void BarVie::setValue(unsigned int val){
+void BarVie::setValue(int val){
     this->GraphicsProgressBar::setValue(val);
     this->choixCouleur();
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-void BarVie::setMaximun(unsigned int max){
+void BarVie::setMaximun( int max){
     this->GraphicsProgressBar::setMaximun(max);
     this->choixCouleur();
 }

@@ -220,7 +220,6 @@ void CapturedPokemon::slot_apprendreAttaque(unsigned int *t){
 void CapturedPokemon::slot_evolution(bool *){
     bool ok = false;
     emit veutEvoluer(&ok);
-    cout << "ok cp" << endl;
     if(ok){
         //evolution
         AbstractPokemon* evo = this->poke->evolution();
@@ -233,6 +232,18 @@ void CapturedPokemon::slot_evolution(bool *){
     }
 }
 //----------------------------------------------------------------------------------------
+void CapturedPokemon::slot_changedPv(const int pv){
+    emit changedPv(pv);
+}
+//----------------------------------------------------------------------------------------
+void CapturedPokemon::slot_changedPvMax(const int pvMax){
+    emit changedPvMax(pvMax);
+}
+//----------------------------------------------------------------------------------------
+void CapturedPokemon::slot_changedLvl(const uint lvl){
+    emit changedLevel(lvl);
+}
+//----------------------------------------------------------------------------------------
 //------------------------private---------------------------------------------------------
 //----------------------------------------------------------------------------------------
 
@@ -240,4 +251,7 @@ void CapturedPokemon::connectAllSignaux(){
     QObject::connect(poke,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
     QObject::connect(poke,SIGNAL(veutApprendreAttaque(uint*)),this,SLOT(slot_apprendreAttaque(uint*)));
     QObject::connect(poke,SIGNAL(veutEvoluer(bool*)),this,SLOT(slot_evolution(bool*)));
+    QObject::connect(poke,SIGNAL(changedPv(int)),this,SLOT(slot_changedPv(int)));
+    QObject::connect(poke,SIGNAL(changedPvMax(int)),this,SLOT(slot_changedPvMax(int)));
+    QObject::connect(poke,SIGNAL(changedLevel(uint)),this,SLOT(slot_changedLvl(uint)));
 }

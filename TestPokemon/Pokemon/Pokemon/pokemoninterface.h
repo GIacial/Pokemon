@@ -77,6 +77,10 @@ public:
 signals:
     void veutApprendreAttaque(unsigned int * t);                                //emit quand il veut apprendre une attaque
     void veutEvoluer(bool* ok);                                                 //emit quand il veut evoluer
+
+    void changedPv(const int pv);                                                     //emit quand les pv change
+    void changedPvMax(const int PvMax);                                               //emit quand les pv Max change
+    void changedLevel(const unsigned int lvl);                                        //emit quand le pokemon change de level
 protected:
     PokemonInterface();
 };

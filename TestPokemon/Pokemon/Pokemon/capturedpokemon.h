@@ -82,8 +82,12 @@ public:
 signals:
 
 public slots:
-    void slot_apprendreAttaque(unsigned int* t);
-    void slot_evolution(bool*);
+    void slot_apprendreAttaque(unsigned int* t);                                //attrape et relance le signal apprendre attaque
+    void slot_evolution(bool*);                                                 //attrape et relance le signal evolution
+
+    void slot_changedPv(const int pv);                                                //attrape et relance le signal changedPv
+    void slot_changedPvMax(const int pvMax);                                          //attrape et relance le signal changedPvMax
+    void slot_changedLvl(const uint lvl);                                              //attrape et relance changedLvl
 private:
     void connectAllSignaux();                                                               //connect tous les signaux de poke
     AbstractPokemon* poke;

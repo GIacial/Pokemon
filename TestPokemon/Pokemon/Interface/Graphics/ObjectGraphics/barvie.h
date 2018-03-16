@@ -10,13 +10,11 @@ class BarVie : public GraphicsProgressBar
 public:
     explicit BarVie(unsigned int vieMax, QGraphicsItem *parent = 0);
 
-    void    setMaximun(unsigned int max);
-    void    setValue(unsigned int val);
-
-
 signals:
 
 public slots:
+    void    setMaximun( int max);
+    void    setValue( int val);
 
 private:
     void choixCouleur();                                                //permet de mettre la couleur en fonction du remplissage

@@ -3,12 +3,13 @@
 
 #include <QMainWindow>
 #include "graphicsview.h"
+#include "../../Pokemon/pokemoninterface.h"
 
 class MainWindowsPoke : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit MainWindowsPoke(QWidget *parent = nullptr);
+    explicit MainWindowsPoke(PokemonInterface* y,QWidget *parent = nullptr);
     //destructeur
     virtual ~MainWindowsPoke() throw();
 
@@ -18,6 +19,10 @@ public slots:
 
 private:
     GraphicsView* view;
+    PokemonInterface* you;
+    PokemonInterface* other;
+
+    void createBattleScene();                           //cree la scene de combat
 };
 
 #endif // MAINWINDOWSPOKE_H

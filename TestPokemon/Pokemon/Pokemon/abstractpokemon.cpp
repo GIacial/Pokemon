@@ -174,6 +174,7 @@ void AbstractPokemon::infligerDegat(unsigned int v){
     if(pv <0){
         pv = 0;
     }
+    emit changedPv(pv);
     emit sendMsg(this->getNom()+" a subi "+QString::number(v)+" de degats");
 }
 //--------------------------------------------------------------------------
@@ -392,12 +393,14 @@ bool AbstractPokemon::pretEvolution()const{
 void AbstractPokemon::levelUp(){
     while(this->xpCourbe->isUpNextPalier(this->getXp())){
         (*level)++;
+        emit changedLevel((*level));
         emit sendMsg(this->getNom() + " est maintenant au niveau "+ QString::number(this->getLevel()));
         this->apprendreAttaqueByLevelUp();
     }
     if(this->pretEvolution()){
         emit veutEvoluer(NULL);
     }
+    emit changedPvMax(this->getMaxPv());
 }
 //--------------------------------------------------------------------------
 void AbstractPokemon::apprendreAttaqueByLevelUp(){
