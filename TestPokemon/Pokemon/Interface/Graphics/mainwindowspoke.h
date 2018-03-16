@@ -17,12 +17,12 @@ signals:
 
 public slots:
 
+    void createBattleScene();                           //cree la scene de combat
 private:
     GraphicsView* view;
     PokemonInterface* you;
     PokemonInterface* other;
 
-    void createBattleScene();                           //cree la scene de combat
 };
 
 #endif // MAINWINDOWSPOKE_H

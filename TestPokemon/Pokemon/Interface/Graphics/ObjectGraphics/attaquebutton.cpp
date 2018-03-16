@@ -8,6 +8,8 @@ AttaqueButton::AttaqueButton(AbstractCombatInterface& kernel,unsigned int i,QGra
     this->attaqueNumber = new uint(i);
     if(i < kernel.getSystemCombat().getNbAttaque()){
         this->text->setPlainText(kernel.getSystemCombat().getNomAttaqueCreature(CibleKM_COMBAT::ME,i));
+        this->setMinimumWidth(this->text->boundingRect().width());
+        this->setMaximumHeight(this->text->boundingRect().height());
     }
     else{
         this->hide();
@@ -33,4 +35,5 @@ void AttaqueButton::paint(QPainter *painter, const QStyleOptionGraphicsItem *, Q
 
 void AttaqueButton::mousePressEvent(QGraphicsSceneMouseEvent *){
     this->kernel.useAttaque(*attaqueNumber);
+    this->parentItem()->hide();
 }

@@ -8,12 +8,16 @@ GraphicsTextArea::GraphicsTextArea(qreal largeur, qreal hauteur ,QGraphicsItem *
 {
     this->setGeometry(0,0,largeur,hauteur);
     this->text = new QGraphicsTextItem("Un combat debute",this);
+    this->nextText = new QList<QString*>();
 }
 //-------------------------------------------------------------------------------------------
 //---------------------------Destructeur-----------------------------------------------------
 //-------------------------------------------------------------------------------------------
 GraphicsTextArea::~GraphicsTextArea() throw(){
-
+    for(int i = 0 ; i < this->nextText->size() ; i++){
+        delete this->nextText->at(i);
+    }
+    delete nextText;
 }
 //-------------------------------------------------------------------------------------------
 //---------------------------Fonction--------------------------------------------------------
@@ -32,9 +36,29 @@ void GraphicsTextArea::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 }
 //-------------------------------------------------------------------------------------------
 void GraphicsTextArea::setText(const QString text){
+    this->nextText->append(new QString(text));
+    if(this->nextText->size() == 1){
+        this->afficheNextText();
+
+    }
+}
+//-------------------------------------------------------------------------------------------
+void GraphicsTextArea::afficheNextText(){
+    QString& text = *(this->nextText->first());
     this->text->setPlainText(text);
     if(this->text->boundingRect().width() > this->boundingRect().width()){
-        QString t = text;
-        this->text->setPlainText(t.insert(t.size()/(this->text->boundingRect().width()/this->boundingRect().width()),'\n'));
+        this->text->setPlainText(text.insert(text.size()/(this->text->boundingRect().width()/this->boundingRect().width()),'\n'));
+    }
+}
+//-------------------------------------------------------------------------------------------
+void GraphicsTextArea::mousePressEvent(QGraphicsSceneMouseEvent *){
+    if(this->nextText->size() > 0){
+        this->nextText->removeFirst();
+        if(this->nextText->size() == 0){
+            emit endText();
+        }
+        else{
+            this->afficheNextText();
+        }
     }
 }

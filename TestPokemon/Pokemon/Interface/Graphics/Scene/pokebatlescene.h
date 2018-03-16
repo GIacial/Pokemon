@@ -21,9 +21,10 @@ public:
     friend class PokeBatleSceneKernel;
 
 signals:
+    void endBattle();
 
 public slots:
-
+    void endTurn();
 
 
 private:
@@ -32,9 +33,10 @@ private:
     GraphicsTextArea* textDisplay;
     PokeBatleSceneKernel* kernel;
     AttaquePanel* attaque;
+    bool* fin;
 
 
-    static constexpr double const&  HAUTEUR_TEXT_POURCENTAGE = .20;
+    static constexpr double const&  HAUTEUR_TEXT_POURCENTAGE = .25;
 
     void afficheTexte(QString m) ;
     void apprendreAttaque(unsigned int* t) ;                //veut apprendre une attaque

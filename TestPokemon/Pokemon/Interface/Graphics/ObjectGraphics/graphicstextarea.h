@@ -14,14 +14,20 @@ public:
     //override
     void    paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);//style graphics de item
 
-    void    setText(const QString text);                                            //mets le text dans la fenetre
+    void    setText(const QString text);                                            //mets le text dans le buffer de la fenetre
 
 signals:
-
+    void endText();
 public slots:
+protected:
+    //override
+    void mousePressEvent(QGraphicsSceneMouseEvent*);
 
 private:
     QGraphicsTextItem* text;
+    QList<QString*>*   nextText;
+
+    void    afficheNextText();                                                  //affiche le text contenu dans le buffer
 };
 
 #endif // GRAPHICSTEXTAREA_H

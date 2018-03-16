@@ -43,7 +43,9 @@ void MainWindowsPoke::createBattleScene(){
     if(other == NULL){
         std::cerr << "Probleme Allocation ennemie " << std::endl;
     }
-    this->view->setScene(new PokeBatleScene(you,other,view));
+    PokeBatleScene* s = new PokeBatleScene(you,other,view);
+    this->view->setScene(s);
+    QObject::connect(s,SIGNAL(endBattle()),SLOT(createBattleScene()));
 }
 
 

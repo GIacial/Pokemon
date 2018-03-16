@@ -14,7 +14,7 @@ AttaquePanel::AttaquePanel(AbstractCombatInterface &kernel, QGraphicsItem *paren
         this->buttons->append(b);
         grid->addItem(b,i%ligneNb,i/ligneNb);
     }
-
+    grid->activate();
 }
 
 AttaquePanel::~AttaquePanel() throw (){
@@ -31,5 +31,5 @@ void AttaquePanel::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QW
 
     painter->setBrush(grad);
     painter->setPen(Qt::black);
-    painter->drawRoundRect(r);
+    painter->drawRect(r);
 }

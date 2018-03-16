@@ -16,6 +16,7 @@ public:
     const KM_Combat& getSystemCombat()const;
     void useAttaque(unsigned int t) throw (OutOfRange_PersonalExeption);        //lance un tour de combat avec you utilisant sa t-ieme attaque
 
+    void win();                                                                 //quand you gagne
 
 signals:
 
@@ -25,7 +26,6 @@ public slots:
     virtual void evoluer(bool* t) = 0;                                        //veut evoluer
 
 protected:
-    void win();                                                                 //quand you gagne
 private:
     KM_Combat* c;
 };
