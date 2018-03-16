@@ -102,7 +102,9 @@ HEADERS += \
     Attaque/Attaque/PhysicalAttaque/tempeteflorale.h \
     Interface/Graphics/ObjectGraphics/batledisplaypokemon.h \
     Interface/Graphics/ObjectGraphics/graphicstextarea.h \
-    Interface/Graphics/Scene/pokebatlescenekernel.h
+    Interface/Graphics/Scene/pokebatlescenekernel.h \
+    Interface/Graphics/ObjectGraphics/attaquebutton.h \
+    Interface/Graphics/ObjectGraphics/attaquepanel.h
 
 SOURCES += \
     Attaque/Attaque/AlterationAttaque/brouillard.cpp \
@@ -189,7 +191,9 @@ SOURCES += \
     Attaque/Attaque/PhysicalAttaque/tempeteflorale.cpp \
     Interface/Graphics/ObjectGraphics/batledisplaypokemon.cpp \
     Interface/Graphics/ObjectGraphics/graphicstextarea.cpp \
-    Interface/Graphics/Scene/pokebatlescenekernel.cpp
+    Interface/Graphics/Scene/pokebatlescenekernel.cpp \
+    Interface/Graphics/ObjectGraphics/attaquebutton.cpp \
+    Interface/Graphics/ObjectGraphics/attaquepanel.cpp
 
 DISTFILES += \
     TODO

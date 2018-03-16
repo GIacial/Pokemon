@@ -9,6 +9,7 @@ class PokeBatleScene;
 #include "../ObjectGraphics/batledisplaypokemon.h"
 #include "../ObjectGraphics/graphicstextarea.h"
 #include "./pokebatlescenekernel.h"
+#include "../ObjectGraphics/attaquepanel.h"
 
 class PokeBatleScene : public QGraphicsScene
 {
@@ -30,6 +31,7 @@ private:
     BatleDisplayPokemon* otherDisplay;
     GraphicsTextArea* textDisplay;
     PokeBatleSceneKernel* kernel;
+    AttaquePanel* attaque;
 
 
     static constexpr double const&  HAUTEUR_TEXT_POURCENTAGE = .20;
