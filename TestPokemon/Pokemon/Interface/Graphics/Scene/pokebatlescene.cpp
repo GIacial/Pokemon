@@ -1,10 +1,9 @@
 #include "pokebatlescene.h"
 
 
-
 PokeBatleScene::PokeBatleScene(PokemonInterface *y, PokemonInterface *o, QObject *parent) : QGraphicsScene(parent)
 {
-    this->setBackgroundBrush(QBrush(QColor(88,88,88)));
+    this->setBackgroundBrush(QBrush(QColor(158,213,158)));
     this->setSceneRect(0,0,300,300);
     this->kernel = new PokeBatleSceneKernel(*this,y,o);
     this->fin = new bool(false);
@@ -14,17 +13,25 @@ PokeBatleScene::PokeBatleScene(PokemonInterface *y, PokemonInterface *o, QObject
     this->otherDisplay = new BatleDisplayPokemon(o);
     this->textDisplay = new GraphicsTextArea(this->sceneRect().width(),this->sceneRect().height()*HAUTEUR_TEXT_POURCENTAGE);
     this->attaque = new AttaquePanel(*kernel);
+    this->otherImg = new GraphicsGif("../Image/Gif/Face/"+o->getNom()+".gif");
+    this->youImg = new GraphicsGif("../Image/Gif/Dos/"+y->getNom()+".gif");
 
     this->addItem(this->youDisplay);
     this->addItem(this->otherDisplay);
     this->addItem(textDisplay);
     this->addItem(attaque);
+    this->addItem(otherImg);
+    this->addItem(youImg);
 
     this->textDisplay->setPos(0,this->sceneRect().height()-this->textDisplay->boundingRect().height());
     this->youDisplay->setPos(this->sceneRect().width()-this->youDisplay->boundingRect().width(),this->sceneRect().height()-this->youDisplay->boundingRect().height()-this->textDisplay->boundingRect().height()-1);
     this->attaque->setPos(this->sceneRect().width()-this->attaque->boundingRect().width(),this->textDisplay->pos().y());
     this->attaque->setMinimumHeight(this->textDisplay->boundingRect().height());
     this->attaque->setZValue(1);
+    qreal posOtherEmptyZoneX = otherDisplay->pos().x()+otherDisplay->boundingRect().width();
+    this->otherImg->setPos(posOtherEmptyZoneX+((this->sceneRect().width()-posOtherEmptyZoneX)/2)-(this->otherImg->boundingRect().width()/2), otherDisplay->pos().y()+otherDisplay->boundingRect().height());
+    this->youImg->setPos((this->sceneRect().width()-this->youDisplay->boundingRect().width())/2-this->youImg->boundingRect().width()/2, this->sceneRect().height()-this->textDisplay->boundingRect().height()-this->youImg->boundingRect().height()-10);
+
 
     QObject::connect(textDisplay,SIGNAL(endText()),this,SLOT(endTurn()));
 
@@ -38,6 +45,8 @@ PokeBatleScene::~PokeBatleScene() throw(){
     delete attaque;
     delete kernel;
     delete fin;
+    delete otherImg;
+    delete youImg;
 }
 
 void PokeBatleScene::afficheTexte(QString m){

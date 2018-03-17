@@ -14,6 +14,7 @@ public:
     //override
     void    paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);//style graphics de item
 
+    //fonction
     void    setText(const QString text);                                            //mets le text dans le buffer de la fenetre
 
 signals:

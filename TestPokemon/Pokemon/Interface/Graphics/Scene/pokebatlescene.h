@@ -10,6 +10,7 @@ class PokeBatleScene;
 #include "../ObjectGraphics/graphicstextarea.h"
 #include "./pokebatlescenekernel.h"
 #include "../ObjectGraphics/attaquepanel.h"
+#include "../ObjectGraphics/graphicsgif.h"
 
 class PokeBatleScene : public QGraphicsScene
 {
@@ -33,6 +34,8 @@ private:
     GraphicsTextArea* textDisplay;
     PokeBatleSceneKernel* kernel;
     AttaquePanel* attaque;
+    GraphicsGif* otherImg;
+    GraphicsGif* youImg;
     bool* fin;
 
 
