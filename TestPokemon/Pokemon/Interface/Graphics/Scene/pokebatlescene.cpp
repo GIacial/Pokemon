@@ -1,6 +1,5 @@
 #include "pokebatlescene.h"
 
-
 PokeBatleScene::PokeBatleScene(PokemonInterface *y, PokemonInterface *o, QObject *parent) : QGraphicsScene(parent)
 {
     this->setBackgroundBrush(QBrush(QColor(158,213,158)));
@@ -58,6 +57,7 @@ void PokeBatleScene::apprendreAttaque(unsigned int *t){
 }
 
 void PokeBatleScene::evoluer(bool *t){
+
 
 }
 

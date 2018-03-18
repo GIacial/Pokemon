@@ -400,7 +400,6 @@ void AbstractPokemon::levelUp(){
     if(this->pretEvolution()){
         emit veutEvoluer(NULL);
     }
-    emit changedPvMax(this->getMaxPv());
 }
 //--------------------------------------------------------------------------
 void AbstractPokemon::apprendreAttaqueByLevelUp(){

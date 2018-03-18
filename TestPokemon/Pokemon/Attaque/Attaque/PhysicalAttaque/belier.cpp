@@ -13,6 +13,7 @@ Belier::~Belier() throw(){
 }
 
 void Belier::attaqueEffect(PokemonInterface &cible){
+    PhysicalAttaque::attaqueEffect(cible);
     emit sendMsg(this->getUser().getNom() + " prends des degats de recul");
     this->getUser().infligerDegat(COEF_RECUL * this->getAttaque(cible));
 }
