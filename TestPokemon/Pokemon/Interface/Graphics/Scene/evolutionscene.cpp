@@ -19,7 +19,7 @@ EvolutionScene::EvolutionScene(PokemonInterface &you, QObject *parent) : QGraphi
 
     this->animation = new QPropertyAnimation(pred,"pos");
     this->animation->setStartValue(pred->pos());
-    QPointF end  (-this->pred->boundingRect().width(),pred->pos().y());
+    QPointF end  (-this->pred->boundingRect().width()*1.5,pred->pos().y());
     this->animation->setEndValue(end);
     this->animation->setDuration(2000);
 
