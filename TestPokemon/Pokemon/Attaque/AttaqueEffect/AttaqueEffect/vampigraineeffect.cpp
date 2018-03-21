@@ -19,7 +19,10 @@ void VampigraineEffect::effect(){
         degat = d;
 
     }
-    emit sendMsg(user.getNom() + " vampirise la vie de " + this->getCible().getNom());
-    this->getCible().infligerDegat(degat);
-    this->user.soigner(degat);
+    if(this->user.isInLife()){
+        emit sendMsg(user.getNom() + " vampirise la vie de " + this->getCible().getNom());
+        this->getCible().infligerDegat(degat);
+        this->user.soigner(degat);
+    }
+
 }
