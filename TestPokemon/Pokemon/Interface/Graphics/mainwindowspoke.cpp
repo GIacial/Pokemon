@@ -46,6 +46,10 @@ void MainWindowsPoke::createBattleScene(){
     PokeBatleScene* s = new PokeBatleScene(you,other,view);
     this->view->setScene(s);
     QObject::connect(s,SIGNAL(endBattle()),SLOT(createBattleScene()));
+    QObject::connect(s,SIGNAL(endBattleEvolution()),SLOT(createEvolutionScene()));
 }
+//----------------------------------------------------------------------
+void MainWindowsPoke::createEvolutionScene(){
 
+}
 

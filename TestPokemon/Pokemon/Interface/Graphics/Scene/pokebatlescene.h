@@ -23,6 +23,7 @@ public:
 
 signals:
     void endBattle();
+    void endBattleEvolution();
 
 public slots:
     void endTurn();
@@ -37,6 +38,7 @@ private:
     GraphicsGif* otherImg;
     GraphicsGif* youImg;
     bool* fin;
+    bool* needEvolution;
 
 
     static constexpr double const&  HAUTEUR_TEXT_POURCENTAGE = .25;

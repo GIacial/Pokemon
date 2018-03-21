@@ -6,6 +6,7 @@ PokeBatleScene::PokeBatleScene(PokemonInterface *y, PokemonInterface *o, QObject
     this->setSceneRect(0,0,300,300);
     this->kernel = new PokeBatleSceneKernel(*this,y,o);
     this->fin = new bool(false);
+    this->needEvolution = new bool(false);
 
 
     this->youDisplay = new BatleDisplayPokemon(y);
@@ -46,6 +47,7 @@ PokeBatleScene::~PokeBatleScene() throw(){
     delete fin;
     delete otherImg;
     delete youImg;
+    delete needEvolution;
 }
 
 void PokeBatleScene::afficheTexte(QString m){
@@ -57,13 +59,19 @@ void PokeBatleScene::apprendreAttaque(unsigned int *t){
 }
 
 void PokeBatleScene::evoluer(){
-
+    *(this->needEvolution) = true;
 
 }
 
 void PokeBatleScene::endTurn(){
     if(*fin){
-       emit endBattle();
+        if(*needEvolution){
+            //lancer la sequence de demande d'evolution
+            emit endBattleEvolution();
+        }
+        else{
+            emit endBattle();
+        }
     }
     else{
         if(!kernel->getSystemCombat().allInLife()){

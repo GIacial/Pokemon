@@ -18,6 +18,7 @@ signals:
 public slots:
 
     void createBattleScene();                           //cree la scene de combat
+    void createEvolutionScene();                        //cree la scene d'evolution
 private:
     GraphicsView* view;
     PokemonInterface* you;
