@@ -24,6 +24,7 @@ public slots:
     void stop();
     void evolution();
     void start();
+    void sendEnd();
     void endEvolution();
 private:
      PokemonInterface& you;
@@ -32,6 +33,8 @@ private:
      GraphicsTextArea* text;
      QPropertyAnimation* animation;
      QPropertyAnimation* endAnimation;
+
+
 
      static constexpr double const&  HAUTEUR_TEXT_POURCENTAGE = .25;
 };
