@@ -9,7 +9,7 @@ KM_Combat::KM_Combat(PokemonInterface *you, PokemonInterface *other) : KernelObj
     QObject::connect(other,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
 
     QObject::connect(you,SIGNAL(veutApprendreAttaque(unsigned int*)),this,SLOT(apprendreAttaqueSlot(unsigned int*)));
-    QObject::connect(you,SIGNAL(veutEvoluer(bool*)),this,SLOT(veutEvoluer(bool*)));
+    QObject::connect(you,SIGNAL(veutEvoluer()),this,SLOT(veutEvoluer()));
 }
 //---------------------------------------------------------------
 //---------------------------------------------------------------
@@ -93,10 +93,10 @@ void KM_Combat::apprendreAttaqueSlot(unsigned int *t){
     emit PokemonVeutApprendreAttaque(t);
 }
 //---------------------------------------------------------------
-void KM_Combat::veutEvoluer(bool *t){
-    if(t != NULL){
-        emit PokemonVeutEvoluer(t);
-    }
+void KM_Combat::veutEvoluer(){
+
+        emit PokemonVeutEvoluer();
+
 }
 //---------------------------------------------------------------
 //---------------------------------------------------------------

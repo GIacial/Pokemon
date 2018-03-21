@@ -18,12 +18,8 @@ void PokeBatleSceneKernel::afficheTexte(QString m){
     this->interface.afficheTexte(m);
 }
 
-void PokeBatleSceneKernel::evoluer(bool *t){
-    std::cout << this->getSystemCombat().getNomCreature(CibleKM_COMBAT::ME).toStdString() << " veut evoluer" << std::endl;
-    std::cout << "Le laisser faire ? 1:ok" << std::endl;
-    int a = 0;
-    std::cin >> a;
-    (*t) = (a == 1);
+void PokeBatleSceneKernel::evoluer(){
+    this->interface.evoluer();
 }
 
 void PokeBatleSceneKernel::apprendreAttaque(unsigned int *t){

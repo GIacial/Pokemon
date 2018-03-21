@@ -56,7 +56,7 @@ void PokeBatleScene::apprendreAttaque(unsigned int *t){
 
 }
 
-void PokeBatleScene::evoluer(bool *t){
+void PokeBatleScene::evoluer(){
 
 
 }

@@ -7,9 +7,10 @@
 AbstractCombatInterface::AbstractCombatInterface(PokemonInterface*y , PokemonInterface* o) : QObject()
 {
     this->c = new KM_Combat(y,o);
+    you = y;
     QObject::connect(c,SIGNAL(sendMsg(QString)),this,SLOT(afficheTexte(QString)));
     QObject::connect(c,SIGNAL(PokemonVeutApprendreAttaque(unsigned int*)),this,SLOT(apprendreAttaque(unsigned int*)));
-    QObject::connect(c,SIGNAL(PokemonVeutEvoluer(bool*)),this,SLOT(evoluer(bool*)));
+    QObject::connect(c,SIGNAL(PokemonVeutEvoluer()),this,SLOT(evoluer()));
 }
 //------------------------------------------------------------------
 //------------------------------------------------------------------
@@ -32,4 +33,10 @@ void AbstractCombatInterface::useAttaque(unsigned int t) throw(OutOfRange_Person
 //------------------------------------------------------------------
 void AbstractCombatInterface::win(){
     this->c->earnXp();
+}
+//------------------------------------------------------------------
+//------------------------------------------------------------------
+//------------------------------------------------------------------
+PokemonInterface& AbstractCombatInterface::getYou(){
+    return *you;
 }

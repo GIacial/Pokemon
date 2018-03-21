@@ -13,6 +13,7 @@ public:
 
     //override
      AbstractPokemon* evolution()const;                                       //produit un nouveau pokemon qui est l'evolution du pokemon (return null si pas d'evolution possible)
+     bool pretEvolution()const ;                                                                                  //permet de savoir si pret a l'evolution
 
 signals:
 
@@ -20,7 +21,6 @@ public slots:
 
 protected:
     //override
-     bool pretEvolution()const ;                                                                                  //permet de savoir si pret a l'evolution
 
 private:
     static ListApprentissage* getListApprentissage();

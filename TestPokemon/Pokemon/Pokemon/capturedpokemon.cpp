@@ -211,25 +211,32 @@ bool CapturedPokemon::isLockAttaque()const{
     return this->poke->isLockAttaque();
 }
 //----------------------------------------------------------------------------------------
+bool CapturedPokemon::makeEvolution(){
+    //evolution
+    AbstractPokemon* evo = NULL;
+    if(this->poke->pretEvolution()){
+         evo = this->poke->evolution();
+         if(evo != NULL){
+             emit sendMsg (this->poke->getNom() + " évolue en " + evo->getNom());
+             delete poke;
+             this->poke = evo;
+             this->connectAllSignaux();
+         }
+    }
+
+    return evo != NULL;
+}
+//----------------------------------------------------------------------------------------
 //---------------------slot---------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 void CapturedPokemon::slot_apprendreAttaque(unsigned int *t){
     emit veutApprendreAttaque(t);
 }
 //----------------------------------------------------------------------------------------
-void CapturedPokemon::slot_evolution(bool *){
-    bool ok = false;
-    emit veutEvoluer(&ok);
-    if(ok){
-        //evolution
-        AbstractPokemon* evo = this->poke->evolution();
-        if(evo != NULL){
-            emit sendMsg (this->poke->getNom() + " évolue en " + evo->getNom());
-            delete poke;
-            this->poke = evo;
-            this->connectAllSignaux();
-        }
-    }
+void CapturedPokemon::slot_evolution(){
+
+    emit veutEvoluer();
+
 }
 //----------------------------------------------------------------------------------------
 void CapturedPokemon::slot_changedPv(const int pv){
@@ -250,7 +257,7 @@ void CapturedPokemon::slot_changedLvl(const uint lvl){
 void CapturedPokemon::connectAllSignaux(){
     QObject::connect(poke,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
     QObject::connect(poke,SIGNAL(veutApprendreAttaque(uint*)),this,SLOT(slot_apprendreAttaque(uint*)));
-    QObject::connect(poke,SIGNAL(veutEvoluer(bool*)),this,SLOT(slot_evolution(bool*)));
+    QObject::connect(poke,SIGNAL(veutEvoluer()),this,SLOT(slot_evolution()));
     QObject::connect(poke,SIGNAL(changedPv(int)),this,SLOT(slot_changedPv(int)));
     QObject::connect(poke,SIGNAL(changedPvMax(int)),this,SLOT(slot_changedPvMax(int)));
     QObject::connect(poke,SIGNAL(changedLevel(uint)),this,SLOT(slot_changedLvl(uint)));

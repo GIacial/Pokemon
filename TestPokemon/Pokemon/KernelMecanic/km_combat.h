@@ -29,11 +29,11 @@ public:
 
 signals:
     void PokemonVeutApprendreAttaque(unsigned int* t);                                                 //emit quand un pokem veut apprendre une attaque
-    void PokemonVeutEvoluer(bool* t);                                                                  //emit quand you veut evoluer
+    void PokemonVeutEvoluer();                                                                  //emit quand you veut evoluer
 
 public slots:
     void apprendreAttaqueSlot(unsigned int *t);                                                        //transmets le signal d'apprendtissage d'un poke
-    void veutEvoluer(bool* t);                                                                         //transmets le signal d'evolution
+    void veutEvoluer();                                                                         //transmets le signal d'evolution
 protected:
     void playOneTurn(unsigned int t) throw(OutOfRange_PersonalExeption);                                   //fait un tour de combat
 

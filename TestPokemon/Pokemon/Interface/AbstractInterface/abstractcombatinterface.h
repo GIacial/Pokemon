@@ -23,11 +23,13 @@ signals:
 public slots:
     virtual void afficheTexte(QString m) = 0;
     virtual void apprendreAttaque(unsigned int* t) = 0;                //veut apprendre une attaque
-    virtual void evoluer(bool* t) = 0;                                        //veut evoluer
+    virtual void evoluer() = 0;                                        //veut evoluer
 
 protected:
+    PokemonInterface& getYou();                                        //donne ton poke
 private:
     KM_Combat* c;
+    PokemonInterface* you;
 };
 
 #endif // ABSTRACTCOMBATINTERFACE_H

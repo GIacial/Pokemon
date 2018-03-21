@@ -22,7 +22,7 @@ public slots:
       //override
      void afficheTexte(QString m) ;
      void apprendreAttaque(unsigned int* t) ;                //veut apprendre une attaque
-     void evoluer(bool* t) ;                                        //veut evoluer
+     void evoluer() ;                                        //veut evoluer
 
 private:
      PokeBatleScene& interface;

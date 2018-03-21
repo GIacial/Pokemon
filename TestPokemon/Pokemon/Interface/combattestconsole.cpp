@@ -80,10 +80,15 @@ void combatTestConsole::apprendreAttaque(unsigned int *t){
     cin >> (*t);
 }
 //---------------------------------------------------------------------------------
-void combatTestConsole::evoluer(bool* t){
+void combatTestConsole::evoluer(){
+    bool ok = false;
     cout << this->getSystemCombat().getNomCreature(CibleKM_COMBAT::ME).toStdString() << " veut evoluer" << endl;
     cout << "Le laisser faire ? 1:ok" << endl;
     int a = 0;
     cin >> a;
-    (*t) = (a == 1);
+    ok = (a == 1);
+    //code de l'evolution
+    if(ok){
+        this->getYou().makeEvolution();
+    }
 }

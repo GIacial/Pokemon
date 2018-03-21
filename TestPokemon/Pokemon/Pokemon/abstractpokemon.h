@@ -85,10 +85,13 @@ public:
     void   decreaseEsquive(unsigned int nb = 1);                                           //diminue l'esquive
     bool   isLockAttaque()const;                                    //permet de savoir si le poke est bloquer sur une attaque
 
+    bool   makeEvolution();                                         //fait evoluer le pokemon si il en est capable
+
 //fin des override
 
     //fonction
     virtual AbstractPokemon* evolution()const;                                       //produit un nouveau pokemon qui est l'evolution du pokemon (return null si pas d'evolution possible)
+    virtual bool pretEvolution()const ;                                                                                  //permet de savoir si pret a l'evolution
 
 public slots:
 
@@ -104,7 +107,6 @@ protected:
                              unsigned int level = 1);//recup les attaque de la pre evolution
     //fonction
     void apprendreAttaque(Attaque::AbstractAttaque* a,unsigned int place = 0) throw (QString);                              //apprend une attaque (place => place pour l'attaque a enlever si plein
-    virtual bool pretEvolution()const ;                                                                                  //permet de savoir si pret a l'evolution
 
 
 private:

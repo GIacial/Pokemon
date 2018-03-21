@@ -369,6 +369,10 @@ bool AbstractPokemon::isLockAttaque()const{
     return this->AttaqueToUse != NULL;
 }
 //--------------------------------------------------------------------------
+bool AbstractPokemon::makeEvolution(){
+    return false;
+}
+//--------------------------------------------------------------------------
 //-------------------------Protected fonction-------------------------------
 //--------------------------------------------------------------------------
 void AbstractPokemon::apprendreAttaque(AbstractAttaque *a, unsigned int place) throw (QString){
@@ -398,7 +402,7 @@ void AbstractPokemon::levelUp(){
         this->apprendreAttaqueByLevelUp();
     }
     if(this->pretEvolution()){
-        emit veutEvoluer(NULL);
+        emit veutEvoluer();
     }
 }
 //--------------------------------------------------------------------------
