@@ -4,6 +4,8 @@
 
 #include "../../Pokemon/Pokemon/pokemonfactory.h"
 
+#include "Scene/evolutionscene.h"
+
 //----------------------------------------------------------------------
 //-----------------------------constructeur-----------------------------
 //----------------------------------------------------------------------
@@ -50,6 +52,9 @@ void MainWindowsPoke::createBattleScene(){
 }
 //----------------------------------------------------------------------
 void MainWindowsPoke::createEvolutionScene(){
+    EvolutionScene* s = new EvolutionScene(*you);
+    this->view->setScene(s );
 
+    QObject::connect(s,SIGNAL(end()),SLOT(createBattleScene()));
 }
 

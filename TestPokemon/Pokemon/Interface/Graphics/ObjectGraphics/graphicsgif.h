@@ -16,10 +16,15 @@ public:
 
     //override
     QRectF boundingRect()const;
-signals:
 
+
+signals:
+    void clicked();                                 //emit quand on clique desus
 public slots:
     void changedFrame(QRect);
+protected:
+    //override
+    void mousePressEvent(QGraphicsSceneMouseEvent*);
 
 private :
     QMovie* gif;

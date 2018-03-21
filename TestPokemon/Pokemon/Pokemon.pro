@@ -105,7 +105,8 @@ HEADERS += \
     Interface/Graphics/Scene/pokebatlescenekernel.h \
     Interface/Graphics/ObjectGraphics/attaquebutton.h \
     Interface/Graphics/ObjectGraphics/attaquepanel.h \
-    Interface/Graphics/ObjectGraphics/graphicsgif.h
+    Interface/Graphics/ObjectGraphics/graphicsgif.h \
+    Interface/Graphics/Scene/evolutionscene.h
 
 SOURCES += \
     Attaque/Attaque/AlterationAttaque/brouillard.cpp \
@@ -195,7 +196,8 @@ SOURCES += \
     Interface/Graphics/Scene/pokebatlescenekernel.cpp \
     Interface/Graphics/ObjectGraphics/attaquebutton.cpp \
     Interface/Graphics/ObjectGraphics/attaquepanel.cpp \
-    Interface/Graphics/ObjectGraphics/graphicsgif.cpp
+    Interface/Graphics/ObjectGraphics/graphicsgif.cpp \
+    Interface/Graphics/Scene/evolutionscene.cpp
 
 DISTFILES += \
     TODO

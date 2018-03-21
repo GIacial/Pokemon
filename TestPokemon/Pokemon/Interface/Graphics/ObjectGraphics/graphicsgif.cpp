@@ -24,3 +24,8 @@ QRectF GraphicsGif::boundingRect()const{
     QPixmap a = this->gif->currentPixmap();
     return QRectF(0,0, a.width(),a.height());
 }
+
+void GraphicsGif::mousePressEvent(QGraphicsSceneMouseEvent *){
+    emit clicked();
+}
+
