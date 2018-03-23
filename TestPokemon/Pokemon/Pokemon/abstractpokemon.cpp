@@ -55,6 +55,7 @@ void AbstractPokemon::generalConstructeur(const QString nom, AbstractType *type,
     this->xpAct = new Xp(0);
     this->type = type;
     this->alterations = new StatAlterator(*this);
+
     QObject::connect(alterations,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
 
     this->pvAct = new int(this->getMaxPv());
@@ -64,6 +65,7 @@ void AbstractPokemon::generalConstructeur(const QString nom, AbstractType *type,
     }
     this->effect = new std::vector<AttaqueEffect::AbstractAttaqueEffect*>();
     this->AttaqueToUse = NULL;
+    this->attaqueToLearn = NULL;
 
 }
 //-------------------------------------------------------------------------
@@ -98,6 +100,9 @@ AbstractPokemon::~AbstractPokemon() throw(){
     }
     if(nextAttaque != NULL){
         delete nextAttaque;
+    }
+    if(attaqueToLearn != NULL){
+        delete attaqueToLearn;
     }
 }
 
@@ -373,12 +378,28 @@ bool AbstractPokemon::makeEvolution(){
     return false;
 }
 //--------------------------------------------------------------------------
+bool AbstractPokemon::apprendreAttaque(uint attaqueOublier){
+    bool r = attaqueToLearn != NULL;
+    if(r){
+        if(attaqueOublier >= NB_MAX_ATTAQUE){
+           delete attaqueToLearn; //evite la fuite de l'attaque
+       }
+       else{
+           this->apprendreAttaque(attaqueToLearn,attaqueOublier);
+           emit sendMsg(this->getNom()+" apprends "+ attaqueToLearn->getNom());
+       }
+        this->attaqueToLearn = NULL;
+        this->apprendreAttaqueByLevelUp();
+    }
+    return r;
+}
+//--------------------------------------------------------------------------
 //-------------------------Protected fonction-------------------------------
 //--------------------------------------------------------------------------
-void AbstractPokemon::apprendreAttaque(AbstractAttaque *a, unsigned int place) throw (QString){
+void AbstractPokemon::apprendreAttaque(AbstractAttaque *a, unsigned int place) throw (OutOfRange_PersonalExeption){
     if(this->attaque->size() == NB_MAX_ATTAQUE){
         if( place >= this->attaque->size()){
-            throw QString("Poke attaque out of range :"+QString::number(place)+" n'est pas entre 0 et "+QString::number(this->attaque->size()));
+            throw OutOfRange_PersonalExeption("Poke attaque out of range :"+QString::number(place)+" n'est pas entre 0 et "+QString::number(this->attaque->size()));
         }
         delete this->attaque->at(place);
         this->attaque->at(place) = this->attaque->at(this->attaque->size()-1);
@@ -407,23 +428,22 @@ void AbstractPokemon::levelUp(){
 }
 //--------------------------------------------------------------------------
 void AbstractPokemon::apprendreAttaqueByLevelUp(){
-    while(this->nextAttaque->isMyLvl(this->getLevel())){
-           AbstractAttaque* a = this->nextAttaque->getNewAttaque(*this);
+    bool ok = true;
+    while(this->nextAttaque->isMyLvl(this->getLevel()) && ok){
+        AbstractAttaque* a = this->nextAttaque->getNewAttaque(*this);
         if(this->getNbAttaque() == NB_MAX_ATTAQUE){
             //cas attaque pleine
-            emit sendMsg("Plus de place pour apprendre "+ a->getNom());
-            unsigned int t = NB_MAX_ATTAQUE+1;
-            emit veutApprendreAttaque(&t);
-            if(t > NB_MAX_ATTAQUE){
-                delete a; //evite la fuite de l'attaque
+           // emit sendMsg("Plus de place pour apprendre "+ a->getNom());
+            if(attaqueToLearn != NULL){
+                delete attaqueToLearn;                                  //l'attaque n'a pas été apprise (cas ou apprendre n'a pas été appeler)
             }
-            else{
-                this->apprendreAttaque(a,t);
-                emit sendMsg(this->getNom()+" apprends "+ a->getNom());
-            }
+            this->attaqueToLearn = a;
+            emit veutApprendreAttaque(a->getNom());                    //signale qu'on veut apprendre une attaque
+            ok = false;
 
         }
         else{
+
             this->apprendreAttaque(a);
             emit sendMsg(this->getNom()+" apprends "+ a->getNom());
         }

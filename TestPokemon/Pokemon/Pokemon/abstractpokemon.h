@@ -86,6 +86,7 @@ public:
     bool   isLockAttaque()const;                                    //permet de savoir si le poke est bloquer sur une attaque
 
     bool   makeEvolution();                                         //fait evoluer le pokemon si il en est capable
+    bool   apprendreAttaque(uint attaqueOublier);                                      //apprend l'attaque en cours d'apprentissage (renvoi false si pas d'attaque)
 
 //fin des override
 
@@ -106,7 +107,7 @@ protected:
                              AbstractCourbe* xpCour, ListApprentissage* apprentissage,const AbstractPokemon& preEvolution,
                              unsigned int level = 1);//recup les attaque de la pre evolution
     //fonction
-    void apprendreAttaque(Attaque::AbstractAttaque* a,unsigned int place = 0) throw (QString);                              //apprend une attaque (place => place pour l'attaque a enlever si plein
+    void apprendreAttaque(Attaque::AbstractAttaque* a,unsigned int place = 0) throw (OutOfRange_PersonalExeption);                              //apprend une attaque (place => place pour l'attaque a enlever si plein
 
 
 private:
@@ -139,6 +140,7 @@ private:
     AbstractCourbe* xpCourbe;
     ListApprentissage* nextAttaque;
     std::vector<AttaqueEffect::AbstractAttaqueEffect*>* effect;
+    Attaque::AbstractAttaque* attaqueToLearn;                       //attaque en cours d'apprentissage
 
     Attaque::AbstractAttaque* AttaqueToUse;     //l'attaque a utiliser au prochain tour (cas des attaque chargé)
 

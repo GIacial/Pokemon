@@ -75,9 +75,22 @@ void combatTestConsole::afficheTexte(QString m){
     cout << m.toStdString() << endl;
 }
 //---------------------------------------------------------------------------------
-void combatTestConsole::apprendreAttaque(unsigned int *t){
+void combatTestConsole::apprendreAttaque(QString t){
+    uint n ;
+    cout << this->getYou().getNom().toStdString() << " veut apprendre " << t.toStdString() << endl;
     cout << "Quel attaque a oublie ?" << endl;
-    cin >> (*t);
+    try{
+        for(unsigned int i=0 ; i<this->getSystemCombat().getNbAttaque() ; i++){
+            cout << i <<":" <<this->getSystemCombat().getNomAttaqueCreature(CibleKM_COMBAT::ME,i).toStdString() <<" ";
+        }
+    }
+    catch(OutOfRange_PersonalExeption& r){
+        cerr << "OutofRange :"+r.getMsg().toStdString() << endl;
+    }
+    cout << endl;
+    cin >> n;
+    //mettre le code d'apprentissage
+    this->getYou().apprendreAttaque(n);
 }
 //---------------------------------------------------------------------------------
 void combatTestConsole::evoluer(){

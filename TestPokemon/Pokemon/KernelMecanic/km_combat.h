@@ -28,11 +28,11 @@ public:
     bool    getLockAttaqueCreature(CibleKM_COMBAT c)const;                              //donne si la creature est bloqué sur une attaque
 
 signals:
-    void PokemonVeutApprendreAttaque(unsigned int* t);                                                 //emit quand un pokem veut apprendre une attaque
+    void PokemonVeutApprendreAttaque(QString);                                                 //emit quand un pokem veut apprendre une attaque
     void PokemonVeutEvoluer();                                                                  //emit quand you veut evoluer
 
 public slots:
-    void apprendreAttaqueSlot(unsigned int *t);                                                        //transmets le signal d'apprendtissage d'un poke
+    void apprendreAttaqueSlot(QString t);                                                        //transmets le signal d'apprendtissage d'un poke
     void veutEvoluer();                                                                         //transmets le signal d'evolution
 protected:
     void playOneTurn(unsigned int t) throw(OutOfRange_PersonalExeption);                                   //fait un tour de combat

@@ -7,6 +7,7 @@ PokeBatleScene::PokeBatleScene(PokemonInterface *y, PokemonInterface *o, QObject
     this->kernel = new PokeBatleSceneKernel(*this,y,o);
     this->fin = new bool(false);
     this->needEvolution = new bool(false);
+    this->needLearnAttaque = NULL;
 
 
     this->youDisplay = new BatleDisplayPokemon(y);
@@ -48,14 +49,18 @@ PokeBatleScene::~PokeBatleScene() throw(){
     delete otherImg;
     delete youImg;
     delete needEvolution;
+    if(needLearnAttaque != NULL){
+        delete needLearnAttaque;
+    }
 }
 
 void PokeBatleScene::afficheTexte(QString m){
     this->textDisplay->setText(m);
 }
 
-void PokeBatleScene::apprendreAttaque(unsigned int *t){
-
+void PokeBatleScene::apprendreAttaque(QString t){
+    this->afficheTexte(this->kernel->getSystemCombat().getNomCreature(CibleKM_COMBAT::ME) + " veut apprendre "+ t);
+    this->needLearnAttaque = new QString(t);
 }
 
 void PokeBatleScene::evoluer(){
@@ -65,12 +70,17 @@ void PokeBatleScene::evoluer(){
 
 void PokeBatleScene::endTurn(){
     if(*fin){
-        if(*needEvolution){
-            //lancer la sequence de demande d'evolution
-            emit endBattleEvolution();
+        if(needLearnAttaque != NULL){
+            emit endBattleLearnAttaque(*needLearnAttaque,*needEvolution);
         }
         else{
-            emit endBattle();
+            if(*needEvolution){
+                //lancer la sequence de demande d'evolution
+                emit endBattleEvolution();
+            }
+            else{
+                emit endBattle();
+            }
         }
     }
     else{

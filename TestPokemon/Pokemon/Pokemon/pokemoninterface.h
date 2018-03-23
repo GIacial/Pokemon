@@ -75,9 +75,10 @@ public:
     virtual bool   isLockAttaque()const = 0;                                    //permet de savoir si le poke est bloquer sur une attaque
 
     virtual bool   makeEvolution() = 0;                                         //fait evoluer le pokemon si il en est capable
+    virtual bool   apprendreAttaque(uint attaqueOublier) = 0;                                      //apprend l'attaque en cours d'apprentissage (renvoi false si pas d'attaque)
 
 signals:
-    void veutApprendreAttaque(unsigned int * t);                                //emit quand il veut apprendre une attaque
+    void veutApprendreAttaque(QString attaqueName);                                //emit quand il veut apprendre une attaque
     void veutEvoluer();                                                 //emit quand il veut evoluer
 
     void changedPv(const int pv);                                                     //emit quand les pv change

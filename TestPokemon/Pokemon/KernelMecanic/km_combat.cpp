@@ -8,7 +8,7 @@ KM_Combat::KM_Combat(PokemonInterface *you, PokemonInterface *other) : KernelObj
     QObject::connect(you,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
     QObject::connect(other,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
 
-    QObject::connect(you,SIGNAL(veutApprendreAttaque(unsigned int*)),this,SLOT(apprendreAttaqueSlot(unsigned int*)));
+    QObject::connect(you,SIGNAL(veutApprendreAttaque(QString)),this,SLOT(apprendreAttaqueSlot(QString)));
     QObject::connect(you,SIGNAL(veutEvoluer()),this,SLOT(veutEvoluer()));
 }
 //---------------------------------------------------------------
@@ -89,7 +89,7 @@ bool KM_Combat::getLockAttaqueCreature(CibleKM_COMBAT c) const{
 //---------------------------------------------------------------
 //-----------------------slot------------------------------------
 //---------------------------------------------------------------
-void KM_Combat::apprendreAttaqueSlot(unsigned int *t){
+void KM_Combat::apprendreAttaqueSlot(QString t){
     emit PokemonVeutApprendreAttaque(t);
 }
 //---------------------------------------------------------------

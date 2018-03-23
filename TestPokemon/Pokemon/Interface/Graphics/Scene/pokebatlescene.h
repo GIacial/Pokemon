@@ -24,6 +24,7 @@ public:
 signals:
     void endBattle();
     void endBattleEvolution();
+    void endBattleLearnAttaque(QString nom,bool needEvolution);
 
 public slots:
     void endTurn();
@@ -39,12 +40,13 @@ private:
     GraphicsGif* youImg;
     bool* fin;
     bool* needEvolution;
+    QString* needLearnAttaque;
 
 
     static constexpr double const&  HAUTEUR_TEXT_POURCENTAGE = .25;
 
     void afficheTexte(QString m) ;
-    void apprendreAttaque(unsigned int* t) ;                //veut apprendre une attaque
+    void apprendreAttaque(QString t) ;                //veut apprendre une attaque
     void evoluer() ;                                        //veut evoluer
 
 };

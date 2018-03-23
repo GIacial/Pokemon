@@ -9,7 +9,7 @@ AbstractCombatInterface::AbstractCombatInterface(PokemonInterface*y , PokemonInt
     this->c = new KM_Combat(y,o);
     you = y;
     QObject::connect(c,SIGNAL(sendMsg(QString)),this,SLOT(afficheTexte(QString)));
-    QObject::connect(c,SIGNAL(PokemonVeutApprendreAttaque(unsigned int*)),this,SLOT(apprendreAttaque(unsigned int*)));
+    QObject::connect(c,SIGNAL(PokemonVeutApprendreAttaque(QString)),this,SLOT(apprendreAttaque(QString)));
     QObject::connect(c,SIGNAL(PokemonVeutEvoluer()),this,SLOT(evoluer()));
 }
 //------------------------------------------------------------------

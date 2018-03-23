@@ -227,9 +227,13 @@ bool CapturedPokemon::makeEvolution(){
     return evo != NULL;
 }
 //----------------------------------------------------------------------------------------
+bool CapturedPokemon::apprendreAttaque(uint attaqueOublier){
+    return this->poke->apprendreAttaque(attaqueOublier);
+}
+//----------------------------------------------------------------------------------------
 //---------------------slot---------------------------------------------------------------
 //----------------------------------------------------------------------------------------
-void CapturedPokemon::slot_apprendreAttaque(unsigned int *t){
+void CapturedPokemon::slot_apprendreAttaque(QString t){
     emit veutApprendreAttaque(t);
 }
 //----------------------------------------------------------------------------------------
@@ -256,7 +260,7 @@ void CapturedPokemon::slot_changedLvl(const uint lvl){
 
 void CapturedPokemon::connectAllSignaux(){
     QObject::connect(poke,SIGNAL(sendMsg(QString)),this,SLOT(afficheMsg(QString)));
-    QObject::connect(poke,SIGNAL(veutApprendreAttaque(uint*)),this,SLOT(slot_apprendreAttaque(uint*)));
+    QObject::connect(poke,SIGNAL(veutApprendreAttaque(QString)),this,SLOT(slot_apprendreAttaque(QString)));
     QObject::connect(poke,SIGNAL(veutEvoluer()),this,SLOT(slot_evolution()));
     QObject::connect(poke,SIGNAL(changedPv(int)),this,SLOT(slot_changedPv(int)));
     QObject::connect(poke,SIGNAL(changedPvMax(int)),this,SLOT(slot_changedPvMax(int)));

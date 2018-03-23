@@ -106,7 +106,10 @@ HEADERS += \
     Interface/Graphics/ObjectGraphics/attaquebutton.h \
     Interface/Graphics/ObjectGraphics/attaquepanel.h \
     Interface/Graphics/ObjectGraphics/graphicsgif.h \
-    Interface/Graphics/Scene/evolutionscene.h
+    Interface/Graphics/Scene/evolutionscene.h \
+    Interface/Graphics/Scene/learnattaquescene.h \
+    Exeption/noattaquetolearn_personalexception.h \
+    Interface/Graphics/ObjectGraphics/learnattaquebutton.h
 
 SOURCES += \
     Attaque/Attaque/AlterationAttaque/brouillard.cpp \
@@ -197,7 +200,10 @@ SOURCES += \
     Interface/Graphics/ObjectGraphics/attaquebutton.cpp \
     Interface/Graphics/ObjectGraphics/attaquepanel.cpp \
     Interface/Graphics/ObjectGraphics/graphicsgif.cpp \
-    Interface/Graphics/Scene/evolutionscene.cpp
+    Interface/Graphics/Scene/evolutionscene.cpp \
+    Interface/Graphics/Scene/learnattaquescene.cpp \
+    Exeption/noattaquetolearn_personalexception.cpp \
+    Interface/Graphics/ObjectGraphics/learnattaquebutton.cpp
 
 DISTFILES += \
     TODO

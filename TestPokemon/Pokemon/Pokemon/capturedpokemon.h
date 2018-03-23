@@ -78,12 +78,13 @@ public:
         bool   isLockAttaque()const;                                    //permet de savoir si le poke est bloquer sur une attaque
 
         bool   makeEvolution();                                         //fait evoluer le pokemon si il en est capable
+        bool   apprendreAttaque(uint attaqueOublier);                                      //apprend l'attaque en cours d'apprentissage (renvoi false si pas d'attaque)
 
     //fin des override
 signals:
 
 public slots:
-    void slot_apprendreAttaque(unsigned int* t);                                //attrape et relance le signal apprendre attaque
+    void slot_apprendreAttaque(QString t);                                //attrape et relance le signal apprendre attaque
     void slot_evolution();                                                 //attrape et relance le signal evolution
 
     void slot_changedPv(const int pv);                                                //attrape et relance le signal changedPv

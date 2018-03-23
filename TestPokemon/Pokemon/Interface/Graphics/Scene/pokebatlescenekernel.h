@@ -21,7 +21,7 @@ signals:
 public slots:
       //override
      void afficheTexte(QString m) ;
-     void apprendreAttaque(unsigned int* t) ;                //veut apprendre une attaque
+     void apprendreAttaque(QString t) ;                //veut apprendre une attaque
      void evoluer() ;                                        //veut evoluer
 
 private:
