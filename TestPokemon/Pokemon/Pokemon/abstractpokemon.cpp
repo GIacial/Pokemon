@@ -382,6 +382,7 @@ bool AbstractPokemon::apprendreAttaque(uint attaqueOublier){
     bool r = attaqueToLearn != NULL;
     if(r){
         if(attaqueOublier >= NB_MAX_ATTAQUE){
+            emit sendMsg(this->getNom()+" n'apprends pas "+attaqueToLearn->getNom());
            delete attaqueToLearn; //evite la fuite de l'attaque
        }
        else{
@@ -401,6 +402,7 @@ void AbstractPokemon::apprendreAttaque(AbstractAttaque *a, unsigned int place) t
         if( place >= this->attaque->size()){
             throw OutOfRange_PersonalExeption("Poke attaque out of range :"+QString::number(place)+" n'est pas entre 0 et "+QString::number(this->attaque->size()));
         }
+        emit sendMsg(this->getNom()+" oublie "+this->attaque->at(place)->getNom());
         delete this->attaque->at(place);
         this->attaque->at(place) = this->attaque->at(this->attaque->size()-1);
         this->attaque->pop_back();
@@ -433,7 +435,8 @@ void AbstractPokemon::apprendreAttaqueByLevelUp(){
         AbstractAttaque* a = this->nextAttaque->getNewAttaque(*this);
         if(this->getNbAttaque() == NB_MAX_ATTAQUE){
             //cas attaque pleine
-           // emit sendMsg("Plus de place pour apprendre "+ a->getNom());
+            emit sendMsg(this->getNom()+ " veut apprendre " + a->getNom());
+            emit sendMsg("Mais il n'y a plus de place pour apprendre "+ a->getNom());
             if(attaqueToLearn != NULL){
                 delete attaqueToLearn;                                  //l'attaque n'a pas été apprise (cas ou apprendre n'a pas été appeler)
             }

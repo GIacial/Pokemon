@@ -30,6 +30,7 @@ private:
     QList<QString*>*   nextText;
 
     void    afficheNextText();                                                  //affiche le text contenu dans le buffer
+    void addReturnLigne(QString &texte);                                  //utiliser pour reformater le texte lors de la fonction affiche nextText
 };
 
 #endif // GRAPHICSTEXTAREA_H

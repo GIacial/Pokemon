@@ -14,6 +14,8 @@ LearnAttaqueButton::LearnAttaqueButton(PokemonInterface &you, uint i, QString no
         //recup le nom de l'attaque a apprendre
         nomAttaque->setPlainText(nomAttak);
     }
+    this->setMinimumWidth(nomAttaque->boundingRect().width());
+    this->setMaximumHeight(nomAttaque->boundingRect().height());
     this->setGeometry(0,0,nomAttaque->boundingRect().width(),nomAttaque->boundingRect().height());
 }
 

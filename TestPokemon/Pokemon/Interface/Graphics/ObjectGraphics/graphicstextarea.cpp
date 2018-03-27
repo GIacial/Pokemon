@@ -44,10 +44,11 @@ void GraphicsTextArea::setText(const QString text){
 }
 //-------------------------------------------------------------------------------------------
 void GraphicsTextArea::afficheNextText(){
-    QString& text = *(this->nextText->first());
-    this->text->setPlainText(text);
+    QString& texte = *(this->nextText->first());
+    this->text->setPlainText(texte);
     if(this->text->boundingRect().width() > this->boundingRect().width()){
-        this->text->setPlainText(text.insert(text.size()/(this->text->boundingRect().width()/this->boundingRect().width()),'\n'));
+        this->addReturnLigne(texte);
+        this->text->setPlainText(texte);
     }
 }
 //-------------------------------------------------------------------------------------------
@@ -61,4 +62,21 @@ void GraphicsTextArea::mousePressEvent(QGraphicsSceneMouseEvent *){
             this->afficheNextText();
         }
     }
+}
+//-------------------------------------------------------------------------------------------
+void GraphicsTextArea::addReturnLigne(QString& texte){
+    double nbLigne = (this->text->boundingRect().width()/(this->boundingRect().width()-15));
+    int nb = 1;
+    while(nb < nbLigne){
+        int place = nb*texte.size()/nbLigne;
+        if(place < texte.size() && texte.contains(' ')){
+            while(place >= 0 && texte.at(place) != ' '){
+                place --;
+            }
+
+        }
+        texte.insert(place+1,'\n');
+        nb++;
+    }
+
 }

@@ -59,7 +59,6 @@ void PokeBatleScene::afficheTexte(QString m){
 }
 
 void PokeBatleScene::apprendreAttaque(QString t){
-    this->afficheTexte(this->kernel->getSystemCombat().getNomCreature(CibleKM_COMBAT::ME) + " veut apprendre "+ t);
     this->needLearnAttaque = new QString(t);
 }
 
